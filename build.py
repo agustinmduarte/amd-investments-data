@@ -220,6 +220,59 @@ def annual_flows(entries):
     return out
 
 
+def _d(x):
+    return dt.date.fromisoformat(x)
+
+
+def ttm_flow(entries):
+    """Últimos 12 meses al último cierre informado: anual si coincide; si no,
+    año fiscal anterior + acumulado del año − acumulado del año anterior (10-Q son acumulados)."""
+    best = {}
+    for e in entries:
+        d = dur(e)
+        if d is None or not (80 <= d <= 380):
+            continue
+        k = (e["start"], e["end"])
+        if k not in best or e.get("filed", "") >= best[k].get("filed", ""):
+            best[k] = e
+    if not best:
+        return None
+    L = max(e["end"] for e in best.values())
+    at_L = [e for e in best.values() if e["end"] == L]
+    fy = [e for e in at_L if 350 <= dur(e) <= 380]
+    if fy:
+        return fy[0]["val"], L, "anual"
+    ytd = max(at_L, key=dur)
+    S, dy = _d(ytd["start"]), dur(ytd)
+    prev_fy = [e for e in best.values() if 350 <= dur(e) <= 380 and 0 <= (S - _d(e["end"])).days <= 8]
+    prev_ytd = [e for e in best.values() if abs(dur(e) - dy) <= 10 and 355 <= (_d(L) - _d(e["end"])).days <= 375]
+    if prev_fy and prev_ytd:
+        return prev_fy[0]["val"] + ytd["val"] - prev_ytd[0]["val"], L, "12m"
+    # respaldo: cuatro trimestres de 3 meses
+    qs = sorted([e for e in best.values() if 80 <= dur(e) <= 100], key=lambda e: e["end"], reverse=True)
+    if qs and qs[0]["end"] == L:
+        sel, cur_end = [], _d(L)
+        for e in qs:
+            if abs((cur_end - _d(e["end"])).days) <= 10:
+                sel.append(e)
+                cur_end = _d(e["start"]) - dt.timedelta(days=1)
+            if len(sel) == 4:
+                return sum(x["val"] for x in sel), L, "4 trimestres"
+    return None
+
+
+def ttm_by_names(f, names, cur, L=None):
+    out = None
+    for n in names:
+        r = ttm_flow(_units(f, n, cur))
+        if r and (L is None or r[1] == L):
+            if out is None or r[1] > out[1]:
+                out = r
+            if L is not None:
+                break
+    return out
+
+
 def latest_instant(entries):
     best = None
     for e in entries:
@@ -314,6 +367,20 @@ def sec_company(facts, adr_ratio=1):
     cx = value_for_end(FL["capex"], fy_end)
     res["capex"] = abs(cx) if cx is not None else None
     res["sbc"] = value_for_end(FL["sbc"], fy_end)
+    # últimos 12 meses al último trimestre informado (10-Q)
+    t_ocf = ttm_by_names(f, CON["ocf"], cur)
+    if t_ocf and t_ocf[1] > fy_end:
+        L = t_ocf[1]
+        cx_names = CON["capex"] + [n for n, _ in FL["capex"] if n not in CON["capex"]]
+        t_cx = ttm_by_names(f, cx_names, cur, L)
+        t_sb = ttm_by_names(f, CON["sbc"], cur, L)
+        res["ocf"] = t_ocf[0]
+        res["capex"] = abs(t_cx[0]) if t_cx else res["capex"]
+        res["sbc"] = t_sb[0] if t_sb else res["sbc"]
+        res["ttm"] = {"end": L, "ocf": t_ocf[0], "capex": res["capex"], "sbc": res["sbc"]}
+        if not t_cx:
+            res.setdefault("soft", []).append("Capex anual (no se pudo calcular el de 12 meses).")
+        res["fyEnd"], res["fy"] = L, "12 meses a " + L
     missing = [k for k in ("capex",) if res[k] is None]
     if res["sbc"] is None:
         res["sbc"] = 0.0
@@ -349,7 +416,7 @@ def sec_company(facts, adr_ratio=1):
             v = instant_at(_units(f, "Borrowings", cur), bal_end)
             if v is not None:
                 debt, parts = v, 1
-    res["soft"] = []
+    res.setdefault("soft", [])
     res["debt"] = debt if parts else 0.0
     if not parts:
         res["soft"].append("No informa deuda financiera: se toma 0.")
@@ -398,6 +465,11 @@ def sec_company(facts, adr_ratio=1):
         H.append({"fy": end[:4], "end": end, "rev": value_for_end(FL["rev"], end), "ni": value_for_end(FL["ni"], end),
                   "ocf": o, "capex": abs(k) if k is not None else None, "sbc": sb,
                   "oe": (o - abs(k) - (sb or 0)) if k is not None else None})
+    if res.get("ttm"):
+        tt = res["ttm"]
+        H.append({"fy": "12m", "end": tt["end"], "rev": (ttm_by_names(f, CON["rev"], cur, tt["end"]) or [None])[0],
+                  "ni": (ttm_by_names(f, CON["ni"], cur, tt["end"]) or [None])[0], "ocf": tt["ocf"], "capex": tt["capex"],
+                  "sbc": tt["sbc"], "oe": tt["ocf"] - (tt["capex"] or 0) - (tt["sbc"] or 0)})
     res["hist"] = H
     res["missing"] = missing
     return res
@@ -431,6 +503,28 @@ def yf_fundamentals(t):
     tk = yf.Ticker(t)
     cf, bs, inc = tk.cashflow, tk.balance_sheet, tk.income_stmt
     ttm = False
+    try:
+        q, qb = tk.quarterly_cashflow, tk.quarterly_balance_sheet
+        if q is not None and not q.empty and q.shape[1] >= 4 and "Operating Cash Flow" in q.index:
+            ends = [dt.date.fromisoformat(str(c)[:10]) for c in q.columns[:4]]
+            consec = all(70 <= (ends[i] - ends[i + 1]).days <= 110 for i in range(3))
+            newer = cf is None or cf.empty or ends[0] > dt.date.fromisoformat(str(cf.columns[0])[:10])
+            if consec and newer and q.loc["Operating Cash Flow"].iloc[:4].notna().all():
+                annual_cf = cf
+                cf = q.iloc[:, :4].sum(axis=1, min_count=4).to_frame(q.columns[0])
+                if annual_cf is not None and not annual_cf.empty:
+                    cf_hist_src = annual_cf
+                ttm = True
+                if qb is not None and not qb.empty:
+                    bs = qb
+                qi = tk.quarterly_income_stmt
+                if qi is not None and not qi.empty and qi.shape[1] >= 4:
+                    inc_q = qi.iloc[:, :4].sum(axis=1, min_count=4).to_frame(qi.columns[0])
+                    sh = inc_q.index.isin(["Diluted Average Shares", "Basic Average Shares"])
+                    inc_q.loc[sh] = qi.loc[sh].iloc[:, :1].values  # acciones: último trimestre, no suma
+                    inc = inc_q
+    except Exception as ex:
+        log("yf q", t, ex)
     if cf is None or cf.empty or "Operating Cash Flow" not in cf.index:
         q = tk.quarterly_cashflow
         if q is not None and not q.empty and q.shape[1] >= 4:
@@ -467,19 +561,25 @@ def yf_fundamentals(t):
         res["balanceEnd"] = str(bs.columns[0])[:10]
     res["shares"] = row(inc, ["Diluted Average Shares", "Basic Average Shares"])
     H = []
-    for i, c in enumerate(list(cf.columns)[:5][::-1]):
-        j = list(cf.columns).index(c)
-        o, k, s = row(cf, ["Operating Cash Flow"], j), row(cf, ["Capital Expenditure"], j), row(cf, ["Stock Based Compensation"], j)
+    hcf = tk.cashflow if ttm else cf
+    hinc = tk.income_stmt if ttm else inc
+    for i, c in enumerate(list(hcf.columns)[:5][::-1] if hcf is not None and not hcf.empty else []):
+        j = list(hcf.columns).index(c)
+        o, k, s = row(hcf, ["Operating Cash Flow"], j), row(hcf, ["Capital Expenditure"], j), row(hcf, ["Stock Based Compensation"], j)
         r = ni = None
-        if inc is not None and not inc.empty and c in inc.columns:
-            jj = list(inc.columns).index(c)
-            r, ni = row(inc, ["Total Revenue"], jj), row(inc, ["Net Income Common Stockholders", "Net Income"], jj)
+        if hinc is not None and not hinc.empty and c in hinc.columns:
+            jj = list(hinc.columns).index(c)
+            r, ni = row(hinc, ["Total Revenue"], jj), row(hinc, ["Net Income Common Stockholders", "Net Income"], jj)
         H.append({"fy": str(c)[:4], "end": str(c)[:10], "rev": r, "ni": ni, "ocf": o, "capex": abs(k) if k is not None else None,
                   "sbc": s, "oe": (o - abs(k) - (s or 0)) if o is not None and k is not None else None})
+    if ttm and res.get("ocf") is not None:
+        H.append({"fy": "12m", "end": res["fyEnd"], "rev": row(inc, ["Total Revenue"]), "ni": row(inc, ["Net Income Common Stockholders", "Net Income"]),
+                  "ocf": res["ocf"], "capex": res["capex"], "sbc": res["sbc"],
+                  "oe": res["ocf"] - (res["capex"] or 0) - (res["sbc"] or 0)})
     res["hist"] = H
     res["missing"] = [k for k in ("ocf", "capex", "debt", "cash", "shares") if res.get(k) is None]
     if ttm:
-        res["fy"] = "últimos 4 trimestres"
+        res["fy"] = "12 meses a " + str(cf.columns[0])[:10]
     try:
         res["currency"] = tk.info.get("financialCurrency") or "USD"
     except Exception:
@@ -763,7 +863,7 @@ def full():
                 except Exception as ex:
                     log("sec", t, ex)
             yfund = None
-            stale_sec = fund and fund.get("fyEnd", "") < (dt.date.today() - dt.timedelta(days=400)).isoformat()
+            stale_sec = fund and fund.get("fyEnd", "") < (dt.date.today() - dt.timedelta(days=150)).isoformat()
             if not fund or stale_sec or any(fund.get(k) is None for k in ("ocf", "capex", "shares", "debt", "cash")):
                 try:
                     yfund = yf_fundamentals(t)
@@ -775,7 +875,9 @@ def full():
             if not fund:
                 fund = yfund
             elif yfund and stale_sec and yfund.get("ocf") is not None and yfund.get("fyEnd", "") > fund.get("fyEnd", ""):
-                yfund.setdefault("soft", []).append(f"Balance anual de Yahoo Finance ({yfund.get('fyEnd')}): el de la SEC era de {fund.get('fyEnd')}.")
+                yfund.setdefault("soft", []).append(f"Datos de Yahoo Finance a {yfund.get('fyEnd')}: lo último en la SEC era a {fund.get('fyEnd')}.")
+                if not yfund.get("hist") or len(fund.get("hist") or []) > len(yfund["hist"]):
+                    yfund["hist"] = [h for h in (fund.get("hist") or []) if h.get("fy") != "12m"] + [h for h in (yfund.get("hist") or []) if h.get("fy") == "12m"]
                 if fund.get("shares"):
                     yfund["shares"] = fund["shares"]  # acciones de la SEC (ya ajustadas por ADR)
                 fund = yfund
@@ -838,7 +940,7 @@ def full():
                     rh = usd_per(cur, h.get("end"), fxc) or r_fy
                     hist.append({kk: (round(vv * rh / 1e6, 3) if isinstance(vv, (int, float)) and kk != "fy" else vv)
                                  for kk, vv in h.items()})
-                hc = oe_cagr(hist)
+                hc = oe_cagr([h for h in hist if h.get("fy") != "12m"])
                 if hc:
                     row["hist"] = hc
                 detail.setdefault(t, {})["hist"] = hist
