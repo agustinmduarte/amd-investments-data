@@ -1,9 +1,9 @@
-2026-11-25T17:42:55+00:00
+2026-11-25T17:51:33+00:00
 S&P 500: 503 Nasdaq 100: 0
 CEDEARs: 401
 Acciones argentinas: 71
 Precios Yahoo: 810 de 815
-CCL implícito 1759.24 con 396 CEDEARs; referencia 1761.2
+CCL implícito 1760.75 con 396 CEDEARs; referencia 1761.2
 Descargando companyfacts de la SEC…
 ZIP: ok
 0/815 A
