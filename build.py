@@ -369,6 +369,9 @@ def sec_company(facts, adr_ratio=1):
     res["sbc"] = value_for_end(FL["sbc"], fy_end)
     # últimos 12 meses al último trimestre informado (10-Q)
     t_ocf = ttm_by_names(f, CON["ocf"], cur)
+    a_ocf = ocf[fy_end][0]
+    if t_ocf and a_ocf and not (0.25 <= abs(t_ocf[0] / a_ocf) <= 4):
+        t_ocf = None
     if t_ocf and t_ocf[1] > fy_end:
         L = t_ocf[1]
         cx_names = CON["capex"] + [n for n, _ in FL["capex"] if n not in CON["capex"]]
@@ -509,7 +512,14 @@ def yf_fundamentals(t):
             ends = [dt.date.fromisoformat(str(c)[:10]) for c in q.columns[:4]]
             consec = all(70 <= (ends[i] - ends[i + 1]).days <= 110 for i in range(3))
             newer = cf is None or cf.empty or ends[0] > dt.date.fromisoformat(str(cf.columns[0])[:10])
-            if consec and newer and q.loc["Operating Cash Flow"].iloc[:4].notna().all():
+            q_sum = float(q.loc["Operating Cash Flow"].iloc[:4].sum())
+            a_ocf = None
+            if cf is not None and not cf.empty and "Operating Cash Flow" in cf.index:
+                a_ocf = num(cf.loc["Operating Cash Flow"].iloc[0])
+            coherent = not a_ocf or 0.25 <= abs(q_sum / a_ocf) <= 4
+            if not coherent:
+                log("TTM incoherente", t, q_sum, a_ocf)
+            if consec and newer and coherent and q.loc["Operating Cash Flow"].iloc[:4].notna().all():
                 annual_cf = cf
                 cf = q.iloc[:, :4].sum(axis=1, min_count=4).to_frame(q.columns[0])
                 if annual_cf is not None and not annual_cf.empty:
