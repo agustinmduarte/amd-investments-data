@@ -1,13 +1,13 @@
-2026-11-25T18:13:10+00:00
+2026-11-25T18:40:16+00:00
 CCL histórico: 5076 días 2013-01-02 a 2026-11-25
 S&P 500: 503 Nasdaq 100: 0
-CEDEARs: 401
+CEDEARs: 402
 Acciones argentinas: 71
-Precios Yahoo: 809 de 815
-CCL implícito 1765.57 con 396 CEDEARs; referencia 1758.3
+Precios Yahoo: 810 de 816
+CCL implícito 1770.83 con 396 CEDEARs; referencia 1758.3
 Descargando companyfacts de la SEC…
 ZIP: ok
-0/815 A
+0/816 A
 HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
@@ -48,28 +48,104 @@ HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
-50/815 AON
-100/815 BIIB
-150/815 CI
-200/815 DD
-250/815 ERIC
-300/815 GCDI.BA
-350/815 HONA
-400/815 ITA
-450/815 LOMA
-500/815 MU
-550/815 PAAS
-600/815 REG
-650/815 SNDK
-700/815 TKO
-HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+50/816 ANT
+100/816 BIDU
+150/816 CHTR
+200/816 DBB
+250/816 EQT
+300/816 GBAN.BA
+DEBUG GGAL ifrs-full AdditionalPaidinCapital 2025-03-31
+DEBUG GGAL ifrs-full CapitalReserve 2025-03-31
+DEBUG GGAL ifrs-full CashFlowsFromUsedInOperatingActivities 2025-03-31
+DEBUG GGAL ifrs-full CashFlowsFromUsedInOperatingActivitiesDiscontinuedOperations 2017-12-31
+DEBUG GGAL ifrs-full DepreciationPropertyPlantAndEquipment 2025-03-31
+DEBUG GGAL ifrs-full IncomeTaxesPaidRefundClassifiedAsOperatingActivities 2025-03-31
+DEBUG GGAL ifrs-full IssuedCapital 2025-03-31
+DEBUG GGAL ifrs-full MiscellaneousOtherOperatingExpense 2025-03-31
+DEBUG GGAL ifrs-full OtherOperatingIncomeExpense 2025-03-31
+DEBUG GGAL ifrs-full ProceedsFromDisposalsOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-03-31
+DEBUG GGAL ifrs-full ProfitLossFromOperatingActivities 2025-03-31
+DEBUG GGAL ifrs-full PropertyPlantAndEquipment 2024-12-31
+DEBUG GGAL ifrs-full PurchaseOfInterestsInAssociates 2020-12-31
+DEBUG GGAL ifrs-full PurchaseOfOtherLongtermAssetsClassifiedAsInvestingActivities 2018-12-31
+DEBUG GGAL ifrs-full PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-03-31
+DEBUG GGAL ifrs-full RevenueAndOperatingIncome 2025-03-31
+DEBUG GGAL ifrs-full PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod 2024-12-31
+DEBUG GGAL ifrs-full PropertyPlantAndEquipmentIncludingRightofuseAssets 2025-03-31
+DEBUG GGAL ifrs-full IssuedCapitalOrdinaryShares 2024-12-31
+DEBUG GGAL SEC fy 2024-12-31 Yahoo fy 2025-12-31 cur ARS ARS capex SEC 214703494000 Yahoo 245914779000.0
+350/816 HON
+400/816 IT
+450/816 LNT
+500/816 MTD
+550/816 P
+DEBUG PAM ifrs-full AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment 2017-12-31
+DEBUG PAM ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment 2024-12-31
+DEBUG PAM ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2024-12-31
+DEBUG PAM ifrs-full AdjustmentsForImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2023-12-31
+DEBUG PAM ifrs-full BorrowingCostsCapitalised 2020-12-31
+DEBUG PAM ifrs-full CashFlowsFromUsedInOperatingActivities 2024-12-31
+DEBUG PAM ifrs-full CashFlowsFromUsedInOperatingActivitiesDiscontinuedOperations 2021-12-31
+DEBUG PAM ifrs-full ChangesInPropertyPlantAndEquipment 2021-12-31
+DEBUG PAM ifrs-full DecreaseThroughClassifiedAsHeldForSalePropertyPlantAndEquipment 2017-12-31
+DEBUG PAM ifrs-full DepreciationPropertyPlantAndEquipment 2021-12-31
+DEBUG PAM ifrs-full DividendsReceivedClassifiedAsOperatingActivities 2020-12-31
+DEBUG PAM ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2020-12-31
+DEBUG PAM ifrs-full IncomeTaxesPaidRefundClassifiedAsOperatingActivities 2022-12-31
+DEBUG PAM ifrs-full IncreaseDecreaseThroughNetExchangeDifferencesPropertyPlantAndEquipment 2020-12-31
+DEBUG PAM ifrs-full IncreaseDecreaseThroughTransfersPropertyPlantAndEquipment 2019-12-31
+DEBUG PAM ifrs-full IssuedCapital 2024-12-31
+DEBUG PAM ifrs-full MinimumLeasePaymentsPayableUnderNoncancellableOperatingLease 2018-12-31
+DEBUG PAM ifrs-full MinimumLeasePaymentsReceivableUnderNoncancellableOperatingLease 2018-12-31
+DEBUG PAM ifrs-full MiscellaneousOtherOperatingExpense 2024-12-31
+DEBUG PAM ifrs-full MiscellaneousOtherOperatingIncome 2024-12-31
+DEBUG PAM ifrs-full OperatingLeaseIncome 2019-12-31
+DEBUG PAM ifrs-full OtherCashReceiptsFromOperatingActivities 2017-12-31
+DEBUG PAM ifrs-full OtherInflowsOutflowsOfCashClassifiedAsOperatingActivities 2018-12-31
+DEBUG PAM ifrs-full ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2018-12-31
+DEBUG PAM ifrs-full ProfitLossFromOperatingActivities 2024-12-31
+DEBUG PAM ifrs-full PropertyPlantAndEquipment 2024-12-31
+DEBUG PAM ifrs-full PropertyPlantAndEquipmentCarryingAmountOfRevaluedAssets 2020-12-31
+DEBUG PAM ifrs-full PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities 2022-12-31
+DEBUG PAM ifrs-full PurchaseOfInterestsInAssociates 2024-12-31
+DEBUG PAM ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2024-12-31
+DEBUG PAM ifrs-full PurchaseOfTreasuryShares 2021-12-31
+DEBUG PAM ifrs-full ReductionOfIssuedCapital 2020-12-31
+DEBUG PAM ifrs-full ReversalOfImpairmentLossRecognisedInOtherComprehensiveIncomePropertyPlantAndEquipment 2017-12-31
+DEBUG PAM ifrs-full ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2017-12-31
+DEBUG PAM ifrs-full CashFlowsFromUsedInMaintainingOperatingCapacity 2022-12-12
+DEBUG PAM ifrs-full PurchaseOfInvestmentProperty 2023-12-31
+DEBUG PAM SEC fy 2024-12-31 Yahoo fy 2025-12-31 cur USD USD capex SEC 447000000 Yahoo 993000000.0
+600/816 RDDT
+DEBUG SAP ifrs-full AdditionalPaidinCapital 2023-12-31
+DEBUG SAP ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment 2023-12-31
+DEBUG SAP ifrs-full AdjustmentsForDecreaseIncreaseInOtherOperatingReceivables 2019-12-31
+DEBUG SAP ifrs-full CapitalCommitments 2025-12-31
+DEBUG SAP ifrs-full CashFlowsFromUsedInOperatingActivities 2025-12-31
+DEBUG SAP ifrs-full IncomeTaxesPaidRefundClassifiedAsOperatingActivities 2025-12-31
+DEBUG SAP ifrs-full InterestPaidClassifiedAsOperatingActivities 2024-12-31
+DEBUG SAP ifrs-full InterestReceivedClassifiedAsOperatingActivities 2024-12-31
+DEBUG SAP ifrs-full IssuedCapital 2025-12-31
+DEBUG SAP ifrs-full MinimumLeasePaymentsPayableUnderNoncancellableOperatingLease 2018-12-31
+DEBUG SAP ifrs-full OperatingExpense 2025-12-31
+DEBUG SAP ifrs-full OtherOperatingIncomeExpense 2025-12-31
+DEBUG SAP ifrs-full ProceedsFromDisposalsOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-12-31
+DEBUG SAP ifrs-full ProfitLossFromOperatingActivities 2025-12-31
+DEBUG SAP ifrs-full PropertyPlantAndEquipment 2022-12-31
+DEBUG SAP ifrs-full PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-12-31
+DEBUG SAP ifrs-full PurchaseOfTreasuryShares 2025-12-31
+DEBUG SAP ifrs-full CashFlowsFromUsedInOperatingActivitiesContinuingOperations 2025-12-31
+DEBUG SAP ifrs-full CashFlowsFromUsedInOperatingActivitiesDiscontinuedOperations 2025-12-31
+DEBUG SAP ifrs-full PropertyPlantAndEquipmentIncludingRightofuseAssets 2025-12-31
+DEBUG SAP ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipmentIncludingRightofuseAssets 2025-12-31
+DEBUG SAP ifrs-full ContractualCapitalCommitments 2025-12-31
+DEBUG SAP SEC fy 2025-12-31 Yahoo fy None cur EUR None capex SEC 739000000 Yahoo None
+650/816 SNAP
+700/816 TJX
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
@@ -82,6 +158,73 @@ HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
-750/815 VEEV
-800/815 XME
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+750/816 VEA
+DEBUG VIST ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2019-12-31
+DEBUG VIST ifrs-full AdjustmentsForImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2024-12-31
+DEBUG VIST ifrs-full AdjustmentsForIncreaseDecreaseInOtherOperatingPayables 2024-12-31
+DEBUG VIST ifrs-full CashFlowsFromUsedInOperatingActivities 2024-12-31
+DEBUG VIST ifrs-full DepreciationPropertyPlantAndEquipment 2019-12-31
+DEBUG VIST ifrs-full DisposalsPropertyPlantAndEquipment 2017-12-31
+DEBUG VIST ifrs-full GainRecognisedInBargainPurchaseTransaction 2020-12-31
+DEBUG VIST ifrs-full GainsOnDisposalsOfPropertyPlantAndEquipment 2017-12-31
+DEBUG VIST ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2021-12-31
+DEBUG VIST ifrs-full IncomeTaxesPaidClassifiedAsOperatingActivities 2024-12-31
+DEBUG VIST ifrs-full IssuedCapital 2024-12-31
+DEBUG VIST ifrs-full MiscellaneousOtherOperatingExpense 2024-12-31
+DEBUG VIST ifrs-full MiscellaneousOtherOperatingIncome 2024-12-31
+DEBUG VIST ifrs-full OperatingExpense 2024-12-31
+DEBUG VIST ifrs-full ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2018-04-03
+DEBUG VIST ifrs-full ProfitLossFromOperatingActivities 2024-12-31
+DEBUG VIST ifrs-full PropertyPlantAndEquipment 2024-12-31
+DEBUG VIST ifrs-full PurchaseOfAvailableforsaleFinancialAssets 2018-04-03
+DEBUG VIST ifrs-full PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities 2024-12-31
+DEBUG VIST ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2024-12-31
+DEBUG VIST ifrs-full ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2024-12-31
+DEBUG VIST ifrs-full PurchaseOfExplorationAndEvaluationAssets 2021-12-31
+DEBUG VIST ifrs-full PurchaseOfInterestsInAssociates 2024-12-31
+DEBUG VIST ifrs-full PurchaseOfOilAndGasAssets 2022-12-31
+DEBUG VIST ifrs-full ReductionOfIssuedCapital 2024-12-31
+DEBUG VIST ifrs-full CapitalCommitments 2024-12-31
+DEBUG VIST ifrs-full GainsLossesOnDisposalsOfPropertyPlantAndEquipment 2023-12-31
+DEBUG VIST ifrs-full PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod 2023-01-27
+DEBUG VIST SEC fy 2024-12-31 Yahoo fy 2025-12-31 cur USD USD capex SEC 1052530000 Yahoo 1467131000.0
+800/816 XLY
+DEBUG YPF ifrs-full AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment 2025-12-31
+DEBUG YPF ifrs-full AdjustmentsForDecreaseIncreaseInOtherOperatingReceivables 2025-12-31
+DEBUG YPF ifrs-full AdjustmentsForImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2022-12-31
+DEBUG YPF ifrs-full BorrowingCostsCapitalised 2025-12-31
+DEBUG YPF ifrs-full CapitalisationRateOfBorrowingCostsEligibleForCapitalisation 2025-12-31
+DEBUG YPF ifrs-full CashFlowsFromUsedInOperatingActivities 2025-12-31
+DEBUG YPF ifrs-full ContingentRentsRecognisedAsExpenseClassifiedAsOperatingLease 2018-12-31
+DEBUG YPF ifrs-full DecreaseThroughLossOfControlOfSubsidiaryPropertyPlantAndEquipment 2018-12-31
+DEBUG YPF ifrs-full DepreciationPropertyPlantAndEquipment 2025-12-31
+DEBUG YPF ifrs-full DividendsReceivedClassifiedAsOperatingActivities 2025-12-31
+DEBUG YPF ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2016-12-31
+DEBUG YPF ifrs-full IncomeTaxesPaidClassifiedAsOperatingActivities 2025-12-31
+DEBUG YPF ifrs-full IncomeTaxesPaidRefundClassifiedAsOperatingActivities 2025-12-31
+DEBUG YPF ifrs-full IncreaseDecreaseThroughOtherChangesPropertyPlantAndEquipment 2025-12-31
+DEBUG YPF ifrs-full InterestCostsCapitalised 2025-12-31
+DEBUG YPF ifrs-full IssuedCapital 2025-12-31
+DEBUG YPF ifrs-full MinimumOperatingLeasePayments 2018-12-31
+DEBUG YPF ifrs-full MiscellaneousOtherOperatingExpense 2017-12-31
+DEBUG YPF ifrs-full MiscellaneousOtherOperatingIncome 2018-12-31
+DEBUG YPF ifrs-full OtherOperatingIncomeExpense 2025-12-31
+DEBUG YPF ifrs-full ProfitLossFromOperatingActivities 2025-12-31
+DEBUG YPF ifrs-full PropertyPlantAndEquipment 2025-12-31
+DEBUG YPF ifrs-full PropertyPlantAndEquipmentRecognisedAsOfAcquisitionDate 2018-12-31
+DEBUG YPF ifrs-full PurchaseOfAvailableforsaleFinancialAssets 2023-12-31
+DEBUG YPF ifrs-full PurchaseOfInvestmentsOtherThanInvestmentsAccountedForUsingEquityMethod 2018-12-31
+DEBUG YPF ifrs-full PurchaseOfOilAndGasAssets 2017-12-31
+DEBUG YPF ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2018-12-31
+DEBUG YPF ifrs-full PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-12-31
+DEBUG YPF ifrs-full PurchaseOfTreasuryShares 2025-12-31
+DEBUG YPF ifrs-full ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2018-12-31
+DEBUG YPF ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2021-12-31
+DEBUG YPF ifrs-full IncreaseDecreaseThroughTransfersAndOtherChangesPropertyPlantAndEquipment 2025-12-31
+DEBUG YPF ifrs-full PurchaseOfFinancialAssetsMeasuredAtAmortisedCostClassifiedAsInvestingActivities 2025-12-31
+DEBUG YPF SEC fy 2025-12-31 Yahoo fy None cur USD None capex SEC 5077000000 Yahoo None
 CONTROL APPLE: OK
