@@ -1,4 +1,4 @@
-2026-11-25T20:45:33+00:00
+2026-11-25T21:21:21+00:00
 CCL histórico: 5076 días 2013-01-02 a 2026-11-25
 S&P 500: 503 Nasdaq 100: 0
 CEDEARs: 403
@@ -9,7 +9,7 @@ CVM DFP 2025 ok
 CVM DFP 2024 ok
 CVM empresas con datos: 13
 Precios Yahoo: 810 de 816
-CCL implícito 1779.51 con 397 CEDEARs; referencia 1767.9
+CCL implícito 1778.38 con 397 CEDEARs; referencia 1767.9
 Descargando companyfacts de la SEC…
 ZIP: ok
 0/816 A
@@ -77,58 +77,6 @@ TTM incoherente HARG.BA 50739000000.0 6561000000.0
 Yahoo incoherente con la SEC HMC 8931803448.0 1955227260.0
 350/816 HON
 400/816 IT
-DEBUG ITUB ifrs-full AdditionalPaidinCapital 2020-12-31
-DEBUG ITUB ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2017-12-31
-DEBUG ITUB ifrs-full CapitalReserve 2024-12-31
-DEBUG ITUB ifrs-full CashFlowsFromUsedInOperatingActivities 2024-12-31
-DEBUG ITUB ifrs-full ContractualCapitalCommitments 2023-12-31
-DEBUG ITUB ifrs-full ContractualCommitmentsForAcquisitionOfPropertyPlantAndEquipment 2024-12-31
-DEBUG ITUB ifrs-full ExpectedFutureMinimumSubleasePaymentsReceivableUnderNoncancellableSubleasesClassifiedAsOperatingLease 2018-12-31
-DEBUG ITUB ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2024-12-31
-DEBUG ITUB ifrs-full IncreaseDecreaseInWorkingCapital 2024-12-31
-DEBUG ITUB ifrs-full InterestPaidClassifiedAsOperatingActivities 2024-12-31
-DEBUG ITUB ifrs-full InterestReceivedClassifiedAsOperatingActivities 2024-12-31
-DEBUG ITUB ifrs-full IssuedCapital 2024-12-31
-DEBUG ITUB ifrs-full MiscellaneousOtherOperatingIncome 2017-12-31
-DEBUG ITUB ifrs-full ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2024-12-31
-DEBUG ITUB ifrs-full PropertyPlantAndEquipment 2024-12-31
-DEBUG ITUB ifrs-full PropertyPlantAndEquipmentPledgedAsSecurity 2018-12-31
-DEBUG ITUB ifrs-full PurchaseOfAvailableforsaleFinancialAssets 2017-12-31
-DEBUG ITUB ifrs-full PurchaseOfFinancialInstrumentsClassifiedAsInvestingActivities 2017-12-31
-DEBUG ITUB ifrs-full PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities 2024-12-31
-DEBUG ITUB ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2024-12-31
-DEBUG ITUB ifrs-full PurchaseOfTreasuryShares 2024-12-31
-DEBUG ITUB ifrs-full DepreciationPropertyPlantAndEquipment 2024-12-31
-DEBUG ITUB ifrs-full DisposalsPropertyPlantAndEquipment 2024-12-31
-DEBUG ITUB us-gaap AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment 2010-12-31
-DEBUG ITUB us-gaap AdditionalPaidInCapital 2010-12-31
-DEBUG ITUB us-gaap AdjustmentsNoncashItemsToReconcileNetIncomeLossToCashProvidedByUsedInOperatingActivitiesOther 2010-06-30
-DEBUG ITUB us-gaap BusinessCombinationBargainPurchaseGainRecognizedAmount 2010-12-31
-DEBUG ITUB us-gaap CapitalizedComputerSoftwareGross 2010-12-31
-DEBUG ITUB us-gaap CapitalLeaseObligations 2010-12-31
-DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDue 2010-12-31
-DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueCurrent 2010-12-31
-DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueInFiveYears 2010-12-31
-DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueInFourYears 2010-12-31
-DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueInThreeYears 2010-12-31
-DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueInTwoYears 2010-12-31
-DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueThereafter 2010-12-31
-DEBUG ITUB us-gaap DeferredTaxAssetsOperatingLossCarryforwards 2010-12-31
-DEBUG ITUB us-gaap GainLossOnSaleOfPropertyPlantEquipment 2010-12-31
-DEBUG ITUB us-gaap IncreaseDecreaseInOtherOperatingCapitalNet 2010-12-31
-DEBUG ITUB us-gaap InterestAndDividendIncomeOperating 2010-12-31
-DEBUG ITUB us-gaap InterestCostsIncurredCapitalized 2010-12-31
-DEBUG ITUB us-gaap InterestIncomeSecuritiesPurchasedUnderAgreementsToResell 2010-12-31
-DEBUG ITUB us-gaap NetCashProvidedByUsedInOperatingActivities 2010-12-31
-DEBUG ITUB us-gaap NoninterestIncomeOtherOperatingIncome 2010-12-31
-DEBUG ITUB us-gaap PaymentsToAcquirePropertyPlantAndEquipment 2010-12-31
-DEBUG ITUB us-gaap ProceedsFromContributedCapital 2007-12-31
-DEBUG ITUB us-gaap ProceedsFromPaymentsForSecuritiesPurchasedUnderAgreementsToResell 2010-12-31
-DEBUG ITUB us-gaap ProceedsFromSaleOfPropertyPlantAndEquipment 2010-12-31
-DEBUG ITUB us-gaap PropertyPlantAndEquipmentGross 2010-12-31
-DEBUG ITUB us-gaap PropertyPlantAndEquipmentNet 2010-12-31
-DEBUG ITUB us-gaap SecuritiesPurchasedUnderAgreementsToResell 2010-12-31
-DEBUG ITUB SEC fy 2024-12-31 Yahoo fy 2026-09-30 cur BRL BRL capex SEC 1833000000 Yahoo 9674000000.0
 Yahoo incoherente con la SEC ITUB 14340788100.0 1142986610.0
 CVM ITUB 12 meses a 2026-09-30 74610 M BRL
 TTM incoherente KB 19328306000000.0 4226378000000.0
@@ -178,66 +126,6 @@ HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
-DEBUG VALE ifrs-full AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment 2021-12-31
-DEBUG VALE ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment 2025-12-31
-DEBUG VALE ifrs-full BorrowingCostsCapitalised 2025-12-31
-DEBUG VALE ifrs-full CapitalisationRateOfBorrowingCostsEligibleForCapitalisation 2022-12-31
-DEBUG VALE ifrs-full CashFlowsFromUsedInOperatingActivities 2025-06-30
-DEBUG VALE ifrs-full CashFlowsFromUsedInOperatingActivitiesContinuingOperations 2021-12-31
-DEBUG VALE ifrs-full DecreaseThroughClassifiedAsHeldForSalePropertyPlantAndEquipment 2025-12-31
-DEBUG VALE ifrs-full DisposalsPropertyPlantAndEquipment 2025-12-31
-DEBUG VALE ifrs-full IncomeTaxesPaidClassifiedAsOperatingActivities 2017-12-31
-DEBUG VALE ifrs-full IncreaseDecreaseThroughNetExchangeDifferencesPropertyPlantAndEquipment 2025-12-31
-DEBUG VALE ifrs-full IncreaseDecreaseThroughTransfersPropertyPlantAndEquipment 2017-12-31
-DEBUG VALE ifrs-full InterestPaidClassifiedAsOperatingActivities 2023-06-30
-DEBUG VALE ifrs-full IssuedCapital 2021-12-31
-DEBUG VALE ifrs-full MinimumLeasePaymentsPayableUnderNoncancellableOperatingLease 2018-12-31
-DEBUG VALE ifrs-full OperatingExpense 2022-12-31
-DEBUG VALE ifrs-full OtherOperatingIncomeExpense 2025-12-31
-DEBUG VALE ifrs-full ProfitLossFromOperatingActivities 2025-12-31
-DEBUG VALE ifrs-full PropertyPlantAndEquipment 2025-12-31
-DEBUG VALE ifrs-full PurchaseOfInvestmentsOtherThanInvestmentsAccountedForUsingEquityMethod 2023-12-31
-DEBUG VALE ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2017-12-31
-DEBUG VALE ifrs-full PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2021-12-31
-DEBUG VALE ifrs-full PurchaseOfTreasuryShares 2022-12-31
-DEBUG VALE ifrs-full RetirementsPropertyPlantAndEquipment 2021-12-31
-DEBUG VALE ifrs-full WritedownsReversalsOfPropertyPlantAndEquipment 2022-12-31
-DEBUG VALE ifrs-full CashFlowsFromUsedInOperatingActivitiesDiscontinuedOperations 2021-12-31
-DEBUG VALE ifrs-full AdjustmentsToReconcileProfitLossOtherThanChangesInWorkingCapital 2024-12-31
-DEBUG VALE ifrs-full RevaluationIncreaseDecreasePropertyPlantAndEquipment 2022-12-31
-DEBUG VALE ifrs-full IssuedCapitalOrdinaryShares 2025-12-31
-DEBUG VALE ifrs-full MiscellaneousOtherOperatingExpense 2024-06-30
-DEBUG VALE ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2025-12-31
-DEBUG VALE ifrs-full InterestCostsCapitalised 2025-12-31
-DEBUG VALE us-gaap AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment 2010-12-31
-DEBUG VALE us-gaap AdditionalPaidInCapital 2012-12-31
-DEBUG VALE us-gaap AdjustmentsNoncashItemsToReconcileNetIncomeLossToCashProvidedByUsedInOperatingActivitiesOther 2011-06-30
-DEBUG VALE us-gaap AdjustmentsToAdditionalPaidInCapitalEquityComponentOfConvertibleDebt 2010-06-30
-DEBUG VALE us-gaap CashPaidForCapitalizedInterest 2011-06-30
-DEBUG VALE us-gaap DeferredTaxAssetsOperatingLossCarryforwards 2012-12-31
-DEBUG VALE us-gaap DirectOperatingCosts 2012-12-31
-DEBUG VALE us-gaap DisposalGroupIncludingDiscontinuedOperationPropertyPlantAndEquipmentNet 2012-12-31
-DEBUG VALE us-gaap FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetPurchasesSalesIssuancesSettlements 2010-12-31
-DEBUG VALE us-gaap GainLossOnSaleOfPropertyPlantEquipment 2012-12-31
-DEBUG VALE us-gaap IncreaseDecreaseInOtherOperatingAssets 2012-12-31
-DEBUG VALE us-gaap IncreaseDecreaseInOtherOperatingLiabilities 2012-12-31
-DEBUG VALE us-gaap InterestPaidCapitalized 2012-12-31
-DEBUG VALE us-gaap NetCashProvidedByUsedInOperatingActivities 2012-06-30
-DEBUG VALE us-gaap NetCashProvidedByUsedInOperatingActivitiesContinuingOperations 2012-12-31
-DEBUG VALE us-gaap OperatingIncomeLoss 2012-12-31
-DEBUG VALE us-gaap OtherCostAndExpenseOperating 2012-12-31
-DEBUG VALE us-gaap OtherCostOfOperatingRevenue 2012-12-31
-DEBUG VALE us-gaap PaymentsToAcquirePropertyPlantAndEquipment 2012-12-31
-DEBUG VALE us-gaap ProceedsFromSaleOfPropertyPlantAndEquipment 2012-12-31
-DEBUG VALE us-gaap PropertyPlantAndEquipmentGross 2010-12-31
-DEBUG VALE us-gaap PropertyPlantAndEquipmentNet 2012-12-31
-DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligation 2010-12-31
-DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligationDueInFourthYear 2010-12-31
-DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligationDueInSecondYear 2010-12-31
-DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligationDueInThirdYear 2010-12-31
-DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligationDueWithinOneYear 2010-12-31
-DEBUG VALE us-gaap SegmentReportingInformationOperatingIncomeLoss 2011-06-30
-DEBUG VALE SEC fy 2021-12-31 Yahoo fy 2025-12-31 cur USD BRL capex SEC 4034000000 Yahoo 6006000000.0
 Yahoo incoherente con la SEC VALE 1606710560.0 25679000000.0
 CVM VALE 12 meses a 2026-09-30 49852 M BRL
 750/816 VEA
