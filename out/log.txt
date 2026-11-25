@@ -1,10 +1,10 @@
-2026-11-25T18:40:16+00:00
+2026-11-25T18:59:49+00:00
 CCL histórico: 5076 días 2013-01-02 a 2026-11-25
 S&P 500: 503 Nasdaq 100: 0
 CEDEARs: 402
 Acciones argentinas: 71
 Precios Yahoo: 810 de 816
-CCL implícito 1770.83 con 396 CEDEARs; referencia 1758.3
+CCL implícito 1780.31 con 396 CEDEARs; referencia 1758.3
 Descargando companyfacts de la SEC…
 ZIP: ok
 0/816 A
@@ -73,7 +73,7 @@ DEBUG GGAL ifrs-full RevenueAndOperatingIncome 2025-03-31
 DEBUG GGAL ifrs-full PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod 2024-12-31
 DEBUG GGAL ifrs-full PropertyPlantAndEquipmentIncludingRightofuseAssets 2025-03-31
 DEBUG GGAL ifrs-full IssuedCapitalOrdinaryShares 2024-12-31
-DEBUG GGAL SEC fy 2024-12-31 Yahoo fy 2025-12-31 cur ARS ARS capex SEC 214703494000 Yahoo 245914779000.0
+DEBUG GGAL SEC fy 2025-03-31 Yahoo fy 2025-12-31 cur ARS ARS capex SEC 279137260000 Yahoo 245914779000.0
 350/816 HON
 400/816 IT
 450/816 LNT
@@ -115,7 +115,7 @@ DEBUG PAM ifrs-full ReversalOfImpairmentLossRecognisedInOtherComprehensiveIncome
 DEBUG PAM ifrs-full ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2017-12-31
 DEBUG PAM ifrs-full CashFlowsFromUsedInMaintainingOperatingCapacity 2022-12-12
 DEBUG PAM ifrs-full PurchaseOfInvestmentProperty 2023-12-31
-DEBUG PAM SEC fy 2024-12-31 Yahoo fy 2025-12-31 cur USD USD capex SEC 447000000 Yahoo 993000000.0
+DEBUG PAM SEC fy 2024-12-31 Yahoo fy 2026-06-30 cur USD USD capex SEC 447000000 Yahoo 1067000000.0
 600/816 RDDT
 DEBUG SAP ifrs-full AdditionalPaidinCapital 2023-12-31
 DEBUG SAP ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment 2023-12-31
@@ -139,13 +139,17 @@ DEBUG SAP ifrs-full CashFlowsFromUsedInOperatingActivitiesDiscontinuedOperations
 DEBUG SAP ifrs-full PropertyPlantAndEquipmentIncludingRightofuseAssets 2025-12-31
 DEBUG SAP ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipmentIncludingRightofuseAssets 2025-12-31
 DEBUG SAP ifrs-full ContractualCapitalCommitments 2025-12-31
-DEBUG SAP SEC fy 2025-12-31 Yahoo fy None cur EUR None capex SEC 739000000 Yahoo None
+DEBUG SAP SEC fy 2025-12-31 Yahoo fy 2026-09-30 cur EUR EUR capex SEC 739000000 Yahoo 701000000.0
 650/816 SNAP
 700/816 TJX
-HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
@@ -191,7 +195,7 @@ DEBUG VIST ifrs-full ReductionOfIssuedCapital 2024-12-31
 DEBUG VIST ifrs-full CapitalCommitments 2024-12-31
 DEBUG VIST ifrs-full GainsLossesOnDisposalsOfPropertyPlantAndEquipment 2023-12-31
 DEBUG VIST ifrs-full PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod 2023-01-27
-DEBUG VIST SEC fy 2024-12-31 Yahoo fy 2025-12-31 cur USD USD capex SEC 1052530000 Yahoo 1467131000.0
+DEBUG VIST SEC fy 2024-12-31 Yahoo fy 2026-09-30 cur USD USD capex SEC 1052530000 Yahoo 1637891000.0
 800/816 XLY
 DEBUG YPF ifrs-full AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment 2025-12-31
 DEBUG YPF ifrs-full AdjustmentsForDecreaseIncreaseInOtherOperatingReceivables 2025-12-31
@@ -226,5 +230,5 @@ DEBUG YPF ifrs-full ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlan
 DEBUG YPF ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2021-12-31
 DEBUG YPF ifrs-full IncreaseDecreaseThroughTransfersAndOtherChangesPropertyPlantAndEquipment 2025-12-31
 DEBUG YPF ifrs-full PurchaseOfFinancialAssetsMeasuredAtAmortisedCostClassifiedAsInvestingActivities 2025-12-31
-DEBUG YPF SEC fy 2025-12-31 Yahoo fy None cur USD None capex SEC 5077000000 Yahoo None
+DEBUG YPF SEC fy 2025-12-31 Yahoo fy 2026-09-30 cur USD ARS capex SEC 5077000000 Yahoo 5232000000.0
 CONTROL APPLE: OK
