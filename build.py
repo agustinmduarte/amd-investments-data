@@ -305,7 +305,9 @@ def sec_company(facts, adr_ratio=1):
     res["currency"], res["fyEnd"] = cur, fy_end
     res["filed"], res["accn"], res["form"] = ocf[fy_end][1], ocf[fy_end][2], ocf[fy_end][3]
     res["fy"] = "FY" + fy_end[:4]
-    extra_cx = sorted(n for n in f.get("us-gaap", {}) if re.match(r"PaymentsToAcquire.*(PropertyPlant|ProductiveAssets|Equipment|UtilityPlant)", n) or n in ("PaymentsForConstructionInProcess", "PaymentsToAcquireAndDevelopRealEstate"))
+    extra_cx = sorted(n for tax in ("us-gaap", "ifrs-full") for n in f.get(tax, {})
+                      if re.match(r"(PaymentsToAcquire|PaymentsFor|PurchaseOf|AcquisitionOf|Purchases?Of).*(PropertyPlant|ProductiveAssets|Equipment|UtilityPlant|OilAndGas|FixedAssets)", n)
+                      or n in ("PaymentsForConstructionInProcess", "PaymentsToAcquireAndDevelopRealEstate"))
     FL = {k: flows_by_name(f, CON[k] + (extra_cx if k == "capex" else []), cur) for k in ("capex", "sbc", "rev", "ni")}
     FL["ocf"] = [("ocf", ocf)]
     res["ocf"] = ocf[fy_end][0]
@@ -682,6 +684,7 @@ def usd_per(cur, date, cache):
 
 
 CUR_CCL = {}
+DEBUG = {"YPF", "VIST", "PAM", "GGAL", "SAP"}
 
 
 # ---------------------------------------------------------------- principal
@@ -745,6 +748,13 @@ def full():
                 try:
                     facts = json.loads(zf.read(f"CIK{cik:010d}.json"))
                     fund = sec_company(facts, e.get("adrRatio", 1) if t != "BRK-B" else 1 / 1500)
+                    if t in DEBUG:
+                        ff = facts.get("facts", {})
+                        for tax in ff:
+                            for n, v in ff[tax].items():
+                                if re.search(r"Operating|PropertyPlant|Capital|Purchase", n):
+                                    ends = [x.get("end") for u in v.get("units", {}).values() for x in u]
+                                    log("DEBUG", t, tax, n, max(ends) if ends else "")
                     if fund:
                         row["cik"] = str(cik)
                         row["name"] = facts.get("entityName")
@@ -753,18 +763,32 @@ def full():
                 except Exception as ex:
                     log("sec", t, ex)
             yfund = None
-            if not fund or any(fund.get(k) is None for k in ("ocf", "capex", "shares", "debt", "cash")):
+            stale_sec = fund and fund.get("fyEnd", "") < (dt.date.today() - dt.timedelta(days=400)).isoformat()
+            if not fund or stale_sec or any(fund.get(k) is None for k in ("ocf", "capex", "shares", "debt", "cash")):
                 try:
                     yfund = yf_fundamentals(t)
                 except Exception as ex:
                     log("yf fund", t, ex)
+            if fund and t in DEBUG:
+                log("DEBUG", t, "SEC fy", fund.get("fyEnd"), "Yahoo fy", yfund and yfund.get("fyEnd"), "cur", fund.get("currency"),
+                    yfund and yfund.get("currency"), "capex SEC", fund.get("capex"), "Yahoo", yfund and yfund.get("capex"))
             if not fund:
                 fund = yfund
-            elif yfund and (yfund.get("currency") or "USD") == fund.get("currency"):
+            elif yfund and stale_sec and yfund.get("ocf") is not None and yfund.get("fyEnd", "") > fund.get("fyEnd", ""):
+                yfund.setdefault("soft", []).append(f"Balance anual de Yahoo Finance ({yfund.get('fyEnd')}): el de la SEC era de {fund.get('fyEnd')}.")
+                if fund.get("shares"):
+                    yfund["shares"] = fund["shares"]  # acciones de la SEC (ya ajustadas por ADR)
+                fund = yfund
+            elif yfund:
                 filled = []
+                yc, fc = yfund.get("currency") or "USD", fund.get("currency") or "USD"
+                conv = 1.0
+                if yc != fc:
+                    a_, b_ = usd_per(yc, yfund.get("fyEnd"), fxc), usd_per(fc, yfund.get("fyEnd"), fxc)
+                    conv = a_ / b_ if a_ and b_ else None
                 for k in ("ocf", "capex", "shares", "debt", "cash"):
-                    if fund.get(k) is None and yfund.get(k) is not None:
-                        fund[k] = yfund[k]
+                    if fund.get(k) is None and yfund.get(k) is not None and (conv or k == "shares"):
+                        fund[k] = yfund[k] * (1 if k == "shares" else conv)
                         filled.append(k)
                 if filled:
                     fund.setdefault("soft", []).append("Completado con Yahoo Finance: " + ", ".join(filled) + ".")
