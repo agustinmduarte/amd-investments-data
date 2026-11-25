@@ -1188,10 +1188,77 @@ def full():
         log("CONTROL APPLE:", "OK" if not bad else bad)
 
 
+# ---------------------------------------------------------------- historial de precios (gráfico)
+NSHARD = 24
+
+
+def shard(t):
+    h = 0
+    for ch in t:
+        h = (h * 31 + ord(ch)) % 1000003
+    return h % NSHARD
+
+
+def hist():
+    """Velas diarias (2 años) y semanales (5 años) en dólares para el gráfico de cada acción.
+    Acciones que solo cotizan en BYMA (.BA): pesos al CCL de cada fecha. Archivos out/hist/h<n>.json."""
+    import yfinance as yf
+    ccl_history()
+    rows = load("screener.json", {}).get("rows", [])
+    tick = [r["t"] for r in rows]
+    rnd = lambda x: round(x, 2) if abs(x) >= 10 else round(x, 4)
+    data = {}
+    for interval, period, key in (("1d", "2y", "d"), ("1wk", "5y", "w")):
+        n = 0
+        for i in range(0, len(tick), 150):
+            chunk = tick[i:i + 150]
+            try:
+                df = yf.download(chunk, period=period, interval=interval, group_by="ticker", auto_adjust=False,
+                                 threads=True, progress=False)
+            except Exception as e:
+                log("hist download", key, e)
+                continue
+            for t in chunk:
+                try:
+                    sub = df[t] if len(chunk) > 1 else df
+                    sub = sub.dropna(subset=["Open", "High", "Low", "Close"])
+                except Exception:
+                    continue
+                arr = []
+                for idx, r in sub.iterrows():
+                    d = idx.date()
+                    k = 1.0
+                    if t.endswith(".BA"):
+                        c = ccl_at(d.isoformat())
+                        if not c:
+                            continue
+                        k = 1 / c
+                    o, h, l, c4 = (num(r["Open"]), num(r["High"]), num(r["Low"]), num(r["Close"]))
+                    if None in (o, h, l, c4) or c4 <= 0:
+                        continue
+                    row = [(d - dt.date(1970, 1, 1)).days, rnd(o * k), rnd(h * k), rnd(l * k), rnd(c4 * k)]
+                    if key == "d":
+                        v = num(r.get("Volume"))
+                        row.append(int(v) if v else 0)
+                    arr.append(row)
+                if arr:
+                    data.setdefault(t, {})[key] = arr
+                    n += 1
+        log("Historial", key, n, "de", len(tick))
+    os.makedirs(os.path.join(OUT, "hist"), exist_ok=True)
+    sh = [{} for _ in range(NSHARD)]
+    for t, v in data.items():
+        sh[shard(t)][t] = v
+    for i, o in enumerate(sh):
+        save(os.path.join("hist", f"h{i}.json"), {"generatedAt": NOW, "t": o})
+
+
 if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     mode = sys.argv[1] if len(sys.argv) > 1 else "full"
-    if mode == "prices":
+    if mode == "hist":
+        hist()
+    elif mode == "prices":
         save("ccl_hist.json", ccl_history())
         prev = {r["t"]: r for r in load("screener.json", {}).get("rows", [])}
         U = {t: {"t": t, "vcur": "USD", "arsOnly": r.get("arsOnly"), "ced": r.get("ced"), "local": r.get("local"),
@@ -1204,5 +1271,5 @@ if __name__ == "__main__":
         save("prices.json", prices(U))
     else:
         full()
-    with open(os.path.join(OUT, "log.txt"), "w") as f:
+    with open(os.path.join(OUT, "log_hist.txt" if mode == "hist" else "log.txt"), "w") as f:
         f.write(NOW + "\n" + "\n".join(LOG[-400:]))
