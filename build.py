@@ -804,7 +804,142 @@ def coherent_usd(y, f, cache, t=""):
         return ok
     except Exception:
         return False
-DEBUG = {"YPF", "VIST", "PAM", "GGAL", "SAP"}
+DEBUG = {"VALE", "ITUB"}
+
+
+def fx_table():
+    """Dólares por unidad de moneda al cierre de los últimos 9 trimestres, más el último dato."""
+    curs = ["EUR", "GBP", "JPY", "KRW", "MXN", "CNY", "HKD", "INR", "CAD", "ZAR", "AUD", "SGD", "BRL", "CHF",
+            "SEK", "DKK", "NOK", "TWD", "CLP", "COP", "PEN", "TRY", "ILS", "IDR", "PHP", "THB"]
+    today = dt.date.today()
+    ends, y, m = [], today.year, ((today.month - 1) // 3) * 3
+    for _ in range(9):
+        if m == 0:
+            y, m = y - 1, 12
+        ends.append((dt.date(y + (m == 12), (m % 12) + 1, 1) - dt.timedelta(days=1)).isoformat())
+        m -= 3
+    out, cache = {}, {}
+    for c in curs:
+        q = {d: v for d in ends for v in [usd_per(c, d, cache)] if v}
+        latest = fx_to_usd(c, cache)
+        if q or latest:
+            out[c] = {"q": q, "latest": latest}
+    return {"generatedAt": NOW, "fx": out}
+
+
+# ---------------------------------------------------------------- Brasil: CVM (ITR/DFP)
+BR_CVM = {"ITUB": ("60872504000123", "ITAU UNIBANCO"), "VALE": ("33592510000154", "VALE S.A"),
+          "SID": ("33042730000104", "SIDERURGICA NACIONAL"), "BSBR": ("90400888000142", "SANTANDER"),
+          "PBR": ("33000167000101", "PETROLEO BRASILEIRO"), "ABEV": ("07526557000100", "AMBEV"),
+          "GGB": ("33611500000119", "GERDAU S.A"), "SBS": ("43776517000180", "SABESP"),
+          "BBD": ("60746948000112", "BRADESCO"), "ERJ": ("07689002000189", "EMBRAER"),
+          "CIG": ("17155730000164", "CEMIG"), "EBR": ("00001180000126", "ELETROBRAS"), "SUZ": ("16404287000155", "SUZANO")}
+CVM = {}
+
+
+def cvm_load():
+    import csv
+    y = dt.date.today().year
+    rows = {}
+    want = {c for c, _ in BR_CVM.values()}
+    for kind, year in (("ITR", y), ("ITR", y - 1), ("DFP", y - 1), ("DFP", y - 2)):
+        url = f"https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/{kind}/DADOS/{kind.lower()}_cia_aberta_{year}.zip"
+        r = get(url, timeout=300)
+        if not r:
+            continue
+        try:
+            z = zipfile.ZipFile(io.BytesIO(r.content))
+        except Exception as e:
+            log("CVM zip", url, e)
+            continue
+        for name in z.namelist():
+            m = re.search(r"_(DFC_MI|DFC_MD|BPA|BPP)_con_", name)
+            if not m:
+                continue
+            with z.open(name) as fh:
+                for x in csv.DictReader(io.TextIOWrapper(fh, encoding="latin-1"), delimiter=";"):
+                    cnpj = re.sub(r"\D", "", x.get("CNPJ_CIA", ""))
+                    if cnpj in want:
+                        x["_k"], x["_doc"] = m.group(1)[:3], kind
+                        rows.setdefault(cnpj, []).append(x)
+        log("CVM", kind, year, "ok")
+    CVM.update(rows)
+    log("CVM empresas con datos:", len(rows))
+
+
+def _cvm_val(x):
+    v = num(str(x.get("VL_CONTA", "")).replace(",", "."))
+    if v is None:
+        return None
+    return v * (1000 if str(x.get("ESCALA_MOEDA", "")).upper().startswith("MIL") else 1)
+
+
+def _ordem(x):
+    o = str(x.get("ORDEM_EXERC", "")).upper()
+    return "PE" if o.startswith("PEN") else "UL"
+
+
+def cvm_fund(t):
+    """Últimos 12 meses desde la CVM: DFP anual + ITR acumulado del año − acumulado del año anterior."""
+    cnpj = BR_CVM[t][0]
+    R = CVM.get(cnpj) or []
+    if not R:
+        return None
+    best = {}
+    for x in R:
+        k = (x["_doc"], x["DT_REFER"])
+        best[k] = max(best.get(k, 0), int(x.get("VERSAO") or 0))
+    R = [x for x in R if int(x.get("VERSAO") or 0) == best[(x["_doc"], x["DT_REFER"])]]
+
+    def flows(doc, ref, ordem):
+        out = {"ocf": 0.0, "capex": 0.0, "sbc": 0.0, "_ok": False}
+        for x in R:
+            if x["_doc"] != doc or x["DT_REFER"] != ref or x["_k"] != "DFC" or _ordem(x) != ordem:
+                continue
+            c, d, v = x["CD_CONTA"], x["DS_CONTA"].lower(), _cvm_val(x)
+            if v is None:
+                continue
+            if c == "6.01":
+                out["ocf"], out["_ok"] = v, True
+            elif c.startswith("6.02") and "imobilizado" in d and any(w in d for w in ("aquisi", "compra", "adi", "invest", "aplica")):
+                out["capex"] += -v
+            elif c.startswith("6.01.01") and ("aç" in d or "acoes" in d) and any(w in d for w in ("pagamento", "plano", "outorga", "remunera", "opç", "baseado")):
+                out["sbc"] += v
+        return out if out["_ok"] else None
+
+    itr = sorted({x["DT_REFER"] for x in R if x["_doc"] == "ITR"})
+    dfp = sorted({x["DT_REFER"] for x in R if x["_doc"] == "DFP"})
+    if not dfp:
+        return None
+    L_itr, L_dfp = (itr[-1] if itr else ""), dfp[-1]
+    res = {"src": "CVM", "currency": "BRL"}
+    fy = flows("DFP", L_dfp, "UL")
+    if L_itr > L_dfp:
+        cur, prev = flows("ITR", L_itr, "UL"), flows("ITR", L_itr, "PE")
+        if not (fy and cur and prev):
+            return None
+        tt = {k: fy[k] + cur[k] - prev[k] for k in ("ocf", "capex", "sbc")}
+        L, doc = L_itr, "ITR"
+    else:
+        if not fy:
+            return None
+        tt, L, doc = fy, L_dfp, "DFP"
+    res.update(tt)
+    res["form"], res["fyEnd"], res["balanceEnd"], res["fy"] = doc, L, L, "12 meses a " + L
+    cash, debt = 0.0, 0.0
+    for x in R:
+        if x["_doc"] != doc or x["DT_REFER"] != L or _ordem(x) != "UL":
+            continue
+        c, d, v = x["CD_CONTA"], x["DS_CONTA"].lower(), _cvm_val(x)
+        if v is None:
+            continue
+        if x["_k"] == "BPA" and c in ("1.01.01", "1.01.02"):
+            cash += v
+        if x["_k"] == "BPP" and c.count(".") == 2 and c[:4] in ("2.01", "2.02") and "empr" in d:
+            debt += v
+    res["cash"], res["debt"] = cash, debt
+    res["soft"] = [f"Balances de la CVM (Brasil), {doc} al {L}, en reales dolarizados."]
+    return res
 
 
 # ---------------------------------------------------------------- principal
@@ -827,6 +962,10 @@ def fx_to_usd(cur, cache):
 def full():
     save("ccl_hist.json", ccl_history())
     U = universe()
+    try:
+        cvm_load()
+    except Exception as ex:
+        log("CVM load", ex)
     pr = prices(U)
     save("prices.json", pr)
     st = sec_tickers()
@@ -925,6 +1064,17 @@ def full():
         if info.get("quoteType") == "ETF":
             row["kind"] = "ETF"
             fund = None
+        if t in BR_CVM and CVM:
+            try:
+                cf_ = cvm_fund(t)
+                if cf_ and (not fund or cf_["fyEnd"] >= (fund.get("fyEnd") or "")):
+                    if fund and fund.get("shares"):
+                        cf_["shares"] = fund["shares"]
+                    cf_["hist"] = (fund or {}).get("hist") or []
+                    fund = cf_
+                    log("CVM", t, cf_["fy"], round(cf_["ocf"] / 1e6), "M BRL")
+            except Exception as ex:
+                log("CVM error", t, ex)
         notes, soft = [], []
         if fund:
             cur = fund.get("currency") or "USD"
@@ -952,6 +1102,7 @@ def full():
                     rr = r_fy if key in ("ocf", "capex", "sbc") else r_bal
                     row[key] = round(v * rr / 1e6, 3) if v is not None else None
                 row["shares"] = round(fund["shares"] / 1e6, 3) if fund.get("shares") else None
+                row["pe"] = fund.get("fyEnd")
                 for key in ("form", "fy", "filed", "accn", "src", "sharesFrom", "balanceEnd"):
                     if fund.get(key):
                         row[key] = fund[key]
@@ -1008,6 +1159,10 @@ def full():
         if n % 50 == 0:
             log(f"{n}/{len(U)} {t}")
     save("screener.json", {"generatedAt": NOW, "n": len(rows), "rows": rows})
+    try:
+        save("fx.json", fx_table())
+    except Exception as ex:
+        log("fx table", ex)
     save("detail.json", detail)
     save("info_cache.json", info_cache)
     # verificación contra el Excel de Bernardo
