@@ -1,14 +1,19 @@
-2026-11-25T19:44:17+00:00
+2026-11-25T20:45:33+00:00
 CCL histórico: 5076 días 2013-01-02 a 2026-11-25
 S&P 500: 503 Nasdaq 100: 0
 CEDEARs: 403
 Acciones argentinas: 71
-Precios Yahoo: 809 de 816
-CCL implícito 1780.45 con 397 CEDEARs; referencia 1776.2
+CVM ITR 2026 ok
+CVM ITR 2025 ok
+CVM DFP 2025 ok
+CVM DFP 2024 ok
+CVM empresas con datos: 13
+Precios Yahoo: 810 de 816
+CCL implícito 1779.51 con 397 CEDEARs; referencia 1767.9
 Descargando companyfacts de la SEC…
 ZIP: ok
 0/816 A
-TTM incoherente AAP 383000000.0 -46000000.0
+CVM ABEV 12 meses a 2026-09-30 28802 M BRL
 HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
@@ -52,132 +57,103 @@ HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
 50/816 ANT
 TTM incoherente ARES -514876000.0 3266959000.0
 TTM incoherente BAC 59200000000.0 12613000000.0
-TTM incoherente BE 690968000.0 113949000.0
 TTM incoherente BHIP.BA 5695307000.0 166481867000.0
 100/816 BIDU
 TTM incoherente BMA 436670103000.0 2633788066000.0
 TTM incoherente BSBR 55521526000.0 4992175000.0
+CVM BSBR 12 meses a 2026-09-30 55522 M BRL
 TTM incoherente BYMA.BA 35636387000.0 247028836000.0
 TTM incoherente C 4380000000.0 -67632000000.0
 150/816 CHTR
 TTM incoherente COME.BA 2078106000.0 25320747000.0
 200/816 DBB
-TTM incoherente DOW 4577000000.0 1032000000.0
 TTM incoherente EDSH.BA 3966000000.0 44947000000.0
 250/816 EQT
 300/816 GBAN.BA
-DEBUG GGAL ifrs-full AdditionalPaidinCapital 2025-03-31
-DEBUG GGAL ifrs-full CapitalReserve 2025-03-31
-DEBUG GGAL ifrs-full CashFlowsFromUsedInOperatingActivities 2025-03-31
-DEBUG GGAL ifrs-full CashFlowsFromUsedInOperatingActivitiesDiscontinuedOperations 2017-12-31
-DEBUG GGAL ifrs-full DepreciationPropertyPlantAndEquipment 2025-03-31
-DEBUG GGAL ifrs-full IncomeTaxesPaidRefundClassifiedAsOperatingActivities 2025-03-31
-DEBUG GGAL ifrs-full IssuedCapital 2025-03-31
-DEBUG GGAL ifrs-full MiscellaneousOtherOperatingExpense 2025-03-31
-DEBUG GGAL ifrs-full OtherOperatingIncomeExpense 2025-03-31
-DEBUG GGAL ifrs-full ProceedsFromDisposalsOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-03-31
-DEBUG GGAL ifrs-full ProfitLossFromOperatingActivities 2025-03-31
-DEBUG GGAL ifrs-full PropertyPlantAndEquipment 2024-12-31
-DEBUG GGAL ifrs-full PurchaseOfInterestsInAssociates 2020-12-31
-DEBUG GGAL ifrs-full PurchaseOfOtherLongtermAssetsClassifiedAsInvestingActivities 2018-12-31
-DEBUG GGAL ifrs-full PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-03-31
-DEBUG GGAL ifrs-full RevenueAndOperatingIncome 2025-03-31
-DEBUG GGAL ifrs-full PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod 2024-12-31
-DEBUG GGAL ifrs-full PropertyPlantAndEquipmentIncludingRightofuseAssets 2025-03-31
-DEBUG GGAL ifrs-full IssuedCapitalOrdinaryShares 2024-12-31
-DEBUG GGAL SEC fy 2025-03-31 Yahoo fy 2025-12-31 cur ARS ARS capex SEC 279137260000 Yahoo 245914779000.0
+CVM GGB 12 meses a 2026-09-30 8888 M BRL
 TTM incoherente GPRK 229572000.0 14705000.0
 TTM incoherente GRIM.BA 11507596492.0 -2441548525.0
 TTM incoherente HARG.BA 50739000000.0 6561000000.0
 Yahoo incoherente con la SEC HMC 8931803448.0 1955227260.0
 350/816 HON
-TTM incoherente HUM 3731000000.0 921000000.0
 400/816 IT
+DEBUG ITUB ifrs-full AdditionalPaidinCapital 2020-12-31
+DEBUG ITUB ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2017-12-31
+DEBUG ITUB ifrs-full CapitalReserve 2024-12-31
+DEBUG ITUB ifrs-full CashFlowsFromUsedInOperatingActivities 2024-12-31
+DEBUG ITUB ifrs-full ContractualCapitalCommitments 2023-12-31
+DEBUG ITUB ifrs-full ContractualCommitmentsForAcquisitionOfPropertyPlantAndEquipment 2024-12-31
+DEBUG ITUB ifrs-full ExpectedFutureMinimumSubleasePaymentsReceivableUnderNoncancellableSubleasesClassifiedAsOperatingLease 2018-12-31
+DEBUG ITUB ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2024-12-31
+DEBUG ITUB ifrs-full IncreaseDecreaseInWorkingCapital 2024-12-31
+DEBUG ITUB ifrs-full InterestPaidClassifiedAsOperatingActivities 2024-12-31
+DEBUG ITUB ifrs-full InterestReceivedClassifiedAsOperatingActivities 2024-12-31
+DEBUG ITUB ifrs-full IssuedCapital 2024-12-31
+DEBUG ITUB ifrs-full MiscellaneousOtherOperatingIncome 2017-12-31
+DEBUG ITUB ifrs-full ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2024-12-31
+DEBUG ITUB ifrs-full PropertyPlantAndEquipment 2024-12-31
+DEBUG ITUB ifrs-full PropertyPlantAndEquipmentPledgedAsSecurity 2018-12-31
+DEBUG ITUB ifrs-full PurchaseOfAvailableforsaleFinancialAssets 2017-12-31
+DEBUG ITUB ifrs-full PurchaseOfFinancialInstrumentsClassifiedAsInvestingActivities 2017-12-31
+DEBUG ITUB ifrs-full PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities 2024-12-31
+DEBUG ITUB ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2024-12-31
+DEBUG ITUB ifrs-full PurchaseOfTreasuryShares 2024-12-31
+DEBUG ITUB ifrs-full DepreciationPropertyPlantAndEquipment 2024-12-31
+DEBUG ITUB ifrs-full DisposalsPropertyPlantAndEquipment 2024-12-31
+DEBUG ITUB us-gaap AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment 2010-12-31
+DEBUG ITUB us-gaap AdditionalPaidInCapital 2010-12-31
+DEBUG ITUB us-gaap AdjustmentsNoncashItemsToReconcileNetIncomeLossToCashProvidedByUsedInOperatingActivitiesOther 2010-06-30
+DEBUG ITUB us-gaap BusinessCombinationBargainPurchaseGainRecognizedAmount 2010-12-31
+DEBUG ITUB us-gaap CapitalizedComputerSoftwareGross 2010-12-31
+DEBUG ITUB us-gaap CapitalLeaseObligations 2010-12-31
+DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDue 2010-12-31
+DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueCurrent 2010-12-31
+DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueInFiveYears 2010-12-31
+DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueInFourYears 2010-12-31
+DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueInThreeYears 2010-12-31
+DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueInTwoYears 2010-12-31
+DEBUG ITUB us-gaap CapitalLeasesFutureMinimumPaymentsDueThereafter 2010-12-31
+DEBUG ITUB us-gaap DeferredTaxAssetsOperatingLossCarryforwards 2010-12-31
+DEBUG ITUB us-gaap GainLossOnSaleOfPropertyPlantEquipment 2010-12-31
+DEBUG ITUB us-gaap IncreaseDecreaseInOtherOperatingCapitalNet 2010-12-31
+DEBUG ITUB us-gaap InterestAndDividendIncomeOperating 2010-12-31
+DEBUG ITUB us-gaap InterestCostsIncurredCapitalized 2010-12-31
+DEBUG ITUB us-gaap InterestIncomeSecuritiesPurchasedUnderAgreementsToResell 2010-12-31
+DEBUG ITUB us-gaap NetCashProvidedByUsedInOperatingActivities 2010-12-31
+DEBUG ITUB us-gaap NoninterestIncomeOtherOperatingIncome 2010-12-31
+DEBUG ITUB us-gaap PaymentsToAcquirePropertyPlantAndEquipment 2010-12-31
+DEBUG ITUB us-gaap ProceedsFromContributedCapital 2007-12-31
+DEBUG ITUB us-gaap ProceedsFromPaymentsForSecuritiesPurchasedUnderAgreementsToResell 2010-12-31
+DEBUG ITUB us-gaap ProceedsFromSaleOfPropertyPlantAndEquipment 2010-12-31
+DEBUG ITUB us-gaap PropertyPlantAndEquipmentGross 2010-12-31
+DEBUG ITUB us-gaap PropertyPlantAndEquipmentNet 2010-12-31
+DEBUG ITUB us-gaap SecuritiesPurchasedUnderAgreementsToResell 2010-12-31
+DEBUG ITUB SEC fy 2024-12-31 Yahoo fy 2026-09-30 cur BRL BRL capex SEC 1833000000 Yahoo 9674000000.0
 Yahoo incoherente con la SEC ITUB 14340788100.0 1142986610.0
-TTM incoherente KB 17781622000000.0 4226378000000.0
+CVM ITUB 12 meses a 2026-09-30 74610 M BRL
+TTM incoherente KB 19328306000000.0 4226378000000.0
 TTM incoherente KKR 2242879000.0 477760000.0
-TTM incoherente LEN 937303000.0 216812000.0
 450/816 LNT
 TTM incoherente LONG.BA -699320749.0 -6208765717.0
 TTM incoherente MORI.BA -5311701000.0 -69620000.0
-TTM incoherente MSTR -7362000.0 -67241000.0
 500/816 MTD
 TTM incoherente MUX 31566000.0 6865000.0
 TTM incoherente NBIS 5065400000.0 384800000.0
 TTM incoherente NU -218531000.0 3500464000.0
-TTM incoherente ONDS -290755375.0 -38746000.0
 550/816 P
-DEBUG PAM ifrs-full AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment 2017-12-31
-DEBUG PAM ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment 2024-12-31
-DEBUG PAM ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2024-12-31
-DEBUG PAM ifrs-full AdjustmentsForImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2023-12-31
-DEBUG PAM ifrs-full BorrowingCostsCapitalised 2020-12-31
-DEBUG PAM ifrs-full CashFlowsFromUsedInOperatingActivities 2024-12-31
-DEBUG PAM ifrs-full CashFlowsFromUsedInOperatingActivitiesDiscontinuedOperations 2021-12-31
-DEBUG PAM ifrs-full ChangesInPropertyPlantAndEquipment 2021-12-31
-DEBUG PAM ifrs-full DecreaseThroughClassifiedAsHeldForSalePropertyPlantAndEquipment 2017-12-31
-DEBUG PAM ifrs-full DepreciationPropertyPlantAndEquipment 2021-12-31
-DEBUG PAM ifrs-full DividendsReceivedClassifiedAsOperatingActivities 2020-12-31
-DEBUG PAM ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2020-12-31
-DEBUG PAM ifrs-full IncomeTaxesPaidRefundClassifiedAsOperatingActivities 2022-12-31
-DEBUG PAM ifrs-full IncreaseDecreaseThroughNetExchangeDifferencesPropertyPlantAndEquipment 2020-12-31
-DEBUG PAM ifrs-full IncreaseDecreaseThroughTransfersPropertyPlantAndEquipment 2019-12-31
-DEBUG PAM ifrs-full IssuedCapital 2024-12-31
-DEBUG PAM ifrs-full MinimumLeasePaymentsPayableUnderNoncancellableOperatingLease 2018-12-31
-DEBUG PAM ifrs-full MinimumLeasePaymentsReceivableUnderNoncancellableOperatingLease 2018-12-31
-DEBUG PAM ifrs-full MiscellaneousOtherOperatingExpense 2024-12-31
-DEBUG PAM ifrs-full MiscellaneousOtherOperatingIncome 2024-12-31
-DEBUG PAM ifrs-full OperatingLeaseIncome 2019-12-31
-DEBUG PAM ifrs-full OtherCashReceiptsFromOperatingActivities 2017-12-31
-DEBUG PAM ifrs-full OtherInflowsOutflowsOfCashClassifiedAsOperatingActivities 2018-12-31
-DEBUG PAM ifrs-full ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2018-12-31
-DEBUG PAM ifrs-full ProfitLossFromOperatingActivities 2024-12-31
-DEBUG PAM ifrs-full PropertyPlantAndEquipment 2024-12-31
-DEBUG PAM ifrs-full PropertyPlantAndEquipmentCarryingAmountOfRevaluedAssets 2020-12-31
-DEBUG PAM ifrs-full PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities 2022-12-31
-DEBUG PAM ifrs-full PurchaseOfInterestsInAssociates 2024-12-31
-DEBUG PAM ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2024-12-31
-DEBUG PAM ifrs-full PurchaseOfTreasuryShares 2021-12-31
-DEBUG PAM ifrs-full ReductionOfIssuedCapital 2020-12-31
-DEBUG PAM ifrs-full ReversalOfImpairmentLossRecognisedInOtherComprehensiveIncomePropertyPlantAndEquipment 2017-12-31
-DEBUG PAM ifrs-full ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2017-12-31
-DEBUG PAM ifrs-full CashFlowsFromUsedInMaintainingOperatingCapacity 2022-12-12
-DEBUG PAM ifrs-full PurchaseOfInvestmentProperty 2023-12-31
-DEBUG PAM SEC fy 2024-12-31 Yahoo fy 2026-06-30 cur USD USD capex SEC 447000000 Yahoo 1067000000.0
 Yahoo incoherente con la SEC PBR 7843578824.598444 35540000000.0
+CVM PBR 12 meses a 2026-09-30 222489 M BRL
 600/816 RDDT
 TTM incoherente RICH.BA 13866297204.0 1866133687.0
-DEBUG SAP ifrs-full AdditionalPaidinCapital 2023-12-31
-DEBUG SAP ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment 2023-12-31
-DEBUG SAP ifrs-full AdjustmentsForDecreaseIncreaseInOtherOperatingReceivables 2019-12-31
-DEBUG SAP ifrs-full CapitalCommitments 2025-12-31
-DEBUG SAP ifrs-full CashFlowsFromUsedInOperatingActivities 2025-12-31
-DEBUG SAP ifrs-full IncomeTaxesPaidRefundClassifiedAsOperatingActivities 2025-12-31
-DEBUG SAP ifrs-full InterestPaidClassifiedAsOperatingActivities 2024-12-31
-DEBUG SAP ifrs-full InterestReceivedClassifiedAsOperatingActivities 2024-12-31
-DEBUG SAP ifrs-full IssuedCapital 2025-12-31
-DEBUG SAP ifrs-full MinimumLeasePaymentsPayableUnderNoncancellableOperatingLease 2018-12-31
-DEBUG SAP ifrs-full OperatingExpense 2025-12-31
-DEBUG SAP ifrs-full OtherOperatingIncomeExpense 2025-12-31
-DEBUG SAP ifrs-full ProceedsFromDisposalsOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-12-31
-DEBUG SAP ifrs-full ProfitLossFromOperatingActivities 2025-12-31
-DEBUG SAP ifrs-full PropertyPlantAndEquipment 2022-12-31
-DEBUG SAP ifrs-full PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-12-31
-DEBUG SAP ifrs-full PurchaseOfTreasuryShares 2025-12-31
-DEBUG SAP ifrs-full CashFlowsFromUsedInOperatingActivitiesContinuingOperations 2025-12-31
-DEBUG SAP ifrs-full CashFlowsFromUsedInOperatingActivitiesDiscontinuedOperations 2025-12-31
-DEBUG SAP ifrs-full PropertyPlantAndEquipmentIncludingRightofuseAssets 2025-12-31
-DEBUG SAP ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipmentIncludingRightofuseAssets 2025-12-31
-DEBUG SAP ifrs-full ContractualCapitalCommitments 2025-12-31
-DEBUG SAP SEC fy 2025-12-31 Yahoo fy 2026-09-30 cur EUR EUR capex SEC 739000000 Yahoo 701000000.0
+CVM SBS 12 meses a 2026-09-30 7162 M BRL
 Yahoo incoherente con la SEC SID -267169016.85 1398700153.45
+CVM SID 12 meses a 2026-09-30 -1390 M BRL
 650/816 SNAP
 TTM incoherente STNE 3091656000.0 676566000.0
 Yahoo incoherente con la SEC STNE 123513888.96 -585541255.58
-TTM incoherente STT -2177000000.0 11898000000.0
+CVM SUZ 12 meses a 2026-09-30 16754 M BRL
 TTM incoherente TD 7553000000.0 -69646000000.0
 700/816 TJX
-TTM incoherente TRIP 31100000.0 245000000.0
 HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
@@ -202,72 +178,198 @@ HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
-Yahoo incoherente con la SEC VALE 1827724890.0 25679000000.0
+DEBUG VALE ifrs-full AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment 2021-12-31
+DEBUG VALE ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment 2025-12-31
+DEBUG VALE ifrs-full BorrowingCostsCapitalised 2025-12-31
+DEBUG VALE ifrs-full CapitalisationRateOfBorrowingCostsEligibleForCapitalisation 2022-12-31
+DEBUG VALE ifrs-full CashFlowsFromUsedInOperatingActivities 2025-06-30
+DEBUG VALE ifrs-full CashFlowsFromUsedInOperatingActivitiesContinuingOperations 2021-12-31
+DEBUG VALE ifrs-full DecreaseThroughClassifiedAsHeldForSalePropertyPlantAndEquipment 2025-12-31
+DEBUG VALE ifrs-full DisposalsPropertyPlantAndEquipment 2025-12-31
+DEBUG VALE ifrs-full IncomeTaxesPaidClassifiedAsOperatingActivities 2017-12-31
+DEBUG VALE ifrs-full IncreaseDecreaseThroughNetExchangeDifferencesPropertyPlantAndEquipment 2025-12-31
+DEBUG VALE ifrs-full IncreaseDecreaseThroughTransfersPropertyPlantAndEquipment 2017-12-31
+DEBUG VALE ifrs-full InterestPaidClassifiedAsOperatingActivities 2023-06-30
+DEBUG VALE ifrs-full IssuedCapital 2021-12-31
+DEBUG VALE ifrs-full MinimumLeasePaymentsPayableUnderNoncancellableOperatingLease 2018-12-31
+DEBUG VALE ifrs-full OperatingExpense 2022-12-31
+DEBUG VALE ifrs-full OtherOperatingIncomeExpense 2025-12-31
+DEBUG VALE ifrs-full ProfitLossFromOperatingActivities 2025-12-31
+DEBUG VALE ifrs-full PropertyPlantAndEquipment 2025-12-31
+DEBUG VALE ifrs-full PurchaseOfInvestmentsOtherThanInvestmentsAccountedForUsingEquityMethod 2023-12-31
+DEBUG VALE ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2017-12-31
+DEBUG VALE ifrs-full PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2021-12-31
+DEBUG VALE ifrs-full PurchaseOfTreasuryShares 2022-12-31
+DEBUG VALE ifrs-full RetirementsPropertyPlantAndEquipment 2021-12-31
+DEBUG VALE ifrs-full WritedownsReversalsOfPropertyPlantAndEquipment 2022-12-31
+DEBUG VALE ifrs-full CashFlowsFromUsedInOperatingActivitiesDiscontinuedOperations 2021-12-31
+DEBUG VALE ifrs-full AdjustmentsToReconcileProfitLossOtherThanChangesInWorkingCapital 2024-12-31
+DEBUG VALE ifrs-full RevaluationIncreaseDecreasePropertyPlantAndEquipment 2022-12-31
+DEBUG VALE ifrs-full IssuedCapitalOrdinaryShares 2025-12-31
+DEBUG VALE ifrs-full MiscellaneousOtherOperatingExpense 2024-06-30
+DEBUG VALE ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2025-12-31
+DEBUG VALE ifrs-full InterestCostsCapitalised 2025-12-31
+DEBUG VALE us-gaap AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment 2010-12-31
+DEBUG VALE us-gaap AdditionalPaidInCapital 2012-12-31
+DEBUG VALE us-gaap AdjustmentsNoncashItemsToReconcileNetIncomeLossToCashProvidedByUsedInOperatingActivitiesOther 2011-06-30
+DEBUG VALE us-gaap AdjustmentsToAdditionalPaidInCapitalEquityComponentOfConvertibleDebt 2010-06-30
+DEBUG VALE us-gaap CashPaidForCapitalizedInterest 2011-06-30
+DEBUG VALE us-gaap DeferredTaxAssetsOperatingLossCarryforwards 2012-12-31
+DEBUG VALE us-gaap DirectOperatingCosts 2012-12-31
+DEBUG VALE us-gaap DisposalGroupIncludingDiscontinuedOperationPropertyPlantAndEquipmentNet 2012-12-31
+DEBUG VALE us-gaap FairValueMeasurementWithUnobservableInputsReconciliationRecurringBasisAssetPurchasesSalesIssuancesSettlements 2010-12-31
+DEBUG VALE us-gaap GainLossOnSaleOfPropertyPlantEquipment 2012-12-31
+DEBUG VALE us-gaap IncreaseDecreaseInOtherOperatingAssets 2012-12-31
+DEBUG VALE us-gaap IncreaseDecreaseInOtherOperatingLiabilities 2012-12-31
+DEBUG VALE us-gaap InterestPaidCapitalized 2012-12-31
+DEBUG VALE us-gaap NetCashProvidedByUsedInOperatingActivities 2012-06-30
+DEBUG VALE us-gaap NetCashProvidedByUsedInOperatingActivitiesContinuingOperations 2012-12-31
+DEBUG VALE us-gaap OperatingIncomeLoss 2012-12-31
+DEBUG VALE us-gaap OtherCostAndExpenseOperating 2012-12-31
+DEBUG VALE us-gaap OtherCostOfOperatingRevenue 2012-12-31
+DEBUG VALE us-gaap PaymentsToAcquirePropertyPlantAndEquipment 2012-12-31
+DEBUG VALE us-gaap ProceedsFromSaleOfPropertyPlantAndEquipment 2012-12-31
+DEBUG VALE us-gaap PropertyPlantAndEquipmentGross 2010-12-31
+DEBUG VALE us-gaap PropertyPlantAndEquipmentNet 2012-12-31
+DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligation 2010-12-31
+DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligationDueInFourthYear 2010-12-31
+DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligationDueInSecondYear 2010-12-31
+DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligationDueInThirdYear 2010-12-31
+DEBUG VALE us-gaap RecordedUnconditionalPurchaseObligationDueWithinOneYear 2010-12-31
+DEBUG VALE us-gaap SegmentReportingInformationOperatingIncomeLoss 2011-06-30
+DEBUG VALE SEC fy 2021-12-31 Yahoo fy 2025-12-31 cur USD BRL capex SEC 4034000000 Yahoo 6006000000.0
+Yahoo incoherente con la SEC VALE 1606710560.0 25679000000.0
+CVM VALE 12 meses a 2026-09-30 49852 M BRL
 750/816 VEA
-DEBUG VIST ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2019-12-31
-DEBUG VIST ifrs-full AdjustmentsForImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2024-12-31
-DEBUG VIST ifrs-full AdjustmentsForIncreaseDecreaseInOtherOperatingPayables 2024-12-31
-DEBUG VIST ifrs-full CashFlowsFromUsedInOperatingActivities 2024-12-31
-DEBUG VIST ifrs-full DepreciationPropertyPlantAndEquipment 2019-12-31
-DEBUG VIST ifrs-full DisposalsPropertyPlantAndEquipment 2017-12-31
-DEBUG VIST ifrs-full GainRecognisedInBargainPurchaseTransaction 2020-12-31
-DEBUG VIST ifrs-full GainsOnDisposalsOfPropertyPlantAndEquipment 2017-12-31
-DEBUG VIST ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2021-12-31
-DEBUG VIST ifrs-full IncomeTaxesPaidClassifiedAsOperatingActivities 2024-12-31
-DEBUG VIST ifrs-full IssuedCapital 2024-12-31
-DEBUG VIST ifrs-full MiscellaneousOtherOperatingExpense 2024-12-31
-DEBUG VIST ifrs-full MiscellaneousOtherOperatingIncome 2024-12-31
-DEBUG VIST ifrs-full OperatingExpense 2024-12-31
-DEBUG VIST ifrs-full ProceedsFromSalesOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2018-04-03
-DEBUG VIST ifrs-full ProfitLossFromOperatingActivities 2024-12-31
-DEBUG VIST ifrs-full PropertyPlantAndEquipment 2024-12-31
-DEBUG VIST ifrs-full PurchaseOfAvailableforsaleFinancialAssets 2018-04-03
-DEBUG VIST ifrs-full PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities 2024-12-31
-DEBUG VIST ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2024-12-31
-DEBUG VIST ifrs-full ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2024-12-31
-DEBUG VIST ifrs-full PurchaseOfExplorationAndEvaluationAssets 2021-12-31
-DEBUG VIST ifrs-full PurchaseOfInterestsInAssociates 2024-12-31
-DEBUG VIST ifrs-full PurchaseOfOilAndGasAssets 2022-12-31
-DEBUG VIST ifrs-full ReductionOfIssuedCapital 2024-12-31
-DEBUG VIST ifrs-full CapitalCommitments 2024-12-31
-DEBUG VIST ifrs-full GainsLossesOnDisposalsOfPropertyPlantAndEquipment 2023-12-31
-DEBUG VIST ifrs-full PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod 2023-01-27
-DEBUG VIST SEC fy 2024-12-31 Yahoo fy 2026-09-30 cur USD USD capex SEC 1052530000 Yahoo 1637891000.0
 800/816 XLY
 TTM incoherente XP -748676000.0 12044826000.0
-DEBUG YPF ifrs-full AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment 2025-12-31
-DEBUG YPF ifrs-full AdjustmentsForDecreaseIncreaseInOtherOperatingReceivables 2025-12-31
-DEBUG YPF ifrs-full AdjustmentsForImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2022-12-31
-DEBUG YPF ifrs-full BorrowingCostsCapitalised 2025-12-31
-DEBUG YPF ifrs-full CapitalisationRateOfBorrowingCostsEligibleForCapitalisation 2025-12-31
-DEBUG YPF ifrs-full CashFlowsFromUsedInOperatingActivities 2025-12-31
-DEBUG YPF ifrs-full ContingentRentsRecognisedAsExpenseClassifiedAsOperatingLease 2018-12-31
-DEBUG YPF ifrs-full DecreaseThroughLossOfControlOfSubsidiaryPropertyPlantAndEquipment 2018-12-31
-DEBUG YPF ifrs-full DepreciationPropertyPlantAndEquipment 2025-12-31
-DEBUG YPF ifrs-full DividendsReceivedClassifiedAsOperatingActivities 2025-12-31
-DEBUG YPF ifrs-full ImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2016-12-31
-DEBUG YPF ifrs-full IncomeTaxesPaidClassifiedAsOperatingActivities 2025-12-31
-DEBUG YPF ifrs-full IncomeTaxesPaidRefundClassifiedAsOperatingActivities 2025-12-31
-DEBUG YPF ifrs-full IncreaseDecreaseThroughOtherChangesPropertyPlantAndEquipment 2025-12-31
-DEBUG YPF ifrs-full InterestCostsCapitalised 2025-12-31
-DEBUG YPF ifrs-full IssuedCapital 2025-12-31
-DEBUG YPF ifrs-full MinimumOperatingLeasePayments 2018-12-31
-DEBUG YPF ifrs-full MiscellaneousOtherOperatingExpense 2017-12-31
-DEBUG YPF ifrs-full MiscellaneousOtherOperatingIncome 2018-12-31
-DEBUG YPF ifrs-full OtherOperatingIncomeExpense 2025-12-31
-DEBUG YPF ifrs-full ProfitLossFromOperatingActivities 2025-12-31
-DEBUG YPF ifrs-full PropertyPlantAndEquipment 2025-12-31
-DEBUG YPF ifrs-full PropertyPlantAndEquipmentRecognisedAsOfAcquisitionDate 2018-12-31
-DEBUG YPF ifrs-full PurchaseOfAvailableforsaleFinancialAssets 2023-12-31
-DEBUG YPF ifrs-full PurchaseOfInvestmentsOtherThanInvestmentsAccountedForUsingEquityMethod 2018-12-31
-DEBUG YPF ifrs-full PurchaseOfOilAndGasAssets 2017-12-31
-DEBUG YPF ifrs-full PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities 2018-12-31
-DEBUG YPF ifrs-full PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets 2025-12-31
-DEBUG YPF ifrs-full PurchaseOfTreasuryShares 2025-12-31
-DEBUG YPF ifrs-full ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2018-12-31
-DEBUG YPF ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2021-12-31
-DEBUG YPF ifrs-full IncreaseDecreaseThroughTransfersAndOtherChangesPropertyPlantAndEquipment 2025-12-31
-DEBUG YPF ifrs-full PurchaseOfFinancialAssetsMeasuredAtAmortisedCostClassifiedAsInvestingActivities 2025-12-31
-DEBUG YPF SEC fy 2025-12-31 Yahoo fy 2026-09-30 cur USD ARS capex SEC 5077000000 Yahoo 5232000000.0
 Yahoo incoherente con la SEC YPF 5464325.460615803 4959000000.0
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=PEN&to=USD
 CONTROL APPLE: OK
