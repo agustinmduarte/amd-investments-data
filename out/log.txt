@@ -1,12 +1,53 @@
-2026-11-25T17:51:33+00:00
+2026-11-25T18:13:10+00:00
+CCL histórico: 5076 días 2013-01-02 a 2026-11-25
 S&P 500: 503 Nasdaq 100: 0
 CEDEARs: 401
 Acciones argentinas: 71
-Precios Yahoo: 810 de 815
-CCL implícito 1760.75 con 396 CEDEARs; referencia 1761.2
+Precios Yahoo: 809 de 815
+CCL implícito 1765.57 con 396 CEDEARs; referencia 1758.3
 Descargando companyfacts de la SEC…
 ZIP: ok
 0/815 A
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
 50/815 AON
 100/815 BIIB
 150/815 CI
@@ -21,6 +62,26 @@ ZIP: ok
 600/815 REG
 650/815 SNDK
 700/815 TKO
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 750/815 VEEV
 800/815 XME
 CONTROL APPLE: OK
