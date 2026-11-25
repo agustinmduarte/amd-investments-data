@@ -262,15 +262,24 @@ def ttm_flow(entries):
 
 
 def ttm_by_names(f, names, cur, L=None):
-    out = None
+    """Une las entradas de todos los nombres del concepto (las empresas a veces cambian de nombre entre informes)."""
+    pool = {}
     for n in names:
-        r = ttm_flow(_units(f, n, cur))
-        if r and (L is None or r[1] == L):
-            if out is None or r[1] > out[1]:
-                out = r
-            if L is not None:
-                break
-    return out
+        for e in _units(f, n, cur):
+            if "start" not in e:
+                continue
+            k = (e["start"], e["end"])
+            if k not in pool or e.get("filed", "") > pool[k].get("filed", ""):
+                pool[k] = e
+    if not pool:
+        return None
+    entries = list(pool.values())
+    if L is not None:
+        entries = [e for e in entries if e["end"] <= L]
+    r = ttm_flow(entries)
+    if r and (L is None or r[1] == L):
+        return r
+    return None
 
 
 def latest_instant(entries):
@@ -804,7 +813,7 @@ def coherent_usd(y, f, cache, t=""):
         return ok
     except Exception:
         return False
-DEBUG = {"D", "DUK", "SPGI", "WMB"}
+DEBUG = set()
 
 
 def fx_table():
