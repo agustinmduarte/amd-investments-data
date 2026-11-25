@@ -1,10 +1,10 @@
-2026-11-25T19:19:57+00:00
+2026-11-25T19:44:17+00:00
 CCL histórico: 5076 días 2013-01-02 a 2026-11-25
 S&P 500: 503 Nasdaq 100: 0
 CEDEARs: 403
 Acciones argentinas: 71
-Precios Yahoo: 810 de 816
-CCL implícito 1780.4 con 397 CEDEARs; referencia 1776.2
+Precios Yahoo: 809 de 816
+CCL implícito 1780.45 con 397 CEDEARs; referencia 1776.2
 Descargando companyfacts de la SEC…
 ZIP: ok
 0/816 A
@@ -89,9 +89,11 @@ DEBUG GGAL SEC fy 2025-03-31 Yahoo fy 2025-12-31 cur ARS ARS capex SEC 279137260
 TTM incoherente GPRK 229572000.0 14705000.0
 TTM incoherente GRIM.BA 11507596492.0 -2441548525.0
 TTM incoherente HARG.BA 50739000000.0 6561000000.0
+Yahoo incoherente con la SEC HMC 8931803448.0 1955227260.0
 350/816 HON
 TTM incoherente HUM 3731000000.0 921000000.0
 400/816 IT
+Yahoo incoherente con la SEC ITUB 14340788100.0 1142986610.0
 TTM incoherente KB 17781622000000.0 4226378000000.0
 TTM incoherente KKR 2242879000.0 477760000.0
 TTM incoherente LEN 937303000.0 216812000.0
@@ -142,6 +144,7 @@ DEBUG PAM ifrs-full ReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlan
 DEBUG PAM ifrs-full CashFlowsFromUsedInMaintainingOperatingCapacity 2022-12-12
 DEBUG PAM ifrs-full PurchaseOfInvestmentProperty 2023-12-31
 DEBUG PAM SEC fy 2024-12-31 Yahoo fy 2026-06-30 cur USD USD capex SEC 447000000 Yahoo 1067000000.0
+Yahoo incoherente con la SEC PBR 7843578824.598444 35540000000.0
 600/816 RDDT
 TTM incoherente RICH.BA 13866297204.0 1866133687.0
 DEBUG SAP ifrs-full AdditionalPaidinCapital 2023-12-31
@@ -167,8 +170,10 @@ DEBUG SAP ifrs-full PropertyPlantAndEquipmentIncludingRightofuseAssets 2025-12-3
 DEBUG SAP ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipmentIncludingRightofuseAssets 2025-12-31
 DEBUG SAP ifrs-full ContractualCapitalCommitments 2025-12-31
 DEBUG SAP SEC fy 2025-12-31 Yahoo fy 2026-09-30 cur EUR EUR capex SEC 739000000 Yahoo 701000000.0
+Yahoo incoherente con la SEC SID -267169016.85 1398700153.45
 650/816 SNAP
 TTM incoherente STNE 3091656000.0 676566000.0
+Yahoo incoherente con la SEC STNE 123513888.96 -585541255.58
 TTM incoherente STT -2177000000.0 11898000000.0
 TTM incoherente TD 7553000000.0 -69646000000.0
 700/816 TJX
@@ -177,6 +182,10 @@ HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
@@ -193,10 +202,7 @@ HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
-HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+Yahoo incoherente con la SEC VALE 1827724890.0 25679000000.0
 750/816 VEA
 DEBUG VIST ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2019-12-31
 DEBUG VIST ifrs-full AdjustmentsForImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2024-12-31
@@ -263,4 +269,5 @@ DEBUG YPF ifrs-full AdjustmentsForGainLossOnDisposalsPropertyPlantAndEquipment 2
 DEBUG YPF ifrs-full IncreaseDecreaseThroughTransfersAndOtherChangesPropertyPlantAndEquipment 2025-12-31
 DEBUG YPF ifrs-full PurchaseOfFinancialAssetsMeasuredAtAmortisedCostClassifiedAsInvestingActivities 2025-12-31
 DEBUG YPF SEC fy 2025-12-31 Yahoo fy 2026-09-30 cur USD ARS capex SEC 5077000000 Yahoo 5232000000.0
+Yahoo incoherente con la SEC YPF 5464325.460615803 4959000000.0
 CONTROL APPLE: OK
