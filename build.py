@@ -804,7 +804,7 @@ def coherent_usd(y, f, cache, t=""):
         return ok
     except Exception:
         return False
-DEBUG = {"VALE", "ITUB"}
+DEBUG = {"D", "DUK", "SPGI", "WMB"}
 
 
 def fx_table():
@@ -1009,6 +1009,12 @@ def full():
                     fund = sec_company(facts, e.get("adrRatio", 1) if t != "BRK-B" else 1 / 1500)
                     if t in DEBUG:
                         ff = facts.get("facts", {})
+                        for n_ in CON["ocf"]:
+                            es = _units(ff, n_, "USD")
+                            if es:
+                                last = sorted(es, key=lambda x: (x.get("end", ""), x.get("start", "")))[-8:]
+                                log("DEBUG", t, n_, [(x.get("start"), x.get("end"), x.get("form"), x.get("val")) for x in last])
+                        log("DEBUG", t, "ttm", ttm_by_names(ff, CON["ocf"], "USD"))
                         for tax in ff:
                             for cn, cv_ in ff[tax].items():
                                 if re.search(r"Operating|PropertyPlant|Capital|Purchase", cn):
