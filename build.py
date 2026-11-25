@@ -131,7 +131,7 @@ def universe():
             continue
         if is_variant(s, ced_syms):
             continue
-        if re.fullmatch(r"[A-Z]{4}\d{1,2}", s):  # acciones brasileñas en BYMA: se valúan por su ADR si existe
+        if re.fullmatch(r"[A-Z]{3,4}\d{1,2}", s) or s in ("AKOBD", "ALAD"):  # acciones brasileñas en BYMA: se valúan por su ADR si existe
             continue
         u = s.replace(".", "-")
         if u:
@@ -400,12 +400,12 @@ def sec_company(facts, adr_ratio=1):
     return res
 
 
-def _cagr(H, key):
+def _cagr(H, key, min_span=3):
     pts = [(int(h["fy"]), h[key]) for h in H if isinstance(h.get(key), (int, float))]
     if len(pts) < 2:
         return None
     (y0, a), (y1, b) = pts[0], pts[-1]
-    if a > 0 and b > 0 and y1 - y0 >= 3:
+    if a > 0 and b > 0 and y1 - y0 >= min_span:
         return (b / a) ** (1 / (y1 - y0)) - 1, y1 - y0
     return None
 
@@ -415,7 +415,7 @@ def oe_cagr(H):
     o = _cagr(H, "oe")
     if o:
         out["oeCagr"], out["years"] = o
-    r = _cagr(H, "rev")
+    r = _cagr(H, "rev") or _cagr(H, "rev", 1)
     if r:
         out["revCagr"], out["revYears"] = r
     return out or None
@@ -427,6 +427,18 @@ def yf_fundamentals(t):
     import yfinance as yf
     tk = yf.Ticker(t)
     cf, bs, inc = tk.cashflow, tk.balance_sheet, tk.income_stmt
+    ttm = False
+    if cf is None or cf.empty or "Operating Cash Flow" not in cf.index:
+        q = tk.quarterly_cashflow
+        if q is not None and not q.empty and q.shape[1] >= 4:
+            cf = q.iloc[:, :4].sum(axis=1, min_count=1).to_frame(q.columns[0])
+            ttm = True
+        if bs is None or bs.empty:
+            bs = tk.quarterly_balance_sheet
+        if inc is None or inc.empty:
+            qi = tk.quarterly_income_stmt
+            if qi is not None and not qi.empty and qi.shape[1] >= 4:
+                inc = qi.iloc[:, :4].sum(axis=1, min_count=1).to_frame(qi.columns[0])
 
     def row(df, names, col=0):
         if df is None or df.empty:
@@ -461,6 +473,8 @@ def yf_fundamentals(t):
                   "sbc": s, "oe": (o - abs(k) - (s or 0)) if o is not None and k is not None else None})
     res["hist"] = H
     res["missing"] = [k for k in ("ocf", "capex", "debt", "cash", "shares") if res.get(k) is None]
+    if ttm:
+        res["fy"] = "últimos 4 trimestres"
     try:
         res["currency"] = tk.info.get("financialCurrency") or "USD"
     except Exception:
@@ -756,7 +770,7 @@ def full():
         d["news"] = ext.get("news") or (prev_det.get(t, {}).get("news") or [])
         if info.get("summary"):
             d["summary"] = info["summary"]
-        if row["st"] == "sin datos" and not p.get("px") and not ({"SP500", "NDX100"} & set(row.get("u", []))):
+        if row.get("kind") != "ETF" and not p.get("px") and row.get("ocf") is None and not ({"SP500", "NDX100"} & set(row.get("u", []))):
             continue
         rows.append({k: v for k, v in row.items() if v is not None})
         if n % 50 == 0:
