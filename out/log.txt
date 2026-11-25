@@ -1,13 +1,14 @@
-2026-11-25T18:59:49+00:00
+2026-11-25T19:19:57+00:00
 CCL histórico: 5076 días 2013-01-02 a 2026-11-25
 S&P 500: 503 Nasdaq 100: 0
-CEDEARs: 402
+CEDEARs: 403
 Acciones argentinas: 71
 Precios Yahoo: 810 de 816
-CCL implícito 1780.31 con 396 CEDEARs; referencia 1758.3
+CCL implícito 1780.4 con 397 CEDEARs; referencia 1776.2
 Descargando companyfacts de la SEC…
 ZIP: ok
 0/816 A
+TTM incoherente AAP 383000000.0 -46000000.0
 HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
@@ -49,9 +50,20 @@ HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
 HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
 50/816 ANT
+TTM incoherente ARES -514876000.0 3266959000.0
+TTM incoherente BAC 59200000000.0 12613000000.0
+TTM incoherente BE 690968000.0 113949000.0
+TTM incoherente BHIP.BA 5695307000.0 166481867000.0
 100/816 BIDU
+TTM incoherente BMA 436670103000.0 2633788066000.0
+TTM incoherente BSBR 55521526000.0 4992175000.0
+TTM incoherente BYMA.BA 35636387000.0 247028836000.0
+TTM incoherente C 4380000000.0 -67632000000.0
 150/816 CHTR
+TTM incoherente COME.BA 2078106000.0 25320747000.0
 200/816 DBB
+TTM incoherente DOW 4577000000.0 1032000000.0
+TTM incoherente EDSH.BA 3966000000.0 44947000000.0
 250/816 EQT
 300/816 GBAN.BA
 DEBUG GGAL ifrs-full AdditionalPaidinCapital 2025-03-31
@@ -74,10 +86,24 @@ DEBUG GGAL ifrs-full PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMeth
 DEBUG GGAL ifrs-full PropertyPlantAndEquipmentIncludingRightofuseAssets 2025-03-31
 DEBUG GGAL ifrs-full IssuedCapitalOrdinaryShares 2024-12-31
 DEBUG GGAL SEC fy 2025-03-31 Yahoo fy 2025-12-31 cur ARS ARS capex SEC 279137260000 Yahoo 245914779000.0
+TTM incoherente GPRK 229572000.0 14705000.0
+TTM incoherente GRIM.BA 11507596492.0 -2441548525.0
+TTM incoherente HARG.BA 50739000000.0 6561000000.0
 350/816 HON
+TTM incoherente HUM 3731000000.0 921000000.0
 400/816 IT
+TTM incoherente KB 17781622000000.0 4226378000000.0
+TTM incoherente KKR 2242879000.0 477760000.0
+TTM incoherente LEN 937303000.0 216812000.0
 450/816 LNT
+TTM incoherente LONG.BA -699320749.0 -6208765717.0
+TTM incoherente MORI.BA -5311701000.0 -69620000.0
+TTM incoherente MSTR -7362000.0 -67241000.0
 500/816 MTD
+TTM incoherente MUX 31566000.0 6865000.0
+TTM incoherente NBIS 5065400000.0 384800000.0
+TTM incoherente NU -218531000.0 3500464000.0
+TTM incoherente ONDS -290755375.0 -38746000.0
 550/816 P
 DEBUG PAM ifrs-full AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment 2017-12-31
 DEBUG PAM ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment 2024-12-31
@@ -117,6 +143,7 @@ DEBUG PAM ifrs-full CashFlowsFromUsedInMaintainingOperatingCapacity 2022-12-12
 DEBUG PAM ifrs-full PurchaseOfInvestmentProperty 2023-12-31
 DEBUG PAM SEC fy 2024-12-31 Yahoo fy 2026-06-30 cur USD USD capex SEC 447000000 Yahoo 1067000000.0
 600/816 RDDT
+TTM incoherente RICH.BA 13866297204.0 1866133687.0
 DEBUG SAP ifrs-full AdditionalPaidinCapital 2023-12-31
 DEBUG SAP ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAndEquipment 2023-12-31
 DEBUG SAP ifrs-full AdjustmentsForDecreaseIncreaseInOtherOperatingReceivables 2019-12-31
@@ -141,7 +168,11 @@ DEBUG SAP ifrs-full AdditionsOtherThanThroughBusinessCombinationsPropertyPlantAn
 DEBUG SAP ifrs-full ContractualCapitalCommitments 2025-12-31
 DEBUG SAP SEC fy 2025-12-31 Yahoo fy 2026-09-30 cur EUR EUR capex SEC 739000000 Yahoo 701000000.0
 650/816 SNAP
+TTM incoherente STNE 3091656000.0 676566000.0
+TTM incoherente STT -2177000000.0 11898000000.0
+TTM incoherente TD 7553000000.0 -69646000000.0
 700/816 TJX
+TTM incoherente TRIP 31100000.0 245000000.0
 HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
 HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
@@ -197,6 +228,7 @@ DEBUG VIST ifrs-full GainsLossesOnDisposalsOfPropertyPlantAndEquipment 2023-12-3
 DEBUG VIST ifrs-full PurchaseOfInterestsInInvestmentsAccountedForUsingEquityMethod 2023-01-27
 DEBUG VIST SEC fy 2024-12-31 Yahoo fy 2026-09-30 cur USD USD capex SEC 1052530000 Yahoo 1637891000.0
 800/816 XLY
+TTM incoherente XP -748676000.0 12044826000.0
 DEBUG YPF ifrs-full AcquisitionsThroughBusinessCombinationsPropertyPlantAndEquipment 2025-12-31
 DEBUG YPF ifrs-full AdjustmentsForDecreaseIncreaseInOtherOperatingReceivables 2025-12-31
 DEBUG YPF ifrs-full AdjustmentsForImpairmentLossReversalOfImpairmentLossRecognisedInProfitOrLossPropertyPlantAndEquipment 2022-12-31
