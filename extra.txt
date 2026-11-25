@@ -1,0 +1,13 @@
+# Tickers extra (EE.UU.) a incluir siempre, uno por linea
+AAPL
+GGAL
+YPF
+TGS
+VIST
+MELI
+GLOB
+NU
+SAP
+SPOT
+SHOP
+ARM
