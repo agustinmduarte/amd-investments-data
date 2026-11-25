@@ -229,7 +229,7 @@ td.nm{max-width:210px;overflow:hidden;text-overflow:ellipsis;color:var(--ink2)}
 .ohlc{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12.5px;color:var(--mute);min-height:20px}
 .ohlc b{color:var(--ink);font-weight:500;margin-left:3px}
 .ctools{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.cx{position:relative;height:420px;margin:10px 0 0}
+.cx{position:relative;height:420px;margin:10px 0 0;overflow:hidden}
 .cxmsg{position:absolute;inset:0;display:grid;place-items:center;color:var(--mute);font-size:13px;text-align:center;padding:20px}
 .cleg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--mute);padding:10px 18px 14px}
 .cleg i{display:inline-block;width:14px;height:0;border-top:2px solid;margin-right:6px;vertical-align:3px}
@@ -775,7 +775,7 @@ Datos (JSON): ${JSON.stringify(facts)}`;
  aiBusy=false;$('#aiB').disabled=false;$('#aiB').textContent='Volver a generar';}
 
 /* ===== gráfico de precios (Lightweight Charts de TradingView) ===== */
-const CX={chart:null,t:null,range:'365',kind:'c',val:false,shards:{}};
+const CX={seq:0,chart:null,t:null,range:'365',kind:'c',val:false,shards:{}};
 try{const u=JSON.parse(localStorage.getItem('amd-cx')||'null');if(u){CX.range=u.range||CX.range;CX.kind=u.kind||CX.kind;CX.val=!!u.val;}}catch(e){}
 function shardOf(t){let h=0;for(const ch of t)h=(h*31+ch.charCodeAt(0))%1000003;return h%24;}
 function loadHist(t){const n=shardOf(t);if(!CX.shards[n])CX.shards[n]=fetch(`data/hist/h${n}.json`).then(r=>r.ok?r.json():null).catch(()=>null);return CX.shards[n].then(d=>d&&d.t?d.t[t]||null:null);}
@@ -788,9 +788,10 @@ async function drawChart(force){const t=S.sel;if(!t||S.view!=='accion')return;
  for(const b of $$('#cxT button'))b.setAttribute('aria-pressed',String(b.dataset.k===CX.kind));
  $('#cxV').setAttribute('aria-pressed',String(CX.val));
  if(!force&&CX.chart&&CX.t===t)return;
- if(CX.chart){CX.chart.remove();CX.chart=null;}CX.t=t;$('#cxL').textContent='';$('#cxG').innerHTML='';
+ const my=++CX.seq;CX.t=t;$('#cxL').textContent='';$('#cxG').innerHTML='';
  const LW=window.LightweightCharts;if(!LW){cxMsg('No se pudo cargar la librería del gráfico. Revisá la conexión y recargá la página.');return;}
- cxMsg('Cargando el gráfico…');const H=await loadHist(t);if(S.sel!==t)return;
+ if(!CX.chart)cxMsg('Cargando el gráfico…');const H=await loadHist(t);if(S.sel!==t||my!==CX.seq)return;
+ if(CX.chart){CX.chart.remove();CX.chart=null;}for(const n of [...$('#cx').children])if(n.id!=='cxM')n.remove();
  const wk=CX.range==='w',raw=H&&(wk?H.w:H.d);
  if(!raw||!raw.length){cxMsg(S.view==='accion'?'Todavía no hay historial de precios para esta acción. Se carga con la próxima actualización de precios.':'');return;}
  cxMsg('');
