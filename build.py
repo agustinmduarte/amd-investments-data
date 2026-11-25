@@ -794,6 +794,19 @@ def usd_per(cur, date, cache):
 
 
 CUR_CCL = {}
+
+
+def coherent_usd(y, f, cache, t=""):
+    """La caja operativa de Yahoo, en dólares, tiene que estar entre 1/4 y 4 veces la de la SEC."""
+    try:
+        yu = y["ocf"] * usd_per(y.get("currency") or "USD", y.get("fyEnd"), cache)
+        fu = f["ocf"] * usd_per(f.get("currency") or "USD", f.get("fyEnd"), cache)
+        ok = fu and 0.25 <= abs(yu / fu) <= 4
+        if not ok:
+            log("Yahoo incoherente con la SEC", t, yu, fu)
+        return ok
+    except Exception:
+        return False
 DEBUG = {"YPF", "VIST", "PAM", "GGAL", "SAP"}
 
 
@@ -884,7 +897,8 @@ def full():
                     yfund and yfund.get("currency"), "capex SEC", fund.get("capex"), "Yahoo", yfund and yfund.get("capex"))
             if not fund:
                 fund = yfund
-            elif yfund and stale_sec and yfund.get("ocf") is not None and yfund.get("fyEnd", "") > fund.get("fyEnd", ""):
+            elif yfund and stale_sec and yfund.get("ocf") is not None and yfund.get("fyEnd", "") > fund.get("fyEnd", "") \
+                    and coherent_usd(yfund, fund, fxc, t):
                 yfund.setdefault("soft", []).append(f"Datos de Yahoo Finance a {yfund.get('fyEnd')}: lo último en la SEC era a {fund.get('fyEnd')}.")
                 if not yfund.get("hist") or len(fund.get("hist") or []) > len(yfund["hist"]):
                     yfund["hist"] = [h for h in (fund.get("hist") or []) if h.get("fy") != "12m"] + [h for h in (yfund.get("hist") or []) if h.get("fy") == "12m"]
