@@ -240,125 +240,144 @@ CASH = ["CashAndCashEquivalentsAtCarryingValue", "CashAndCashEquivalents",
 STI = ["MarketableSecuritiesCurrent", "ShortTermInvestments", "AvailableForSaleSecuritiesDebtSecuritiesCurrent"]
 
 
+def _units(f, name, cur):
+    for tax in ("us-gaap", "ifrs-full", "dei"):
+        if name in f.get(tax, {}):
+            u = f[tax][name].get("units", {})
+            if cur in u:
+                return u[cur]
+    return []
+
+
+def flows_by_name(f, names, cur):
+    return [(n, annual_flows(_units(f, n, cur))) for n in names]
+
+
+def value_for_end(fl, end):
+    for n, a in fl:
+        if end in a:
+            return a[end][0]
+    return None
+
+
+def instant_any(f, names, cur, end):
+    for n in names:
+        v = instant_at(_units(f, n, cur), end)
+        if v is not None:
+            return v
+    return None
+
+
 def sec_company(facts, adr_ratio=1):
     """Calcula las entradas del método desde companyfacts. Devuelve dict o None."""
     f = facts.get("facts", {})
     res = {"src": "SEC"}
-    ocf_e, cur, cname = series(f, CON["ocf"])
-    if not ocf_e:
+    # moneda: la del concepto de caja operativa con el dato más reciente
+    best = None
+    for tax in ("us-gaap", "ifrs-full"):
+        for n in CON["ocf"]:
+            if n in f.get(tax, {}):
+                for u, es in f[tax][n].get("units", {}).items():
+                    a = annual_flows(es)
+                    if a:
+                        e = max(a)
+                        if best is None or e > best[0]:
+                            best = (e, u, a)
+    if not best:
         return None
-    res["currency"] = cur
-    ocf = annual_flows(ocf_e)
-    if not ocf:
-        return None
-    fy_end = max(ocf)
-    res["fyEnd"] = fy_end
+    fy_end, cur, ocf = best
+    res["currency"], res["fyEnd"] = cur, fy_end
     res["filed"], res["accn"], res["form"] = ocf[fy_end][1], ocf[fy_end][2], ocf[fy_end][3]
     res["fy"] = "FY" + fy_end[:4]
-    hist = {}
-    for key in ("ocf", "capex", "sbc", "rev", "ni"):
-        e, u, _ = series(f, CON[key], (cur,))
-        a = annual_flows([x for x in e]) if e else {}
-        for end, v in a.items():
-            hist.setdefault(end, {})[key] = v[0]
-    h = hist[fy_end]
-    res["ocf"] = h.get("ocf")
-    res["capex"] = abs(h["capex"]) if h.get("capex") is not None else None
-    res["sbc"] = h.get("sbc")
+    FL = {k: flows_by_name(f, CON[k], cur) for k in ("capex", "sbc", "rev", "ni")}
+    FL["ocf"] = [("ocf", ocf)]
+    res["ocf"] = ocf[fy_end][0]
+    cx = value_for_end(FL["capex"], fy_end)
+    res["capex"] = abs(cx) if cx is not None else None
+    res["sbc"] = value_for_end(FL["sbc"], fy_end)
     missing = [k for k in ("capex",) if res[k] is None]
     if res["sbc"] is None:
         res["sbc"] = 0.0
-    # balance: el instante más reciente disponible para la caja
-    cash_e, _, _ = series(f, CASH, (cur,))
-    li = latest_instant(cash_e)
-    bal_end = li["end"] if li else fy_end
+    # balance: el instante más reciente entre los conceptos de caja
+    bal_end = fy_end
+    for n in CASH:
+        li = latest_instant(_units(f, n, cur))
+        if li and li["end"] > bal_end:
+            bal_end = li["end"]
     res["balanceEnd"] = bal_end
-    cash = instant_at(cash_e, bal_end) if cash_e else None
-    for n in STI:
-        e, _, _ = series(f, [n], (cur,))
-        v = instant_at(e, bal_end) if e else None
-        if v is not None:
-            cash = (cash or 0) + v
-            break
-    res["cash"] = cash
+    cash = instant_any(f, CASH, cur, bal_end)
+    if cash is None:
+        cash = instant_any(f, CASH, cur, fy_end)
+    sti = instant_any(f, STI, cur, bal_end)
+    res["cash"] = (cash or 0) + (sti or 0) if (cash is not None or sti is not None) else None
     debt, parts = 0.0, 0
     for n in DEBT_PARTS:
-        e, _, _ = series(f, [n], (cur,))
-        v = instant_at(e, bal_end) if e else None
+        v = instant_at(_units(f, n, cur), bal_end)
         if v is not None:
             debt += v
             parts += 1
-    has_lt = any(instant_at(series(f, [n], (cur,))[0], bal_end) is not None for n in DEBT_PARTS[:2])
-    if not has_lt:
-        for n in DEBT_ALT:
-            e, _, _ = series(f, [n], (cur,))
-            v = instant_at(e, bal_end) if e else None
-            if v is not None:
-                debt += v
-                parts += 1
-                break
+    if not any(instant_at(_units(f, n, cur), bal_end) is not None for n in DEBT_PARTS[:2]):
+        v = instant_any(f, DEBT_ALT, cur, bal_end)
+        if v is not None:
+            debt += v
+            parts += 1
     if parts == 0:
-        b = 0.0
-        for n in IFRS_DEBT[1:]:
-            e, _, _ = series(f, [n], (cur,))
-            v = instant_at(e, bal_end) if e else None
+        b = [instant_at(_units(f, n, cur), bal_end) for n in IFRS_DEBT[1:]]
+        b = [x for x in b if x is not None]
+        if b:
+            debt, parts = sum(b), len(b)
+        else:
+            v = instant_at(_units(f, "Borrowings", cur), bal_end)
             if v is not None:
-                b += v
-                parts += 1
-        if parts == 0:
-            e, _, _ = series(f, IFRS_DEBT[:1], (cur,))
-            v = instant_at(e, bal_end) if e else None
-            if v is not None:
-                b, parts = v, 1
-        debt = b
-    res["debt"] = debt if parts else 0.0
+                debt, parts = v, 1
     res["soft"] = []
+    res["debt"] = debt if parts else 0.0
     if not parts:
         res["soft"].append("No informa deuda financiera: se toma 0.")
-    # acciones diluidas: último trimestre (Q4 derivado si lo último es el 10-K)
-    sh_e, _, _ = series(f, ["WeightedAverageNumberOfDilutedSharesOutstanding", "AdjustedWeightedAverageShares",
-                            "WeightedAverageNumberOfShareOutstandingBasicAndDiluted"], ("shares",))
-    q = {}
-    fyv = {}
-    for e in sh_e:
-        d = dur(e)
-        if d is None:
-            continue
-        if 80 <= d <= 100:
-            if e["end"] not in q or e.get("filed", "") >= q[e["end"]][1]:
-                q[e["end"]] = (e["val"], e.get("filed", ""))
-        elif 350 <= d <= 380:
-            if e["end"] not in fyv or e.get("filed", "") >= fyv[e["end"]][1]:
-                fyv[e["end"]] = (e["val"], e.get("filed", ""), e["start"])
+    # acciones diluidas: último trimestre (Q4 derivado si lo último es el anual)
+    q, fyv = {}, {}
+    for n in ["WeightedAverageNumberOfDilutedSharesOutstanding", "AdjustedWeightedAverageShares",
+              "WeightedAverageNumberOfShareOutstandingBasicAndDiluted"]:
+        for e in _units(f, n, "shares"):
+            d = dur(e)
+            if d is None:
+                continue
+            tgt = q if 80 <= d <= 100 else fyv if 350 <= d <= 380 else None
+            if tgt is None:
+                continue
+            if e["end"] not in tgt or e.get("filed", "") >= tgt[e["end"]][1]:
+                tgt[e["end"]] = (e["val"], e.get("filed", ""), e["start"])
     shares = None
     lq = max(q) if q else None
     lf = max(fyv) if fyv else None
     if lq and (not lf or lq >= lf):
-        shares = q[lq][0]
-        res["sharesFrom"] = "trimestre " + lq
+        shares, res["sharesFrom"] = q[lq][0], "trimestre " + lq
     elif lf:
         start = fyv[lf][2]
         qs = [q[k][0] for k in q if start < k < lf]
         if len(qs) == 3:
-            shares = 4 * fyv[lf][0] - sum(qs)
-            res["sharesFrom"] = "Q4 derivado " + lf
+            shares, res["sharesFrom"] = 4 * fyv[lf][0] - sum(qs), "Q4 derivado " + lf
         else:
-            shares = fyv[lf][0]
-            res["sharesFrom"] = "anual " + lf
+            shares, res["sharesFrom"] = fyv[lf][0], "anual " + lf
+    # control cruzado con las acciones en circulación de la portada (dei)
+    cover = latest_instant(_units(f, "EntityCommonStockSharesOutstanding", "shares"))
+    cv = cover["val"] if cover else None
+    stale = (lq or lf or "0000")[:4] < str(int(bal_end[:4]) - 1)
+    if cv and (not shares or not (0.6 <= shares / cv <= 1.6) or stale):
+        shares, res["sharesFrom"] = cv, "portada " + cover["end"]
     if shares:
         shares = shares / adr_ratio
     res["shares"] = shares
     if shares is None:
         missing.append("shares")
-    # historia (10 años)
     H = []
-    for end in sorted(hist)[-10:]:
-        x = hist[end]
-        oe = None
-        if x.get("ocf") is not None and x.get("capex") is not None:
-            oe = x["ocf"] - abs(x["capex"]) - (x.get("sbc") or 0)
-        H.append({"fy": end[:4], "end": end, "rev": x.get("rev"), "ni": x.get("ni"), "ocf": x.get("ocf"),
-                  "capex": abs(x["capex"]) if x.get("capex") is not None else None, "sbc": x.get("sbc"), "oe": oe})
+    for end in sorted(ocf)[-10:]:
+        o = ocf[end][0]
+        k = value_for_end(FL["capex"], end)
+        sb = value_for_end(FL["sbc"], end)
+        H.append({"fy": end[:4], "end": end, "rev": value_for_end(FL["rev"], end), "ni": value_for_end(FL["ni"], end),
+                  "ocf": o, "capex": abs(k) if k is not None else None, "sbc": sb,
+                  "oe": (o - abs(k) - (sb or 0)) if k is not None else None})
     res["hist"] = H
     res["missing"] = missing
     return res
