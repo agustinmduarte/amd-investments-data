@@ -702,9 +702,9 @@ def full():
                 if fund.get("shares") is None and (info.get("shares") or 0) > 0:
                     fund["shares"] = info["shares"]
                     fund["soft"].append("Acciones en circulación de Yahoo Finance.")
-                for k, lab in (("capex", "capex"), ("debt", "deuda"), ("cash", "caja")):
-                    if fund.get(k) is None:
-                        fund[k] = 0.0
+                for fk, lab in (("capex", "capex"), ("debt", "deuda"), ("cash", "caja")):
+                    if fund.get(fk) is None:
+                        fund[fk] = 0.0
                         fund["soft"].append(f"No informa {lab}: se toma 0.")
                 fund["missing"] = [k for k in ("ocf", "shares") if fund.get(k) is None]
                 for key in ("ocf", "capex", "sbc", "debt", "cash"):
