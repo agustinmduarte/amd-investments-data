@@ -751,10 +751,10 @@ def full():
                     if t in DEBUG:
                         ff = facts.get("facts", {})
                         for tax in ff:
-                            for n, v in ff[tax].items():
-                                if re.search(r"Operating|PropertyPlant|Capital|Purchase", n):
-                                    ends = [x.get("end") for u in v.get("units", {}).values() for x in u]
-                                    log("DEBUG", t, tax, n, max(ends) if ends else "")
+                            for cn, cv_ in ff[tax].items():
+                                if re.search(r"Operating|PropertyPlant|Capital|Purchase", cn):
+                                    ends = [x.get("end") for u in cv_.get("units", {}).values() for x in u]
+                                    log("DEBUG", t, tax, cn, max(ends) if ends else "")
                     if fund:
                         row["cik"] = str(cik)
                         row["name"] = facts.get("entityName")
