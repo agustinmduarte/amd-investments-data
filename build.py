@@ -67,7 +67,20 @@ ETF_HINT = {"SPY", "QQQ", "DIA", "IWM", "GLD", "SLV", "IBIT", "ETHA", "EWZ", "EE
             "ARKK", "VEA", "VWO", "TLT", "SH", "SMH", "URA", "USO", "FXI", "EWJ", "EWW", "IEUR", "ACWI", "XLP",
             "XLU", "XLY", "XLI", "XLB", "XLC", "XLRE", "GDX", "IVW", "VIG", "SCHD", "BITO", "MCHI", "INDA",
             "EFA", "HYG", "LQD", "IEMG", "KWEB", "COPX", "CORN", "SOYB", "WEAT", "VNQ", "ITA", "IJH", "IWD"}
-CEDEAR_MAP = {"DISN": "DIS", "BRKB": "BRK-B", "BKNGD": None}
+CEDEAR_MAP = {"DISN": "DIS", "BRKB": "BRK-B", "NOKA": "NOK", "XROX": "XRX", "BBV": "BBVA", "KOFM": "KOF",
+              "TRVV": "TRV", "BNG": "BG", "ADGO": "AGRO", "BAYN": "BAYRY", "ADS": "ADDYY", "PKS": "PKX",
+              "WBO": "WB", "AKO.B": "AKO-B", "BRK.B": "BRK-B"}
+
+
+def is_variant(s, syms):
+    """Especies en dólares de un mismo papel (AAPLD, GOGLC, B.D, TGSUD, NAT3D)."""
+    if "." in s:
+        base, suf = s.rsplit(".", 1)
+        return suf in ("C", "D") and base in syms or base.endswith(".D")
+    if s[-1] in "CD" and len(s) > 2:
+        b = s[:-1]
+        return b in syms or b[-1].isdigit() or any(x.startswith(b[:4]) and x != s for x in syms if len(b) >= 4)
+    return False
 # acciones argentinas: simbolo BYMA -> ADR en EE. UU. y acciones locales por ADR
 ARG_ADR = {"GGAL": ("GGAL", 10), "YPFD": ("YPF", 1), "PAMP": ("PAM", 25), "BMA": ("BMA", 10), "CEPU": ("CEPU", 10),
            "TGSU2": ("TGS", 5), "LOMA": ("LOMA", 5), "SUPV": ("SUPV", 5), "EDN": ("EDN", 20), "CRES": ("CRESY", 10),
@@ -113,11 +126,14 @@ def universe():
     for s in ced_syms:
         if not s:
             continue
-        if s[-1] in "DC" and s[:-1] in ced_syms:  # especies en dolares (AAPLD, AAPLC)
+        if s in CEDEAR_MAP:
+            ced[CEDEAR_MAP[s]] = s
             continue
-        if "." in s or re.fullmatch(r"[A-Z]{4}\d{1,2}", s):  # clases en USD y acciones brasileñas
+        if is_variant(s, ced_syms):
             continue
-        u = CEDEAR_MAP.get(s, s)
+        if re.fullmatch(r"[A-Z]{4}\d{1,2}", s):  # acciones brasileñas en BYMA: se valúan por su ADR si existe
+            continue
+        u = s.replace(".", "-")
         if u:
             ced[u] = s
     log("CEDEARs:", len(ced))
@@ -125,7 +141,7 @@ def universe():
     arg = {}
     for r in arg_rows:
         s = str(r.get("symbol", "")).upper()
-        if not s or (s[-1] in "DC" and s[:-1] in {str(x.get('symbol', '')).upper() for x in arg_rows}):
+        if not s or is_variant(s, {str(x.get("symbol", "")).upper() for x in arg_rows}):
             continue
         arg[s] = r
     log("Acciones argentinas:", len(arg))
@@ -289,7 +305,8 @@ def sec_company(facts, adr_ratio=1):
     res["currency"], res["fyEnd"] = cur, fy_end
     res["filed"], res["accn"], res["form"] = ocf[fy_end][1], ocf[fy_end][2], ocf[fy_end][3]
     res["fy"] = "FY" + fy_end[:4]
-    FL = {k: flows_by_name(f, CON[k], cur) for k in ("capex", "sbc", "rev", "ni")}
+    extra_cx = sorted(n for n in f.get("us-gaap", {}) if re.match(r"PaymentsToAcquire.*(PropertyPlant|ProductiveAssets|Equipment|UtilityPlant)", n) or n in ("PaymentsForConstructionInProcess", "PaymentsToAcquireAndDevelopRealEstate"))
+    FL = {k: flows_by_name(f, CON[k] + (extra_cx if k == "capex" else []), cur) for k in ("capex", "sbc", "rev", "ni")}
     FL["ocf"] = [("ocf", ocf)]
     res["ocf"] = ocf[fy_end][0]
     cx = value_for_end(FL["capex"], fy_end)
@@ -383,14 +400,25 @@ def sec_company(facts, adr_ratio=1):
     return res
 
 
-def oe_cagr(H):
-    pts = [(int(h["fy"]), h["oe"]) for h in H if h.get("oe") is not None]
+def _cagr(H, key):
+    pts = [(int(h["fy"]), h[key]) for h in H if isinstance(h.get(key), (int, float))]
     if len(pts) < 2:
         return None
     (y0, a), (y1, b) = pts[0], pts[-1]
-    if a > 0 and b > 0 and y1 - y0 >= 5:
-        return {"oeCagr": (b / a) ** (1 / (y1 - y0)) - 1, "years": y1 - y0}
+    if a > 0 and b > 0 and y1 - y0 >= 3:
+        return (b / a) ** (1 / (y1 - y0)) - 1, y1 - y0
     return None
+
+
+def oe_cagr(H):
+    out = {}
+    o = _cagr(H, "oe")
+    if o:
+        out["oeCagr"], out["years"] = o
+    r = _cagr(H, "rev")
+    if r:
+        out["revCagr"], out["revYears"] = r
+    return out or None
 
 
 # ---------------------------------------------------------------- Yahoo
@@ -472,12 +500,13 @@ def yf_extras(t, cache):
     except Exception as e:
         log("news", t, e)
     ci = cache.get(t)
-    if not ci or ci.get("date", "") < (dt.date.today() - dt.timedelta(days=7)).isoformat():
+    if not ci or "shares" not in ci or ci.get("date", "") < (dt.date.today() - dt.timedelta(days=7)).isoformat():
         try:
             i = tk.info or {}
             ci = {"date": TODAY, "name": i.get("longName") or i.get("shortName"), "sector": i.get("sector"),
                   "industry": i.get("industry"), "summary": (i.get("longBusinessSummary") or "")[:700],
-                  "quoteType": i.get("quoteType"), "country": i.get("country")}
+                  "quoteType": i.get("quoteType"), "country": i.get("country"),
+                  "shares": i.get("sharesOutstanding") or i.get("impliedSharesOutstanding")}
             cache[t] = ci
         except Exception as e:
             log("info", t, e)
@@ -508,6 +537,17 @@ def prices(U):
             except Exception:
                 pass
     log("Precios Yahoo:", len(px), "de", len(tick))
+    for t in [x for x in tick if x not in px][:80]:
+        try:
+            s1 = yf.Ticker(t).history(period="5d")["Close"].dropna()
+            if len(s1):
+                px[t] = {"px": round(float(s1.iloc[-1]), 4), "chg": round(float(s1.iloc[-1] / s1.iloc[-2] - 1), 5) if len(s1) > 1 else None}
+        except Exception:
+            pass
+    us = {str(r.get("symbol", "")).upper(): r for r in d912("usa_stocks")}
+    for t in tick:
+        if t not in px and t in us and num(us[t].get("c")):
+            px[t] = {"px": num(us[t]["c"]), "chg": (num(us[t].get("pct_change")) or 0) / 100}
     # pesos: CEDEARs y acciones locales
     ced = {str(r.get("symbol", "")).upper(): num(r.get("c")) for r in d912("arg_cedears")}
     arg = {str(r.get("symbol", "")).upper(): num(r.get("c")) for r in d912("arg_stocks")}
@@ -599,6 +639,12 @@ def full():
         row["sector"] = e.get("sector")
         p = pr["px"].get(t, {})
         fund = None
+        ext = {}
+        try:
+            ext = yf_extras(t, info_cache)
+        except Exception as ex:
+            log("extras", t, ex)
+        info = ext.get("info") or {}
         if e.get("kind") != "ETF":
             base = t.replace(".BA", "")
             cik = st.get(t, (None, None))[0] if e.get("vcur") == "USD" else None
@@ -613,17 +659,26 @@ def full():
                     pass
                 except Exception as ex:
                     log("sec", t, ex)
-            if not fund:
+            yfund = None
+            if not fund or any(fund.get(k) is None for k in ("ocf", "capex", "shares", "debt", "cash")):
                 try:
-                    fund = yf_fundamentals(t)
+                    yfund = yf_fundamentals(t)
                 except Exception as ex:
                     log("yf fund", t, ex)
-        ext = {}
-        try:
-            ext = yf_extras(t, info_cache)
-        except Exception as ex:
-            log("extras", t, ex)
-        info = ext.get("info") or {}
+            if not fund:
+                fund = yfund
+            elif yfund and (yfund.get("currency") or "USD") == fund.get("currency"):
+                filled = []
+                for k in ("ocf", "capex", "shares", "debt", "cash"):
+                    if fund.get(k) is None and yfund.get(k) is not None:
+                        fund[k] = yfund[k]
+                        filled.append(k)
+                if filled:
+                    fund.setdefault("soft", []).append("Completado con Yahoo Finance: " + ", ".join(filled) + ".")
+                fund["missing"] = [k for k in fund.get("missing", []) if fund.get(k) is None]
+                if not fund.get("hist") and yfund.get("hist"):
+                    fund["hist"] = yfund["hist"]
+
         row["name"] = row.get("name") or info.get("name") or t
         row["sector"] = row.get("sector") or info.get("sector")
         row["industry"] = info.get("industry")
@@ -643,6 +698,15 @@ def full():
                     notes.append(f"Balances en {cur}: no se pudo convertir.")
                     fund = None
             if fund:
+                fund.setdefault("soft", [])
+                if fund.get("shares") is None and (info.get("shares") or 0) > 0:
+                    fund["shares"] = info["shares"]
+                    fund["soft"].append("Acciones en circulación de Yahoo Finance.")
+                for k, lab in (("capex", "capex"), ("debt", "deuda"), ("cash", "caja")):
+                    if fund.get(k) is None:
+                        fund[k] = 0.0
+                        fund["soft"].append(f"No informa {lab}: se toma 0.")
+                fund["missing"] = [k for k in ("ocf", "shares") if fund.get(k) is None]
                 for key in ("ocf", "capex", "sbc", "debt", "cash"):
                     v = fund.get(key)
                     row[key] = round(v / k, 3) if v is not None else None
