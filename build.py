@@ -369,9 +369,6 @@ def sec_company(facts, adr_ratio=1):
     res["sbc"] = value_for_end(FL["sbc"], fy_end)
     # últimos 12 meses al último trimestre informado (10-Q)
     t_ocf = ttm_by_names(f, CON["ocf"], cur)
-    a_ocf = ocf[fy_end][0]
-    if t_ocf and a_ocf and not (0.25 <= abs(t_ocf[0] / a_ocf) <= 4):
-        t_ocf = None
     if t_ocf and t_ocf[1] > fy_end:
         L = t_ocf[1]
         cx_names = CON["capex"] + [n for n, _ in FL["capex"] if n not in CON["capex"]]
