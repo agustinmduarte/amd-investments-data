@@ -168,7 +168,7 @@ def universe():
         if adr and adr[0]:
             add(adr[0], "ARG", local=s, adrRatio=adr[1])
         else:
-            add(s + ".BA", "ARG", local=s, vcur="ARS")
+            add(s + ".BA", "ARG", local=s, arsOnly=True)
     for t, e in U.items():
         if t in ETF_HINT:
             e["kind"] = "ETF"
@@ -461,6 +461,8 @@ def yf_fundamentals(t):
     lease = row(bs, ["Capital Lease Obligations"]) or 0.0
     res["debt"] = (td - lease) if td is not None else None
     res["cash"] = row(bs, ["Cash Cash Equivalents And Short Term Investments", "Cash And Cash Equivalents"])
+    if bs is not None and not bs.empty:
+        res["balanceEnd"] = str(bs.columns[0])[:10]
     res["shares"] = row(inc, ["Diluted Average Shares", "Basic Average Shares"])
     H = []
     for i, c in enumerate(list(cf.columns)[:5][::-1]):
@@ -572,8 +574,9 @@ def prices(U):
             p["ars"] = ced[e["ced"]]
         if e.get("local") and arg.get(e["local"]):
             p["arsLocal"] = arg[e["local"]]
-        if e.get("vcur") == "ARS" and arg.get(e.get("local")):
-            p["px"] = arg[e["local"]]
+        if e.get("arsOnly"):
+            p["arsLocal"] = arg.get(e.get("local")) or p.get("px")
+            p.pop("px", None)
     # ratios y CCL
     rr = json.load(open(os.path.join(ENG, "ratios.json")))["ratios"]
     auto = load("ratios_auto.json", {})
@@ -584,7 +587,7 @@ def prices(U):
     imp = []
     for t, e in U.items():
         p = px.get(t, {})
-        if not (p.get("ars") and p.get("px")) or e.get("vcur") == "ARS":
+        if not (p.get("ars") and p.get("px")) or e.get("arsOnly"):
             continue
         ratio = rr.get(t) or auto.get(t)
         if not ratio and ref:
@@ -598,15 +601,87 @@ def prices(U):
         m = statistics.median(imp)
         keep = [x for x in imp if abs(x / m - 1) <= 0.08]
         ccl = round(statistics.median(keep), 2)
+    # acciones solo locales: precio en dólares al CCL, como si fueran un CEDEAR de ratio 1
+    if ccl:
+        for t, e in U.items():
+            p = px.get(t, {})
+            if e.get("arsOnly") and p.get("arsLocal"):
+                p["ars"], p["ratio"] = p["arsLocal"], 1
+                p["px"] = round(p["arsLocal"] / ccl, 4)
     # CCL de las acciones argentinas con ADR
     for t, e in U.items():
         p = px.get(t, {})
-        if e.get("local") and e.get("adrRatio") and p.get("arsLocal") and p.get("px") and e.get("vcur") == "USD":
+        if e.get("local") and e.get("adrRatio") and p.get("arsLocal") and p.get("px") and not e.get("arsOnly"):
             p["ratio"] = e["adrRatio"]
             p["ars"] = p["arsLocal"]
     save("ratios_auto.json", auto)
     log("CCL implícito", ccl, "con", len(imp), "CEDEARs; referencia", ref)
+    CUR_CCL["v"] = ccl or ref
     return {"generatedAt": NOW, "ccl": ccl, "cclRef": ref, "cclN": len(imp), "px": px}
+
+
+# ---------------------------------------------------------------- dolarización
+CCLH = []
+
+
+def ccl_history():
+    """CCL diario (venta) de argentinadatos.com: lista [(fecha, valor)] ordenada."""
+    global CCLH
+    r = get("https://api.argentinadatos.com/v1/cotizaciones/dolares/contadoconliqui")
+    out = {}
+    try:
+        for x in r.json() if r else []:
+            d, v = str(x.get("fecha", ""))[:10], num(x.get("venta") or x.get("compra"))
+            if d and v:
+                out[d] = v
+    except Exception as e:
+        log("ccl hist", e)
+    if not out:
+        out = load("ccl_hist.json", {})
+    CCLH = sorted(out.items())
+    log("CCL histórico:", len(CCLH), "días", CCLH[0][0] if CCLH else "", "a", CCLH[-1][0] if CCLH else "")
+    return dict(CCLH)
+
+
+def ccl_at(date):
+    if not CCLH or not date:
+        return None
+    lo, hi = 0, len(CCLH) - 1
+    if date < CCLH[0][0]:
+        return CCLH[0][1]
+    while lo < hi:
+        m = (lo + hi + 1) // 2
+        if CCLH[m][0] <= date:
+            lo = m
+        else:
+            hi = m - 1
+    return CCLH[lo][1]
+
+
+FXH = {}
+
+
+def usd_per(cur, date, cache):
+    """Dólares por unidad de moneda 'cur' en la fecha (ARS al CCL; el resto, BCE vía frankfurter)."""
+    if cur in (None, "USD"):
+        return 1.0
+    if cur == "ARS":
+        c = ccl_at(date) or CUR_CCL.get("v")
+        return 1 / c if c else None
+    k = (cur, date)
+    if k not in FXH:
+        rate = None
+        if date:
+            r = get(f"https://api.frankfurter.app/{date}?from={cur}&to=USD", timeout=30)
+            try:
+                rate = num(r.json()["rates"]["USD"]) if r else None
+            except Exception:
+                rate = None
+        FXH[k] = rate or fx_to_usd(cur, cache)
+    return FXH[k]
+
+
+CUR_CCL = {}
 
 
 # ---------------------------------------------------------------- principal
@@ -627,6 +702,7 @@ def fx_to_usd(cur, cache):
 
 
 def full():
+    save("ccl_hist.json", ccl_history())
     U = universe()
     pr = prices(U)
     save("prices.json", pr)
@@ -652,6 +728,8 @@ def full():
     for n, (t, e) in enumerate(sorted(U.items())):
         row = {k: e[k] for k in ("t", "u", "vcur", "kind", "ced", "local") if k in e}
         row["sector"] = e.get("sector")
+        if e.get("arsOnly"):
+            row["disp"], row["arsOnly"] = e["local"], True
         p = pr["px"].get(t, {})
         fund = None
         ext = {}
@@ -662,7 +740,7 @@ def full():
         info = ext.get("info") or {}
         if e.get("kind") != "ETF":
             base = t.replace(".BA", "")
-            cik = st.get(t, (None, None))[0] if e.get("vcur") == "USD" else None
+            cik = st.get(t, (None, None))[0] if not e.get("arsOnly") else None
             if cik and zf:
                 try:
                     facts = json.loads(zf.read(f"CIK{cik:010d}.json"))
@@ -703,15 +781,15 @@ def full():
         notes, soft = [], []
         if fund:
             cur = fund.get("currency") or "USD"
-            k = 1e6
-            if cur != e.get("vcur", "USD"):
-                rate = fx_to_usd(cur, fxc) if e.get("vcur") == "USD" else None
-                if rate:
-                    k = 1e6 / rate
-                    notes.append(f"Balances en {cur} convertidos a USD al tipo de cambio de hoy ({rate:.6g}).")
-                else:
-                    notes.append(f"Balances en {cur}: no se pudo convertir.")
-                    fund = None
+            fy_end, b_end = fund.get("fyEnd"), fund.get("balanceEnd") or fund.get("fyEnd")
+            r_fy, r_bal = usd_per(cur, fy_end, fxc), usd_per(cur, b_end, fxc)
+            if not r_fy or not r_bal:
+                notes.append(f"Balances en {cur}: no se pudieron dolarizar.")
+                fund = None
+            elif cur != "USD":
+                fund.setdefault("soft", []).append(
+                    f"Balances en {cur} dolarizados {'al CCL' if cur == 'ARS' else 'al tipo de cambio'} de cada fecha de cierre "
+                    f"({fy_end}: {1 / r_fy:,.2f} {cur} por dólar).")
             if fund:
                 fund.setdefault("soft", [])
                 if fund.get("shares") is None and (info.get("shares") or 0) > 0:
@@ -724,14 +802,18 @@ def full():
                 fund["missing"] = [k for k in ("ocf", "shares") if fund.get(k) is None]
                 for key in ("ocf", "capex", "sbc", "debt", "cash"):
                     v = fund.get(key)
-                    row[key] = round(v / k, 3) if v is not None else None
+                    rr = r_fy if key in ("ocf", "capex", "sbc") else r_bal
+                    row[key] = round(v * rr / 1e6, 3) if v is not None else None
                 row["shares"] = round(fund["shares"] / 1e6, 3) if fund.get("shares") else None
                 for key in ("form", "fy", "filed", "accn", "src", "sharesFrom", "balanceEnd"):
                     if fund.get(key):
                         row[key] = fund[key]
                 row["currency"] = cur
-                hist = [{kk: (round(vv / k, 3) if isinstance(vv, (int, float)) and kk not in ("fy",) else vv)
-                         for kk, vv in h.items()} for h in fund.get("hist", [])]
+                hist = []
+                for h in fund.get("hist", []):
+                    rh = usd_per(cur, h.get("end"), fxc) or r_fy
+                    hist.append({kk: (round(vv * rh / 1e6, 3) if isinstance(vv, (int, float)) and kk != "fy" else vv)
+                                 for kk, vv in h.items()})
                 hc = oe_cagr(hist)
                 if hc:
                     row["hist"] = hc
@@ -748,15 +830,17 @@ def full():
                 notes.append("No se pudo actualizar hoy; se muestran los últimos datos.")
                 if t in prev_det and "hist" in prev_det[t]:
                     detail.setdefault(t, {})["hist"] = prev_det[t]["hist"]
-        if ext.get("est"):
+        if row.get("currency") == "ARS":
+            soft.append("Consenso de analistas omitido: mezcla pesos y dólares; se usa el crecimiento histórico dolarizado.")
+        elif ext.get("est"):
             row["est"] = ext["est"]
         elif t in prev and prev[t].get("est"):
             row["est"] = prev[t]["est"]
         sec_low = (row.get("sector") or "").lower()
         if any(w in sec_low for w in ("financ", "bank", "insur")):
             notes.append("Empresa financiera: el dinero del dueño del método no se calcula igual.")
-        if row.get("currency") not in (None, "USD") or e.get("vcur") == "ARS" or row.get("src") == "Yahoo":
-            notes.append("Fuente o moneda distinta de un 10-K en dólares: revisá los números.")
+        if row.get("src") == "Yahoo":
+            soft.append("Balances de Yahoo Finance (no de la SEC).")
         # chequeo de cordura: capitalización implícita
         if row.get("shares") and p.get("px") and row.get("ocf"):
             mcap = row["shares"] * p["px"]
@@ -764,7 +848,7 @@ def full():
             if row["ocf"] / mcap > 1 or row["ocf"] / mcap < -0.5:
                 notes.append("El flujo de caja es desproporcionado frente a la capitalización: revisá las acciones o la moneda.")
         row["st"] = "ETF" if row.get("kind") == "ETF" else ("revisar" if notes else ("ok" if row.get("ocf") is not None else "sin datos"))
-        allnotes = notes + (soft if fund else [])
+        allnotes = notes + soft
         if allnotes:
             row["note"] = " ".join(dict.fromkeys(allnotes))
         d = detail.setdefault(t, {})
@@ -791,8 +875,9 @@ if __name__ == "__main__":
     os.makedirs(OUT, exist_ok=True)
     mode = sys.argv[1] if len(sys.argv) > 1 else "full"
     if mode == "prices":
+        save("ccl_hist.json", ccl_history())
         prev = {r["t"]: r for r in load("screener.json", {}).get("rows", [])}
-        U = {t: {"t": t, "vcur": r.get("vcur", "USD"), "ced": r.get("ced"), "local": r.get("local"),
+        U = {t: {"t": t, "vcur": "USD", "arsOnly": r.get("arsOnly"), "ced": r.get("ced"), "local": r.get("local"),
                  "adrRatio": None} for t, r in prev.items()}
         for s, (adr, k) in ARG_ADR.items():
             if adr in U:
