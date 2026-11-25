@@ -74,15 +74,17 @@ ARG_ADR = {"GGAL": ("GGAL", 10), "YPFD": ("YPF", 1), "PAMP": ("PAM", 25), "BMA":
            "IRSA": ("IRS", 10), "TECO2": ("TEO", 5), "BBAR": ("BBAR", 3), "TXAR": (None, 1)}
 
 
-def wiki_table(url, col):
+def wiki_table(url, cols):
     import pandas as pd
     r = get(url)
     if not r:
         return {}
     out = {}
+    cols_ = cols if isinstance(cols, (list, tuple)) else [cols]
     for t in pd.read_html(io.StringIO(r.text)):
         cols = [str(c) for c in t.columns]
-        if col in cols:
+        col = next((c for c in cols_ if c in cols), None)
+        if col:
             sec = next((c for c in cols if "Sector" in c), None)
             for _, row in t.iterrows():
                 s = str(row[col]).strip().replace(".", "-")
@@ -102,8 +104,8 @@ def d912(path):
 
 
 def universe():
-    sp = wiki_table("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies", "Symbol")
-    nd = wiki_table("https://en.wikipedia.org/wiki/Nasdaq-100", "Ticker")
+    sp = wiki_table("https://en.wikipedia.org/wiki/List_of_S%26P_500_companies", ["Symbol"])
+    nd = wiki_table("https://en.wikipedia.org/wiki/Nasdaq-100", ["Ticker", "Symbol"])
     log("S&P 500:", len(sp), "Nasdaq 100:", len(nd))
     ced_rows = d912("arg_cedears")
     ced_syms = {str(r.get("symbol", "")).upper() for r in ced_rows}
@@ -112,6 +114,8 @@ def universe():
         if not s:
             continue
         if s[-1] in "DC" and s[:-1] in ced_syms:  # especies en dolares (AAPLD, AAPLC)
+            continue
+        if "." in s or re.fullmatch(r"[A-Z]{4}\d{1,2}", s):  # clases en USD y acciones brasileñas
             continue
         u = CEDEAR_MAP.get(s, s)
         if u:
@@ -219,14 +223,17 @@ CON = {
     "ocf": ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
             "CashFlowsFromUsedInOperatingActivities"],
     "capex": ["PaymentsToAcquirePropertyPlantAndEquipment", "PaymentsToAcquireProductiveAssets",
-              "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "PurchaseOfPropertyPlantAndEquipment"],
+              "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "PurchaseOfPropertyPlantAndEquipment",
+              "PaymentsToAcquireOtherPropertyPlantAndEquipment", "PaymentsForCapitalImprovements",
+              "PaymentsToAcquireOilAndGasPropertyAndEquipment", "PaymentsToAcquireAndDevelopRealEstate"],
     "sbc": ["ShareBasedCompensation", "AllocatedShareBasedCompensationExpense", "AdjustmentsForSharebasedPayments"],
     "rev": ["RevenueFromContractWithCustomerExcludingAssessedTax", "Revenues", "SalesRevenueNet", "Revenue",
             "RevenueFromContractWithCustomerIncludingAssessedTax"],
     "ni": ["NetIncomeLoss", "ProfitLossAttributableToOwnersOfParent", "ProfitLoss"],
 }
 DEBT_PARTS = ["LongTermDebtNoncurrent", "LongTermDebtCurrent", "CommercialPaper", "ShortTermBorrowings"]
-DEBT_ALT = ["LongTermDebt", "DebtInstrumentCarryingAmount", "LongTermDebtAndCapitalLeaseObligations"]
+DEBT_ALT = ["LongTermDebt", "LongTermDebtAndCapitalLeaseObligations", "SeniorLongTermNotes", "LongTermNotesPayable",
+            "ConvertibleNotesPayable", "DebtInstrumentCarryingAmount", "NotesPayable"]
 IFRS_DEBT = ["Borrowings", "NoncurrentBorrowings", "CurrentBorrowings"]
 CASH = ["CashAndCashEquivalentsAtCarryingValue", "CashAndCashEquivalents",
         "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents"]
@@ -258,8 +265,8 @@ def sec_company(facts, adr_ratio=1):
     res["ocf"] = h.get("ocf")
     res["capex"] = abs(h["capex"]) if h.get("capex") is not None else None
     res["sbc"] = h.get("sbc")
-    missing = [k for k in ("capex", "sbc") if res[k] is None]
-    if "sbc" in missing:
+    missing = [k for k in ("capex",) if res[k] is None]
+    if res["sbc"] is None:
         res["sbc"] = 0.0
     # balance: el instante más reciente disponible para la caja
     cash_e, _, _ = series(f, CASH, (cur,))
@@ -304,9 +311,10 @@ def sec_company(facts, adr_ratio=1):
             if v is not None:
                 b, parts = v, 1
         debt = b
-    res["debt"] = debt if parts else None
+    res["debt"] = debt if parts else 0.0
+    res["soft"] = []
     if not parts:
-        missing.append("debt")
+        res["soft"].append("No informa deuda financiera: se toma 0.")
     # acciones diluidas: último trimestre (Q4 derivado si lo último es el 10-K)
     sh_e, _, _ = series(f, ["WeightedAverageNumberOfDilutedSharesOutstanding", "AdjustedWeightedAverageShares",
                             "WeightedAverageNumberOfShareOutstandingBasicAndDiluted"], ("shares",))
@@ -506,7 +514,7 @@ def prices(U):
             continue
         ratio = rr.get(t) or auto.get(t)
         if not ratio and ref:
-            ratio = max(1, round(p["ars"] * ref / p["px"]))
+            ratio = max(1, round(p["px"] * ref / p["ars"]))
             auto[t] = ratio
         if ratio:
             p["ratio"] = ratio
@@ -603,7 +611,7 @@ def full():
         if info.get("quoteType") == "ETF":
             row["kind"] = "ETF"
             fund = None
-        notes = []
+        notes, soft = [], []
         if fund:
             cur = fund.get("currency") or "USD"
             k = 1e6
@@ -632,6 +640,7 @@ def full():
                 detail.setdefault(t, {})["hist"] = hist
                 if fund.get("missing"):
                     notes.append("Faltan datos: " + ", ".join(fund["missing"]) + ".")
+                soft = fund.get("soft") or []
         else:
             if row.get("kind") != "ETF" and t in prev:  # conserva lo último bueno
                 for key in ("ocf", "capex", "sbc", "debt", "cash", "shares", "form", "fy", "filed", "accn", "src",
@@ -657,12 +666,15 @@ def full():
             if row["ocf"] / mcap > 1 or row["ocf"] / mcap < -0.5:
                 notes.append("El flujo de caja es desproporcionado frente a la capitalización: revisá las acciones o la moneda.")
         row["st"] = "ETF" if row.get("kind") == "ETF" else ("revisar" if notes else ("ok" if row.get("ocf") is not None else "sin datos"))
-        if notes:
-            row["note"] = " ".join(dict.fromkeys(notes))
+        allnotes = notes + (soft if fund else [])
+        if allnotes:
+            row["note"] = " ".join(dict.fromkeys(allnotes))
         d = detail.setdefault(t, {})
         d["news"] = ext.get("news") or (prev_det.get(t, {}).get("news") or [])
         if info.get("summary"):
             d["summary"] = info["summary"]
+        if row["st"] == "sin datos" and not p.get("px") and not ({"SP500", "NDX100"} & set(row.get("u", []))):
+            continue
         rows.append({k: v for k, v in row.items() if v is not None})
         if n % 50 == 0:
             log(f"{n}/{len(U)} {t}")
