@@ -380,7 +380,8 @@ def sec_company(facts, adr_ratio=1):
     cover = latest_instant(_units(f, "EntityCommonStockSharesOutstanding", "shares"))
     cv = cover["val"] if cover else None
     stale = (lq or lf or "0000")[:4] < str(int(bal_end[:4]) - 1)
-    if cv and (not shares or not (0.6 <= shares / cv <= 1.6) or stale):
+    cover_ok = cover and cover["end"][:4] >= str(int(bal_end[:4]) - 1)
+    if cv and cover_ok and (not shares or not (0.6 <= shares / cv <= 1.6) or stale):
         shares, res["sharesFrom"] = cv, "portada " + cover["end"]
     if shares:
         shares = shares / adr_ratio
@@ -665,7 +666,7 @@ def full():
             if cik and zf:
                 try:
                     facts = json.loads(zf.read(f"CIK{cik:010d}.json"))
-                    fund = sec_company(facts, e.get("adrRatio", 1))
+                    fund = sec_company(facts, e.get("adrRatio", 1) if t != "BRK-B" else 1 / 1500)
                     if fund:
                         row["cik"] = str(cik)
                         row["name"] = facts.get("entityName")
