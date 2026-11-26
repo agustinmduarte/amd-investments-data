@@ -21,6 +21,9 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python build.py prices
+      - name: Historial de precios para los gráficos
+        continue-on-error: true
+        run: python build.py hist
       - name: Guardar resultados
         run: |
           git config user.name "amd-investments-bot"
@@ -29,9 +32,6 @@ jobs:
           git diff --cached --quiet || git commit -m "datos prices $(date -u +%Y-%m-%dT%H:%MZ)"
           git pull --rebase -X ours || true
           git push
-      - name: Historial de precios para los gráficos
-        continue-on-error: true
-        run: python build.py hist
       - name: Publicar historial en la rama hist (sin acumular versiones)
         continue-on-error: true
         run: |

@@ -629,24 +629,72 @@ def yf_extras(t, cache):
             when = c.get("pubDate") or c.get("providerPublishTime")
             if isinstance(when, (int, float)):
                 when = dt.datetime.fromtimestamp(when, dt.timezone.utc).isoformat()
+            summ = c.get("summary") or c.get("description") or ""
             if title and link and str(link).startswith("https://"):
-                news.append({"title": title[:220], "pub": pub, "link": link, "time": when})
-        out["news"] = news[:6]
+                news.append({"title": title[:220], "pub": pub, "link": link, "time": when,
+                             "sum": re.sub(r"<[^>]+>", "", str(summ))[:400]})
+        out["news"] = news[:8]
     except Exception as e:
         log("news", t, e)
+    try:
+        out["ctx"] = yf_context(tk)
+    except Exception as e:
+        log("ctx", t, e)
     ci = cache.get(t)
-    if not ci or "shares" not in ci or ci.get("date", "") < (dt.date.today() - dt.timedelta(days=7)).isoformat():
+    if not ci or "shares" not in ci or "fcur" not in ci or ci.get("date", "") < (dt.date.today() - dt.timedelta(days=7)).isoformat():
         try:
             i = tk.info or {}
             ci = {"date": TODAY, "name": i.get("longName") or i.get("shortName"), "sector": i.get("sector"),
                   "industry": i.get("industry"), "summary": (i.get("longBusinessSummary") or "")[:700],
                   "quoteType": i.get("quoteType"), "country": i.get("country"),
-                  "shares": i.get("sharesOutstanding") or i.get("impliedSharesOutstanding")}
+                  "shares": i.get("sharesOutstanding") or i.get("impliedSharesOutstanding"),
+                  "fcur": i.get("financialCurrency")}
             cache[t] = ci
         except Exception as e:
             log("info", t, e)
     out["info"] = ci or {}
     return out
+
+
+def yf_context(tk):
+    """Contexto para el análisis con IA: trimestres, sorpresas, revisiones de estimaciones y recomendaciones."""
+    def recs(df, rows=None, cols=None, rnd=4):
+        if df is None or getattr(df, "empty", True):
+            return None
+        o = {}
+        for r in (rows or list(df.index)):
+            if r not in df.index:
+                continue
+            o[str(r)[:10]] = {str(c)[:10]: (round(v, rnd) if isinstance(v, float) else v)
+                              for c in (cols or list(df.columns)) if c in df.columns
+                              for v in [num(df.loc[r, c])] if v is not None}
+        return o or None
+    ctx = {}
+    try:  # últimos 8 trimestres (moneda de los estados)
+        q = tk.quarterly_income_stmt
+        if q is not None and not q.empty:
+            cols = sorted(q.columns)[-8:]
+            ctx["q"] = {str(c)[:10]: {k: (lambda v: round(v / 1e6, 1) if v is not None and abs(v) > 1e4 else v)(num(q.loc[r, c]))
+                                     for k, r in (("rev", "Total Revenue"), ("ni", "Net Income"), ("eps", "Diluted EPS"),
+                                                  ("opInc", "Operating Income")) if r in q.index}
+                        for c in cols}
+    except Exception as e:
+        log("ctx q", e)
+    for key, fn in (("surprises", lambda: recs(tk.earnings_history, cols=["epsEstimate", "epsActual", "surprisePercent"])),
+                    ("revEst", lambda: recs(tk.revenue_estimate, rows=["0q", "+1q", "0y", "+1y"],
+                                            cols=["avg", "low", "high", "numberOfAnalysts", "yearAgoRevenue", "growth"])),
+                    ("epsTrend", lambda: recs(tk.eps_trend, rows=["0q", "+1q", "0y", "+1y"],
+                                              cols=["current", "7daysAgo", "30daysAgo", "60daysAgo", "90daysAgo"])),
+                    ("growth", lambda: recs(tk.growth_estimates, rows=["0q", "+1q", "0y", "+1y", "LTG"])),
+                    ("recs", lambda: recs(tk.recommendations_summary.set_index("period") if tk.recommendations_summary is not None and not tk.recommendations_summary.empty else None, rows=["0m", "-1m", "-3m"])),
+                    ("cal", lambda: {k: str(v)[:40] for k, v in (tk.calendar or {}).items() if k in ("Earnings Date", "Ex-Dividend Date")})):
+        try:
+            v = fn()
+            if v:
+                ctx[key] = v
+        except Exception as e:
+            log("ctx", key, e)
+    return ctx
 
 
 # ---------------------------------------------------------------- precios
@@ -1166,6 +1214,9 @@ def full():
             row["note"] = " ".join(dict.fromkeys(allnotes))
         d = detail.setdefault(t, {})
         d["news"] = ext.get("news") or (prev_det.get(t, {}).get("news") or [])
+        d["ctx"] = ext.get("ctx") or prev_det.get(t, {}).get("ctx") or {}
+        if info.get("fcur"):
+            d["ctx"]["fcur"] = info["fcur"]
         if info.get("summary"):
             d["summary"] = info["summary"]
         if row.get("kind") != "ETF" and not p.get("px") and row.get("ocf") is None and not ({"SP500", "NDX100"} & set(row.get("u", []))):
@@ -1245,6 +1296,19 @@ def hist():
                     data.setdefault(t, {})[key] = arr
                     n += 1
         log("Historial", key, n, "de", len(tick))
+    # máximo y mínimo de 52 semanas en dólares → prices.json
+    P = load("prices.json", {})
+    if P.get("px"):
+        cut = (dt.date.today() - dt.date(1970, 1, 1)).days - 365
+        n52 = 0
+        for t, v in data.items():
+            d = [r for r in v.get("d", []) if r[0] >= cut]
+            if d and t in P["px"]:
+                P["px"][t]["hi52"] = max(r[2] for r in d)
+                P["px"][t]["lo52"] = min(r[3] for r in d)
+                n52 += 1
+        save("prices.json", P)
+        log("Máximo 52 semanas", n52)
     os.makedirs(os.path.join(OUT, "hist"), exist_ok=True)
     sh = [{} for _ in range(NSHARD)]
     for t, v in data.items():
