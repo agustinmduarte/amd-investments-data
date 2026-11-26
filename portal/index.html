@@ -36,13 +36,13 @@ a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
 button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:4px}
 [hidden]{display:none!important}
-.up{color:var(--up)}.down{color:var(--down)}.mute{color:var(--mute)}.small{font-size:12.5px}
+.b6{font-weight:600}.up{color:var(--up)}.down{color:var(--down)}.mute{color:var(--mute)}.small{font-size:12.5px}
 .num{text-align:right;white-space:nowrap}
 svg.i{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- shell ---------- */
 .app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
-.side{position:sticky;top:0;height:100vh;background:var(--side);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:18px 12px 12px;overflow:auto}
+.side{position:sticky;top:0;height:100vh;background:var(--side);border-right:1px solid var(--line);display:flex;flex-direction:column;padding:18px 12px 14px;overflow:hidden}
 .brand{display:block;padding:4px 10px 24px;color:var(--ink)}.brand svg{display:block;width:178px;height:auto}.brand:hover{text-decoration:none}
 .logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(150deg,#4a86ff,#1739a3);display:grid;place-items:center;color:#fff;font-weight:700;font-size:12px;letter-spacing:.3px}
 .brand b{display:block;font-size:15px;line-height:1.15;font-weight:600}
@@ -139,7 +139,7 @@ select{padding-right:28px}
 .cnt{font-size:12.5px;color:var(--mute);white-space:nowrap}
 .tw{overflow:auto;max-height:calc(100vh - 250px);min-height:320px}
 table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px}
-th,td{padding:0 10px;height:38px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th,td{padding:0 10px;height:38px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}
 thead th{position:sticky;top:0;z-index:3;background:var(--panel2);font-size:12px;font-weight:500;color:var(--mute);height:36px}
 thead tr.f th{top:36px;height:40px;padding:0 4px}
 thead tr.f input{height:28px;font-size:12px;padding:0 7px;width:100%;min-width:62px}
@@ -164,6 +164,36 @@ td.nm{max-width:210px;overflow:hidden;text-overflow:ellipsis;color:var(--ink2)}
 .colmenu label:hover{background:var(--hover)}
 .hint{font-size:12px;color:var(--mute);margin:12px 2px 0;max-width:110ch}
 
+/* ---------- tablas ---------- */
+.tbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 14px}
+.tbar .grow{flex:1}
+.fchips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px}.fchips:not(:empty){padding-bottom:12px}
+.fchip{height:28px;padding:0 10px;border-radius:14px;border:1px solid var(--acc);background:var(--acc-soft);color:var(--ink);font-size:12.5px;cursor:pointer}
+.fchip span{margin-left:4px;color:var(--mute)}.fchip.clr{border-color:var(--line2);background:none}
+.th{display:inline-flex;align-items:center;gap:2px}
+th.l .th{justify-content:flex-start}
+.hs{background:none;border:0;padding:4px 2px;font:inherit;color:inherit;cursor:pointer;display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.hs:hover{color:var(--ink)}
+th[aria-sort=ascending] .ar::after{content:"▲";font-size:8px;color:var(--acc);font-style:normal}
+th[aria-sort=descending] .ar::after{content:"▼";font-size:8px;color:var(--acc);font-style:normal}
+.hf{background:none;border:0;padding:4px;border-radius:5px;cursor:pointer;color:var(--line2);line-height:0}
+.hf:hover{color:var(--ink);background:var(--hover)}.hf.on{color:var(--acc)}
+td.l,th.l{text-align:left}
+#pop{position:fixed;z-index:70;background:var(--panel);border:1px solid var(--line2);border-radius:10px;box-shadow:var(--shadow);padding:12px;width:260px;max-height:70vh;display:flex;flex-direction:column;gap:10px}
+#pop .ph2{font-weight:600;font-size:13px}
+#pop .pl{overflow:auto;max-height:46vh;display:grid;gap:2px}
+#pop .pl label{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;padding:5px 6px;border-radius:6px;font-size:13px;cursor:pointer}
+#pop .pl label:hover{background:var(--hover)}#pop .pl small{color:var(--mute)}
+#pop .pr{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#pop .pf{display:grid;gap:4px;font-size:12px;color:var(--mute)}#pop .pf input{width:100%}
+#pop .pa{display:flex;justify-content:space-between;gap:8px}
+.pbox{margin-top:auto;border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:10px;background:var(--panel)}
+.pbox .k{font-size:12px;color:var(--mute)}
+.pbox .v{font-size:22px;font-weight:600;letter-spacing:-.01em;line-height:1.2}
+.pbox .r{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:13px}
+.pbox .r b{font-weight:600;display:grid;justify-items:end;line-height:1.3}.pbox .r b small{font-size:12px;font-weight:500}
+.pbox hr{border:0;border-top:1px solid var(--line);margin:0}
+.mstrip{display:none}
 /* ---------- stock page ---------- */
 .back{display:inline-flex;align-items:center;gap:6px;color:var(--mute);font-size:13px;margin-bottom:14px}
 .qhead{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:24px;align-items:end;margin-bottom:18px}
@@ -265,6 +295,7 @@ dialog::backdrop{background:rgba(4,10,22,.6);backdrop-filter:blur(2px)}
 /* ---------- responsive ---------- */
 @media (max-width:1180px){.dgrid{grid-template-columns:minmax(0,1fr)}.ticket{position:static;order:-1}.hero{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:900px){
+ .mstrip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:18px}.mstrip div{background:var(--panel);padding:10px 12px}.mstrip span{display:block;font-size:12px;color:var(--mute)}.mstrip b{font-weight:600;font-size:14px}
  .app{grid-template-columns:minmax(0,1fr)}
  .side{display:none}
  .topbar{padding:10px 14px;gap:10px}.mlogo{display:block;flex:none}
@@ -322,64 +353,55 @@ dialog::backdrop{background:rgba(4,10,22,.6);backdrop-filter:blur(2px)}
    <a href="#/operaciones" data-v="operaciones"><svg class="i"><use href="#i-ops"/></svg>Operaciones</a>
    <a href="#/ajustes" data-v="ajustes"><svg class="i"><use href="#i-set"/></svg>Ajustes</a>
   </nav>
-  <div class="wl"><h4><span>Seguimiento</span><span id="wlN"></span></h4><div id="wl"></div></div>
-  <div class="foot" id="sideFoot">Herramienta educativa: las decisiones son tuyas.</div>
+  <div class="pbox" aria-label="Resumen del portafolio">
+   <div><div class="k">Portafolio</div><div class="v" id="sbV">—</div><div class="k" id="sbA">—</div></div>
+   <div class="r"><span class="mute">Hoy</span><b id="sbD">—</b></div>
+   <div class="r"><span class="mute">Resultado</span><b id="sbR">—</b></div>
+   <hr>
+   <div class="r"><span class="mute">CCL</span><b id="sbC">—</b></div>
+   <div class="r"><span class="mute">Actualizado</span><b id="sbU">—</b></div>
+  </div>
  </aside>
 
  <div>
   <header class="topbar">
    <a class="mlogo" href="#/inicio" aria-label="AMD Investments, inicio"><svg viewBox="0 0 884 658"><use href="#logo-plane"/></svg></a>
    <button class="search" id="openK" type="button" aria-label="Buscar acción"><svg class="i"><use href="#i-search"/></svg><span>Buscar ticker o empresa</span><kbd>/</kbd></button>
-   <div class="mkt">
-    <span>CCL<b id="tCcl">—</b></span>
-    <span class="hide-s"><span class="dot" id="tDot"></span>Precios<b id="tUpd">—</b></span>
-    <span class="hide-m">Balances<b id="tGen">—</b></span>
-   </div>
+   <span style="flex:1"></span>
    <button class="iconbtn" id="theme" type="button" aria-label="Cambiar tema"><svg class="i"><use href="#i-sun"/></svg></button>
   </header>
 
   <main id="main">
    <!-- INICIO -->
    <section id="v-inicio">
-    <div class="vh"><div><h1 id="hiH">Tu portafolio</h1><p class="lead" id="hiL">Cargando tus datos…</p></div><a class="btn ghost" href="#/screener">Abrir screener</a></div>
+    <div class="vh"><div><h1>Inicio</h1><p class="lead" id="hiL">Cargando…</p></div><a class="btn ghost" href="#/screener">Abrir screener</a></div>
+    <div class="mstrip"><div><span>CCL</span><b id="mC">—</b></div><div><span>Precios</span><b id="mU">—</b></div><div><span>Balances</span><b id="mB">—</b></div></div>
     <div class="hero" id="hero">
-     <div><div class="lbl">Valor del portafolio</div><div class="big skel" id="hV">US$ 00.000</div><div class="sub" id="hVs">—</div></div>
-     <div><div class="lbl">Resultado en dólares</div><div class="val" id="hR">—</div><div class="sub" id="hRs">—</div></div>
-     <div><div class="lbl">En acciones que valen más que su precio</div><div class="val" id="hG">—</div><div class="sub" id="hGs">—</div></div>
-     <div><div class="lbl">Oportunidades del screener</div><div class="val" id="hO">—</div><div class="sub" id="hOs">—</div></div>
+     <div><div class="lbl">Portafolio</div><div class="big skel" id="hV">US$ 00.000</div><div class="sub" id="hVs">—</div></div>
+     <div><div class="lbl">Resultado</div><div class="val" id="hR">—</div><div class="sub" id="hRs">—</div></div>
+     <div><div class="lbl">Bajo su valor</div><div class="val" id="hG">—</div><div class="sub" id="hGs">—</div></div>
+     <div><div class="lbl">Baratas hoy</div><div class="val" id="hO">—</div><div class="sub" id="hOs">—</div></div>
     </div>
     <div class="g2">
-     <div class="panel"><div class="ph"><h2>Tus posiciones frente a su valor</h2><span class="small mute" id="hpR"></span></div><p class="small mute" style="margin:4px 18px 10px">Margen del escenario normal sobre el precio de hoy. A la derecha, la acción vale más de lo que cuesta.</p><ul class="rows" id="hP"></ul></div>
-     <div class="panel"><div class="ph"><h2>Las más baratas según el método</h2><a class="small" href="#/screener" data-preset="opp">Ver todas</a></div><p class="small mute" style="margin:4px 18px 10px">Mayor margen en el escenario normal, sin valoraciones muy altas. Barra: rango malo–bueno, línea: normal, punto: precio.</p><ul class="rows" id="hTop"></ul></div>
+     <div class="panel"><div class="ph"><h2>Margen de tus posiciones</h2><span class="small mute" id="hpR"></span></div><ul class="rows" id="hP" style="margin-top:10px"></ul></div>
+     <div class="panel"><div class="ph"><h2>Las más baratas</h2><a class="small" href="#/screener" data-preset="opp">Ver todas</a></div><ul class="rows" id="hTop" style="margin-top:10px"></ul></div>
     </div>
    </section>
 
    <!-- SCREENER -->
    <section id="v-screener" hidden>
-    <div class="vh"><div><h1 id="sH">Screener</h1><p class="lead" id="sL">S&amp;P 500, Nasdaq 100, CEDEARs y acciones argentinas, valuadas con el método.</p></div>
-     <span class="seg" role="group" aria-label="Rentabilidad pedida" id="rate"><button type="button" data-r="0">Pidiendo 10 %</button><button type="button" data-r="1">Pidiendo 15 %</button></span></div>
+    <div class="vh"><div><h1>Screener</h1><p class="lead" id="sL">—</p></div>
+     <span class="seg" role="group" aria-label="Rentabilidad pedida" id="rate"><button type="button" data-r="0">10 %</button><button type="button" data-r="1">15 %</button></span></div>
     <div class="panel">
      <div class="tools">
-      <div class="qin"><svg class="i"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Filtrar ticker o empresa" aria-label="Filtrar ticker o empresa"></div>
-      <span class="seg" role="group" aria-label="Vista" id="preset"><button type="button" data-p="all">Todas</button><button type="button" data-p="opp">Valen más que su precio</button><button type="button" data-p="port">Mi portafolio</button><button type="button" data-p="fav">Seguimiento</button></span>
+      <span class="seg" role="group" aria-label="Vista" id="preset"><button type="button" data-p="all">Todas</button><button type="button" data-p="opp">Baratas</button><button type="button" data-p="port">Mi portafolio</button><button type="button" data-p="fav">Favoritas</button></span>
       <span id="chips" style="display:flex;gap:6px;flex-wrap:wrap"></span>
-      <select id="fSec" aria-label="Sector"><option value="">Todos los sectores</option></select>
-      <select id="fVer" aria-label="Veredicto"><option value="">Todos los veredictos</option><option value="g">Valen más que el precio</option><option value="w">Solo con el escenario bueno</option><option value="b">Caras aun en el bueno</option><option value="m">Sin valuar</option></select>
-      <span class="grow"></span>
-      <button class="btn ghost sm" id="fltB" type="button" aria-pressed="false"><svg class="i"><use href="#i-flt"/></svg>Filtros por columna</button>
-      <div class="colmenu"><button class="btn ghost sm" id="colB" type="button" aria-expanded="false"><svg class="i"><use href="#i-col"/></svg>Columnas</button><div class="pop" id="colP" hidden></div></div>
-      <button class="btn ghost sm" id="csvB" type="button"><svg class="i"><use href="#i-dl"/></svg>CSV</button>
+      <label class="small" style="display:flex;gap:7px;align-items:center"><input type="checkbox" id="fHide" checked> Sin ETFs ni vacías</label>
+      <label class="small" style="display:flex;gap:7px;align-items:center"><input type="checkbox" id="fHi"> Sin valoraciones muy altas</label>
      </div>
-     <div class="tools" style="padding-top:8px;padding-bottom:8px">
-      <label class="small" style="display:flex;gap:7px;align-items:center"><input type="checkbox" id="fHide" checked> Ocultar ETFs y sin datos</label>
-      <label class="small" style="display:flex;gap:7px;align-items:center"><input type="checkbox" id="fHi"> Ocultar valoraciones muy altas</label>
-      <button class="btn ghost sm" id="clr" type="button">Limpiar filtros</button>
-      <span class="grow"></span><span class="cnt" id="cnt"></span>
-     </div>
-     <div class="tw"><table id="tbl"><thead><tr id="hr"></tr><tr class="f" id="fr" hidden></tr></thead><tbody></tbody></table></div>
-     <div class="more"><button class="btn ghost" id="moreB" type="button">Mostrar más</button></div>
+     <div id="t-scr"></div>
     </div>
-    <p class="hint">Flujos de los últimos 12 meses al último trimestre informado; "Anual" cuando la empresa solo publica balances anuales. Todo en dólares: tickers de EE. UU. o su ADR; las acciones que solo cotizan en BYMA se dolarizan al CCL, como un CEDEAR. En los filtros por columna escribí <b>&gt;20</b>, <b>&lt;0</b>, <b>10..50</b> o un número (como mínimo). Montos en millones de dólares.</p>
+    <p class="hint">Montos en millones de US$. Flujos de los últimos 12 meses.</p>
    </section>
 
    <!-- PORTAFOLIO -->
@@ -387,36 +409,31 @@ dialog::backdrop{background:rgba(4,10,22,.6);backdrop-filter:blur(2px)}
     <div class="vh"><div><h1>Portafolio</h1><p class="lead" id="pL">—</p></div><button class="btn" type="button" data-newop=""><svg class="i"><use href="#i-plus"/></svg>Registrar operación</button></div>
     <div class="hero" id="pHero"></div>
     <div class="g2" style="margin-bottom:18px">
-     <div class="panel"><div class="ph"><h2>Composición</h2><span class="small mute">Peso de cada posición en dólares</span></div><ul class="rows" id="pAlloc" style="margin-top:10px"></ul></div>
-     <div class="panel"><div class="ph"><h2>Valor frente a precio</h2><span class="small mute" id="pRateL"></span></div><ul class="rows" id="pMar" style="margin-top:10px"></ul></div>
+     <div class="panel"><div class="ph"><h2>Composición</h2></div><ul class="rows" id="pAlloc" style="margin-top:10px"></ul></div>
+     <div class="panel"><div class="ph"><h2>Margen por posición</h2><span class="small mute" id="pRateL"></span></div><ul class="rows" id="pMar" style="margin-top:10px"></ul></div>
     </div>
-    <div class="panel"><div class="tw" style="max-height:none"><table class="pt" id="pt"><thead><tr><th class="l stk">Ticker</th><th>Cantidad</th><th>Entrada $</th><th>Entrada US$</th><th>Hoy $</th><th>Hoy US$</th><th>Día</th><th>Total US$</th><th>Peso</th><th>Resultado US$</th><th>Malo</th><th>Normal</th><th>Bueno</th><th>Acción US$</th><th class="l">Método</th><th>Objetivo</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div></div>
-    <p class="hint">Precio medio por costo promedio. Entrada en dólares = precio pagado ÷ CCL del día de la operación; hoy en dólares = precio en BYMA ÷ CCL actual. Malo, Normal, Bueno y Acción US$ son por acción en EE. UU.</p>
+    <div class="panel"><div id="t-port"></div></div>
+    <p class="hint">Entrada en US$ al CCL del día de compra. Valores del método por acción en EE. UU.</p>
    </section>
 
    <!-- OPERACIONES -->
    <section id="v-operaciones" hidden>
     <div class="vh"><div><h1>Operaciones</h1><p class="lead" id="oL">—</p></div><button class="btn" type="button" data-newop=""><svg class="i"><use href="#i-plus"/></svg>Registrar operación</button></div>
-    <div class="panel">
-     <div class="tools"><div class="qin"><svg class="i"><use href="#i-search"/></svg><input id="oQ" type="search" placeholder="Filtrar por ticker" aria-label="Filtrar operaciones por ticker"></div>
-      <span class="seg" role="group" aria-label="Tipo" id="oSide"><button type="button" data-s="">Todas</button><button type="button" data-s="COMPRA">Compras</button><button type="button" data-s="VENTA">Ventas</button></span><span class="grow"></span><span class="cnt" id="oCnt"></span></div>
-     <div class="tw" style="max-height:none"><table id="ot"><thead><tr><th class="l">Fecha</th><th class="l">Ticker</th><th class="l">Operación</th><th>Cantidad</th><th>Precio $</th><th>CCL del día</th><th>Precio US$</th><th>Importe US$</th><th></th></tr></thead><tbody></tbody></table></div>
-    </div>
+    <div class="panel"><div id="t-ops"></div></div>
    </section>
 
    <!-- AJUSTES -->
    <section id="v-ajustes" hidden>
-    <div class="vh"><div><h1>Ajustes</h1><p class="lead">Las tasas del método y los ratios de tus CEDEARs. Todo se guarda en tu cuenta.</p></div></div>
+    <div class="vh"><div><h1>Ajustes</h1><p class="lead">Se guardan en tu cuenta.</p></div></div>
     <div class="g2">
-     <div class="panel"><div class="ph"><h2>Parámetros del método</h2></div><div class="pb"><table class="frm"><tbody>
-      <tr><td>Rentabilidad mínima por año<div class="small mute">La que le pedís a toda inversión.</div></td><td><input id="sMin" inputmode="decimal" aria-label="Rentabilidad mínima"> %</td></tr>
-      <tr><td>Rentabilidad ideal por año<div class="small mute">La que buscás para comprar con margen.</div></td><td><input id="sIdeal" inputmode="decimal" aria-label="Rentabilidad ideal"> %</td></tr>
-      <tr><td>Crecimiento después del año 10<div class="small mute">Crecimiento perpetuo del valor terminal.</div></td><td><input id="sTerm" inputmode="decimal" aria-label="Crecimiento terminal"> %</td></tr>
+     <div class="panel"><div class="ph"><h2>Método</h2></div><div class="pb"><table class="frm"><tbody>
+      <tr><td>Rentabilidad mínima</td><td><input id="sMin" inputmode="decimal" aria-label="Rentabilidad mínima"> %</td></tr>
+      <tr><td>Rentabilidad ideal</td><td><input id="sIdeal" inputmode="decimal" aria-label="Rentabilidad ideal"> %</td></tr>
+      <tr><td>Crecimiento después del año 10</td><td><input id="sTerm" inputmode="decimal" aria-label="Crecimiento terminal"> %</td></tr>
      </tbody></table></div></div>
-     <div class="panel"><div class="ph"><h2>Cómo se actualiza</h2></div><div class="pb small" id="about" style="color:var(--ink2)"></div></div>
+     <div class="panel"><div class="ph"><h2>Actualización</h2></div><div class="pb small" id="about" style="color:var(--ink2)"></div></div>
     </div>
-    <div class="panel" style="margin-top:18px"><div class="ph"><h2>Ratios de CEDEAR y cantidad objetivo</h2><span class="small mute">El CCL implícito marca en rojo los ratios que no cierran.</span></div>
-     <div class="tw" style="max-height:none;margin-top:10px"><table id="wt"><thead><tr><th class="l">Ticker</th><th>Ratio</th><th>Objetivo</th><th>CCL implícito</th></tr></thead><tbody></tbody></table></div></div>
+    <div class="panel" style="margin-top:18px"><div class="ph"><h2>Ratios de CEDEAR y objetivos</h2></div><div id="t-aj"></div></div>
    </section>
 
    <!-- ACCIÓN -->
@@ -425,7 +442,7 @@ dialog::backdrop{background:rgba(4,10,22,.6);backdrop-filter:blur(2px)}
     <div class="qhead">
      <div class="qid"><div class="badge" id="aB"></div><div><h1 id="aT">—</h1><div class="qn" id="aN"></div><div class="meta" id="aM"></div></div></div>
      <div class="qpx"><div class="p" id="aP">—</div><div class="c" id="aC"></div><div class="small mute" id="aA"></div></div>
-     <div class="qact"><button class="btn ghost" id="aFav" type="button" aria-pressed="false"><svg class="i"><use href="#i-star"/></svg><span>Seguir</span></button><button class="btn" id="aOp" type="button"><svg class="i"><use href="#i-plus"/></svg>Registrar operación</button></div>
+     <div class="qact"><button class="btn ghost" id="aFav" type="button" aria-pressed="false"><svg class="i"><use href="#i-star"/></svg><span>Favorita</span></button><button class="btn" id="aOp" type="button"><svg class="i"><use href="#i-plus"/></svg>Registrar operación</button></div>
     </div>
     <div class="panel chartp" style="margin-bottom:18px"><div class="ph"><div class="ohlc" id="cxL" aria-live="off"></div>
       <div class="ctools"><span class="seg" role="group" aria-label="Período" id="cxR"><button type="button" data-r="30">1M</button><button type="button" data-r="91">3M</button><button type="button" data-r="182">6M</button><button type="button" data-r="365">1A</button><button type="button" data-r="730">2A</button><button type="button" data-r="w">5A</button></span>
@@ -433,35 +450,35 @@ dialog::backdrop{background:rgba(4,10,22,.6);backdrop-filter:blur(2px)}
       <button type="button" class="chip" id="cxV" aria-pressed="false" title="Ajusta la escala para que entren las líneas de valor">Valor en escala</button></div></div>
      <div class="cx" id="cx"><div class="cxmsg" id="cxM">Cargando el gráfico…</div></div>
      <div class="cleg" id="cxG"></div></div>
-    <div class="panel gauge"><div class="ph"><h2>Cuánto vale cada acción frente al precio de hoy</h2>
-      <div class="legend"><span><i style="background:var(--band)"></i>Rango malo–bueno</span><span><i style="background:var(--norm)"></i>Escenario normal</span><span><i style="background:var(--ink)"></i>Precio de hoy</span></div></div>
+    <div class="panel gauge"><div class="ph"><h2>Valor vs. precio</h2>
+      <div class="legend"><span><i style="background:var(--band)"></i>Malo a bueno</span><span><i style="background:var(--norm)"></i>Normal</span><span><i style="background:var(--ink)"></i>Precio</span></div></div>
      <div class="pb" style="padding-top:4px"><div class="fig" id="gFig"><svg role="img" aria-labelledby="gDesc"><desc id="gDesc"></desc></svg></div></div></div>
     <div class="dgrid">
      <div>
       <div class="tabs" role="tablist" id="aTabs"><button role="tab" data-t="res">Resumen</button><button role="tab" data-t="calc">Calculadora</button><button role="tab" data-t="hist">Historia</button><button role="tab" data-t="news">Noticias</button><button role="tab" data-t="ai">Análisis IA</button></div>
       <div data-p="res">
        <div class="stats" id="aS"></div>
-       <div class="panel"><div class="ph"><h2>Situación frente a su valor</h2></div><div class="pb"><div id="aW"></div><ul class="an" id="aAn"></ul></div></div>
-       <div class="panel" style="margin-top:18px"><div class="ph"><h2>Valor por acción en cada escenario</h2></div><div class="pb" style="padding-top:6px"><table class="res" id="aRes"><thead><tr><th class="l">Rentabilidad pedida</th><th>Malo</th><th>Normal</th><th>Bueno</th></tr></thead><tbody></tbody></table></div></div>
+       <div class="panel"><div class="ph"><h2>Situación</h2></div><div class="pb"><div id="aW"></div><ul class="an" id="aAn"></ul></div></div>
+       <div class="panel" style="margin-top:18px"><div class="ph"><h2>Valor por acción</h2></div><div class="pb" style="padding-top:6px"><table class="res" id="aRes"><thead><tr><th class="l">Pidiendo</th><th>Malo</th><th>Normal</th><th>Bueno</th></tr></thead><tbody></tbody></table></div></div>
        <div class="panel" style="margin-top:18px"><div class="ph"><h2>El negocio</h2></div><div class="pb"><p id="aSum" style="margin:0 0 10px;color:var(--ink2);max-width:90ch"></p><p class="small mute" id="aSrc" style="margin:0"></p></div></div>
       </div>
       <div data-p="calc" hidden id="pCalc">
        <div class="calc">
-        <div class="panel"><div class="ph"><h2>Paso 1 · El dinero del dueño</h2><span class="small mute">millones de US$</span></div><div class="pb"><table class="frm"><tbody id="cIn1"></tbody></table></div></div>
+        <div class="panel"><div class="ph"><h2>1 · Dinero del dueño</h2><span class="small mute">US$ M</span></div><div class="pb"><table class="frm"><tbody id="cIn1"></tbody></table></div></div>
         <div>
-         <div class="panel"><div class="ph"><h2>Paso 2 · Crecimiento anual a 10 años</h2></div><div class="pb" id="cIn2"></div><p class="small mute" id="cG" style="margin:0 18px 14px"></p></div>
-         <div class="panel" style="margin-top:18px"><div class="ph"><h2>Resultado</h2><span class="small mute">se recalcula mientras movés</span></div><div class="pb" style="padding-top:6px"><table class="res"><thead><tr><th class="l">Pidiendo</th><th>Malo</th><th>Normal</th><th>Bueno</th></tr></thead><tbody id="cOut"></tbody></table><p class="small" id="cV" style="margin:10px 0 0"></p></div></div>
+         <div class="panel"><div class="ph"><h2>2 · Crecimiento anual</h2></div><div class="pb" id="cIn2"></div><p class="small mute" id="cG" style="margin:0 18px 14px"></p></div>
+         <div class="panel" style="margin-top:18px"><div class="ph"><h2>Resultado</h2><span class="small mute">en vivo</span></div><div class="pb" style="padding-top:6px"><table class="res"><thead><tr><th class="l">Pidiendo</th><th>Malo</th><th>Normal</th><th>Bueno</th></tr></thead><tbody id="cOut"></tbody></table><p class="small" id="cV" style="margin:10px 0 0"></p></div></div>
         </div>
        </div>
        <div class="g2" style="margin-top:18px">
-        <div class="panel"><div class="ph"><h2>Paso 5 · ¿Podés estimar lo que ganará dentro de 5 años?</h2></div><div class="pb"><span class="seg" id="cP5"><button type="button" data-v="sí">Sí</button><button type="button" data-v="no">No: paso</button></span>
-         <h3>Paso 6 · Cuándo vendo (solo por uno de estos tres)</h3><ol class="small" style="color:var(--ink2);margin:0;padding-left:18px"><li>La razón por la que compré se rompió.</li><li>Aparece algo claramente mejor por el mismo riesgo.</li><li>El precio ya no me da lo que pido ni en el escenario bueno.</li></ol></div></div>
-        <div class="panel"><div class="ph"><h2>Tu tesis</h2><button class="btn ghost sm" id="cReset" type="button">Volver a los datos automáticos</button></div><div class="pb"><textarea id="cTh" rows="5" placeholder="Por qué la comprás y qué tendría que pasar para venderla"></textarea><p class="small mute" style="margin:8px 0 0">Las casillas en amarillo las cambiaste vos y se guardan. Comprá a trozos, nunca de golpe.</p></div></div>
+        <div class="panel"><div class="ph"><h2>5 · ¿Sabés cuánto ganará en 5 años?</h2></div><div class="pb"><span class="seg" id="cP5"><button type="button" data-v="sí">Sí</button><button type="button" data-v="no">No: paso</button></span>
+         <h3>6 · Vendé solo si</h3><ol class="small" style="color:var(--ink2);margin:0;padding-left:18px"><li>Se rompió la tesis.</li><li>Hay algo mejor con igual riesgo.</li><li>El precio supera el escenario bueno.</li></ol></div></div>
+        <div class="panel"><div class="ph"><h2>Tu tesis</h2><button class="btn ghost sm" id="cReset" type="button">Restablecer</button></div><div class="pb"><textarea id="cTh" rows="5" placeholder="Por qué la comprás y cuándo venderías"></textarea><p class="small mute" style="margin:8px 0 0">En amarillo: valores que cambiaste vos.</p></div></div>
        </div>
       </div>
-      <div data-p="hist" hidden><div class="panel"><div class="ph"><h2>Ingresos y dinero del dueño por año</h2><div class="legend"><span><i style="background:var(--s1)"></i>Dinero del dueño</span><span><i style="background:var(--s2)"></i>Ingresos</span></div></div><div class="pb"><div class="fig" id="hFig" style="height:280px"><svg role="img" aria-label="Ingresos y dinero del dueño por año"></svg></div><div class="tw" style="max-height:none;min-height:0;margin-top:14px"><table id="hT"></table></div><p class="small mute" style="margin:8px 0 0">Millones de dólares.</p></div></div></div>
-      <div data-p="news" hidden><div class="panel"><div class="ph"><h2>Últimas noticias</h2><span class="small mute">Yahoo Finance, cada mañana</span></div><div class="pb"><ul class="news" id="nL"></ul></div></div></div>
-      <div data-p="ai" hidden><div class="panel"><div class="ph"><h2>Análisis con IA</h2><button class="btn" id="aiB" type="button">Generar análisis</button></div><div class="pb"><p class="small mute" id="aiS" style="margin:0"></p><div class="aitext" id="aiT"></div></div></div></div>
+      <div data-p="hist" hidden><div class="panel"><div class="ph"><h2>Historia anual</h2><div class="legend"><span><i style="background:var(--s1)"></i>Dinero del dueño</span><span><i style="background:var(--s2)"></i>Ingresos</span></div></div><div class="pb"><div class="fig" id="hFig" style="height:280px"><svg role="img" aria-label="Ingresos y dinero del dueño por año"></svg></div><div class="tw" style="max-height:none;min-height:0;margin-top:14px"><table id="hT"></table></div><p class="small mute" style="margin:8px 0 0">Millones de dólares.</p></div></div></div>
+      <div data-p="news" hidden><div class="panel"><div class="ph"><h2>Últimas noticias</h2><span class="small mute">Yahoo Finance</span></div><div class="pb"><ul class="news" id="nL"></ul></div></div></div>
+      <div data-p="ai" hidden><div class="panel"><div class="ph"><h2>Análisis con IA</h2><button class="btn" id="aiB" type="button">Generar análisis</button></div><div class="pb"><p class="small mute" id="aiS" style="margin:0"></p><p class="small mute" style="margin:6px 0 0">Usa tus valores, los últimos trimestres, las estimaciones de analistas y las noticias que el motor baja de internet cada mañana.</p><div class="aitext" id="aiT"></div></div></div></div>
      </div>
      <aside class="panel ticket" id="tk" aria-label="Decisión según el método"></aside>
     </div>
@@ -498,6 +515,7 @@ dialog::backdrop{background:rgba(4,10,22,.6);backdrop-filter:blur(2px)}
 </dialog>
 
 <div class="tip" id="tip" hidden></div>
+<div id="pop" hidden role="dialog" aria-label="Opciones de la columna"></div>
 <div id="toasts" aria-live="polite"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@4.2.3/dist/lightweight-charts.standalone.production.js"></script>
@@ -508,6 +526,7 @@ const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const F=(n,d=0)=>n==null||!isFinite(n)?'—':n.toLocaleString('es-AR',{minimumFractionDigits:d,maximumFractionDigits:d});
 const P=(n,d=1)=>n==null||!isFinite(n)?'—':F(n*100,d)+' %';
 const SP=(n,d=0)=>n==null||!isFinite(n)?'—':(n>0?'+':'')+P(n,d);
+const SPc=v=>v!=null&&v>9.99?'> +999 %':SP(v);
 const UD=v=>v==null||!isFinite(v)?'':v>0?'up':v<0?'down':'';
 const S={cclH:[],fx:{},ai:{},rowsRaw:[],cfg:{reqMin:.10,reqIdeal:.15,gTerm:.025},rows:[],by:{},px:{},meta:{},ov:{},wa:{},ops:[],an:{},hold:{},det:null,ri:0,sort:{k:'mN',d:-1},lim:150,filt:{},chips:new Set(),preset:'all',hidden:new Set(['sector','mM','oey','st']),showF:false,sel:null,tab:'res',live:{db:false}};
 const DT=t=>(S.by[t]&&S.by[t].disp)||t;
@@ -528,143 +547,211 @@ function price(t){const p=S.px[t];return p&&Number.isFinite(p.px)?p.px:null;}
 function impliedG(oe,r,nd,sh,p){if(!(oe>0)||!p)return null;let lo=-.5,hi=.8;const f=g=>vps(oe,g,r,S.cfg.gTerm,nd,sh)-p;if(f(lo)>0)return lo;if(f(hi)<0)return null;for(let i=0;i<60;i++){const m=(lo+hi)/2;if(f(m)>0)hi=m;else lo=m;}return(lo+hi)/2;}
 function calc(t){const e=eff(t),oe=e.ocf-e.capex-e.sbc,nd=e.debt-e.cash,R=[S.cfg.reqMin,S.cfg.reqIdeal],G=[e.gm,e.gn,e.gb];const v=R.map(r=>G.map(g=>vps(oe,g,r,S.cfg.gTerm,nd,e.shares)));const p=price(t);
  let vt,cls;const etf=e.c.kind==='ETF';
- if(e.p5==='no'){vt='No lo sabés: pasá';cls='m';}else if(etf){vt='ETF: no se valúa';cls='m';}
- else if(p==null||v[0][1]==null){vt='Sin datos suficientes';cls='m';}
- else if(p<=v[1][1]){vt='Rentabilidad ideal en el escenario normal';cls='g';}
- else if(p<=v[0][1]){vt='Rentabilidad mínima en el escenario normal';cls='g';}
- else if(v[0][2]!=null&&p<=v[0][2]){vt='Solo con el escenario bueno';cls='w';}
- else{vt='Cara aun en el escenario bueno';cls='b';}
+ if(e.p5==='no'){vt='Pasá: no sabés';cls='m';}else if(etf){vt='ETF: no se valúa';cls='m';}
+ else if(p==null||v[0][1]==null){vt='Sin datos';cls='m';}
+ else if(p<=v[1][1]){vt=`Barata: rinde ${P(R[1],0)}`;cls='g';}
+ else if(p<=v[0][1]){vt=`Barata: rinde ${P(R[0],0)}`;cls='g';}
+ else if(v[0][2]!=null&&p<=v[0][2]){vt='Solo en el escenario bueno';cls='w';}
+ else{vt='Cara aun en el bueno';cls='b';}
  const mc=p&&e.shares?p*e.shares:null;
  const hi=!etf&&e.p5!=='no'&&((e.gn!=null&&e.gn>.25)||(p&&v[0][1]!=null&&v[0][1]/p>3));
  return{e,oe,nd,v,p,vt,cls,mc,hi,oey:mc&&isFinite(oe)?oe/mc:null};}
-const VSHORT={g:'Vale más que su precio',w:'Solo con el bueno',b:'Cara',m:'Sin valuar'};
+const VSHORT={g:'Barata',w:'Solo en el bueno',b:'Cara',m:'Sin datos'};
 function per(r){const f=r.fy||'';const m=f.match(/(\d{4})-(\d{2})-(\d{2})/);return m?`${m[1]}-${m[2]}`:f.replace('FY','Anual ');}
 function rowOf(r){const t=r.t,c=calc(t),i=S.ri,v=c.v[i],p=c.p;
  return{t,r,c,per:per(r),disp:r.disp||t,name:r.name||t,sector:r.sector||'',p,chg:S.px[t]&&S.px[t].chg,vM:v[0],vN:v[1],vB:v[2],mN:c.cls!=='m'&&p&&v[1]!=null?v[1]/p-1:null,mM:c.cls!=='m'&&p&&v[0]!=null?v[0]/p-1:null,
-  hi:c.hi,gi:impliedG(c.oe,[S.cfg.reqMin,S.cfg.reqIdeal][i],c.nd,c.e.shares,p),gn:c.e.gn,oey:c.oey,mc:c.mc,cls:c.cls,vt:c.vt,st:r.st,fav:!!(S.wa[t]&&S.wa[t].fav),port:!!S.hold[t]};}
+  hi:c.hi,d52:d52(t),gi:impliedG(c.oe,[S.cfg.reqMin,S.cfg.reqIdeal][i],c.nd,c.e.shares,p),gn:c.e.gn,oey:c.oey,mc:c.mc,cls:c.cls,vt:c.vt,st:r.st,fav:!!(S.wa[t]&&S.wa[t].fav),port:!!S.hold[t]};}
 
-/* ===== screener ===== */
-const COLS=[
- {k:'fav',l:'',f:0,ns:1,fixed:1},{k:'t',l:'Ticker',txt:1,cls:'l stk',fixed:1},{k:'name',l:'Empresa',txt:1,cls:'l'},{k:'sector',l:'Sector',txt:1,cls:'l'},
- {k:'p',l:'Precio US$'},{k:'chg',l:'Día',pc:1},{k:'vM',l:'Malo'},{k:'vN',l:'Normal'},{k:'vB',l:'Bueno'},{k:'rng',l:'Valor vs precio',f:0,ns:1},
- {k:'mN',l:'Margen normal',pc:1},{k:'mM',l:'Margen malo',pc:1},{k:'gi',l:'Crec. que descuenta',pc:1},{k:'gn',l:'Crec. normal',pc:1},
- {k:'oey',l:'Rend. del dueño',pc:1},{k:'mc',l:'Capitalización M'},{k:'vt',l:'Método',txt:1,cls:'l'},{k:'per',l:'Datos al',txt:1,cls:'l'},{k:'st',l:'Universo',txt:1,cls:'l'}];
-function parseF(s){s=String(s).trim().replace(',','.');if(!s)return null;let m=s.match(/^(-?\d+(?:\.\d+)?)\s*\.\.\s*(-?\d+(?:\.\d+)?)$/);if(m)return x=>x!=null&&x>=+m[1]&&x<=+m[2];m=s.match(/^(>=|<=|>|<|=)?\s*(-?\d+(?:\.\d+)?)$/);if(!m)return undefined;const n=+m[2];return{'>':x=>x>n,'<':x=>x<n,'>=':x=>x>=n,'<=':x=>x<=n,'=':x=>x===n}[m[1]||'>=']||(x=>x>=n);}
-function rangeSvg(x,w=128){const a=[x.vM,x.vN,x.vB,x.p].filter(Number.isFinite);if(a.length<2||x.vN==null)return'<span class="mute">—</span>';const lo=Math.min(...a),hi=Math.max(...a),pad=(hi-lo)*.06||1,X=v=>(5+(v-lo+pad)/(hi-lo+2*pad)*(w-10)).toFixed(1);
- return`<svg class="rng" style="width:${w}px" viewBox="0 0 ${w} 18" aria-hidden="true"><line x1="2" x2="${w-2}" y1="9" y2="9" stroke="var(--line2)"/>${x.vM!=null&&x.vB!=null?`<rect x="${X(Math.min(x.vM,x.vB))}" y="4" width="${Math.max(1.5,X(Math.max(x.vM,x.vB))-X(Math.min(x.vM,x.vB)))}" height="10" rx="2" fill="var(--band)"/>`:''}<rect x="${X(x.vN)-1}" y="1" width="2.5" height="16" rx="1" fill="var(--norm)"/>${x.p!=null?`<circle cx="${X(x.p)}" cy="9" r="4" fill="var(--ink)" stroke="var(--panel)" stroke-width="2"/>`:''}</svg>`;}
-const UL={SP500:'S&P',NDX100:'NDX',CEDEAR:'CED',ARG:'ARG'};
-const starSvg='<svg viewBox="0 0 24 24"><use href="#i-star"/></svg>';
-function cell(x,c){const v=x[c.k];switch(c.k){
- case'fav':return`<td style="width:30px;padding-right:0"><button class="star" data-fav="${esc(x.t)}" aria-pressed="${x.fav}" aria-label="Seguir ${esc(x.disp)}">${starSvg}</button></td>`;
- case't':return`<td class="tk l stk"><a href="#/accion/${encodeURIComponent(x.t)}">${esc(x.disp)}</a></td>`;
- case'name':return`<td class="nm l" title="${esc(x.name)}">${esc(x.name)}</td>`;
- case'sector':return`<td class="l small mute">${esc(x.sector)}</td>`;
- case'p':return`<td>${F(x.p,2)}</td>`;
- case'chg':return`<td class="${UD(v)}">${SP(v,1)}</td>`;
- case'vM':case'vN':case'vB':return`<td class="${v==null||x.p==null?'':v>=x.p?'up':'down'}">${F(v,2)}</td>`;
- case'rng':return`<td>${rangeSvg(x)}</td>`;
- case'mN':case'mM':return`<td class="${v==null?'':v>=0?'up':'down'}" style="font-weight:600">${SP(v)}</td>`;
- case'gi':case'gn':case'oey':return`<td>${P(v)}</td>`;
- case'mc':return`<td>${F(v)}</td>`;
- case'per':return`<td class="l small ${/Anual/.test(v)?'mute':''}">${esc(v)}</td>`;
- case'vt':return`<td class="l"><span class="tag t-${x.cls}" title="${esc(x.vt)}">${esc(VSHORT[x.cls])}</span>${x.hi?' <span class="flag" title="Crecimiento supuesto mayor a 25 % anual o valor más de 3 veces el precio">Valoración muy alta</span>':''}${x.st==='revisar'?' <span class="flag" title="Datos a revisar">Revisar</span>':''}</td>`;
- case'st':return`<td class="l small">${(x.r.u||[]).filter(u=>UL[u]).map(u=>`<span class="u">${esc(UL[u])}</span>`).join('')}</td>`;}
- return'<td></td>';}
-const visCols=()=>COLS.filter(c=>c.fixed||!S.hidden.has(c.k));
-let ROWS=[],LIST=[];
-function filtered(){const q=$('#q').value.trim().toLowerCase(),sec=$('#fSec').value,ver=$('#fVer').value,hide=$('#fHide').checked,hideHi=$('#fHi').checked;
- const fl=COLS.filter(c=>S.filt[c.k]).map(c=>{const s=S.filt[c.k];if(c.txt)return x=>String(c.k==='st'?(x.r.u||[]).join(' '):x[c.k]??'').toLowerCase().includes(s.toLowerCase());const fn=parseF(s);if(!fn)return null;return c.pc?x=>fn(x[c.k]==null?null:x[c.k]*100):x=>fn(x[c.k]);}).filter(Boolean);
- const pr=S.preset;
- let L=ROWS.filter(x=>(!q||x.t.toLowerCase().includes(q)||x.disp.toLowerCase().includes(q)||x.name.toLowerCase().includes(q))&&(!sec||x.sector===sec)&&(!ver||x.cls===ver)
-  &&(pr==='port'||pr==='fav'||!hide||(x.r.kind!=='ETF'&&x.vN!=null))&&(!hideHi||!x.hi)
-  &&(pr!=='opp'||x.cls==='g')&&(pr!=='port'||x.port)&&(pr!=='fav'||x.fav)
-  &&(!S.chips.size||[...S.chips].some(ch=>(x.r.u||[]).includes(ch)))&&fl.every(f=>f(x)));
- const{k,d}=S.sort;L.sort((a,b)=>{const A=a[k],B=b[k];if(A==null&&B==null)return 0;if(A==null)return 1;if(B==null)return-1;return(typeof A==='string'?A.localeCompare(B):A-B)*d;});
+/* ===== utilidades de tablas (iguales en todas) ===== */
+const FD=d=>d?new Date(d).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}):'—';
+const FDL=d=>d?new Date(d).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}):'—';
+const FUN='<svg viewBox="0 0 24 24" class="i" style="width:13px;height:13px"><use href="#i-flt"/></svg>';
+const TB={};let POP=null;
+function tdef(id,cfg){let st={};try{st=JSON.parse(localStorage.getItem('amd-t-'+id)||'{}');}catch(e){}
+ const T={...cfg,id};T.st={sort:st.sort||cfg.sort,f:st.f||{},hid:st.hid||cfg.cols.filter(c=>c.hide).map(c=>c.k),q:'',lim:150};
+ for(const k in T.st.f)if(!cfg.cols.find(c=>c.k===k))delete T.st.f[k];TB[id]=T;}
+function tsave(T){try{localStorage.setItem('amd-t-'+T.id,JSON.stringify({sort:T.st.sort,f:T.st.f,hid:T.st.hid}));}catch(e){}}
+const tcol=(T,k)=>T.cols.find(c=>c.k===k);
+const tvis=T=>T.cols.filter(c=>c.fix||!T.st.hid.includes(c.k));
+const fn2=(v,pc)=>F(v,pc?0:(Math.abs(v)<10&&v%1?2:0));
+function fdesc(c,f){const pc=c.t==='pct',u=pc?' %':'';if(c.t==='cat')return f.in.length===1?String(f.in[0]):f.in.length+' valores';if(c.t==='txt')return'“'+f.q+'”';
+ if(f.min!=null&&f.max!=null)return fn2(f.min,pc)+' a '+fn2(f.max,pc)+u;return f.min!=null?'≥ '+fn2(f.min,pc)+u:'≤ '+fn2(f.max,pc)+u;}
+function tlist(T,all){const st=T.st,q=st.q.trim().toLowerCase();let L=all;
+ if(q)L=L.filter(x=>String(T.q(x)).toLowerCase().includes(q));
+ for(const k in st.f){const c=tcol(T,k),f=st.f[k];if(!c)continue;
+  if(c.t==='cat'){const S2=new Set(f.in);L=L.filter(x=>{const v=c.v(x);return Array.isArray(v)?v.some(y=>S2.has(y)):S2.has(v==null||v===''?'—':v);});}
+  else if(c.t==='txt'){const s2=f.q.toLowerCase();L=L.filter(x=>String(c.v(x)??'').toLowerCase().includes(s2));}
+  else{const m=c.t==='pct'?100:1;L=L.filter(x=>{let v=c.v(x);if(v==null||!isFinite(v))return false;v*=m;return(f.min==null||v>=f.min)&&(f.max==null||v<=f.max);});}}
+ const so=st.sort,c=so&&tcol(T,so.k);if(c){const sv=c.s||c.v;L=[...L].sort((a,b)=>{const A=sv(a),B=sv(b);if(A==null&&B==null)return 0;if(A==null)return 1;if(B==null)return-1;return(typeof A==='string'?A.localeCompare(String(B),'es'):A-B)*so.d;});}
  return L;}
-function renderTable(){
- const C=visCols();LIST=filtered();const L=LIST;
- $('#cnt').textContent=`${F(L.length)} de ${F(ROWS.length)} acciones`;
- $('#tbl tbody').innerHTML=L.slice(0,S.lim).map(x=>`<tr data-row="${esc(x.t)}">${C.map(c=>cell(x,c)).join('')}</tr>`).join('')||`<tr><td colspan="${C.length}" class="l"><div class="empty-state">${ROWS.length?'Ninguna acción cumple esos filtros. Probá con "Limpiar filtros".':'Cargando el universo de acciones…'}</div></td></tr>`;
- $('#moreB').hidden=L.length<=S.lim;$('#moreB').textContent=`Mostrar ${F(Math.min(200,L.length-S.lim))} más`;
- for(const th of $$('#hr th'))th.setAttribute('aria-sort',th.dataset.k===S.sort.k?(S.sort.d>0?'ascending':'descending'):'none');
- const val=ROWS.filter(x=>x.mN!=null),opp=val.filter(x=>x.cls==='g');
- $('#sH').textContent=val.length?`${F(opp.length)} de ${F(val.length)} acciones valen más que su precio`:'Screener';
- $('#sL').textContent=`Escenario normal, pidiendo ${P([S.cfg.reqMin,S.cfg.reqIdeal][S.ri],0)} al año. S&P 500, Nasdaq 100, CEDEARs y acciones argentinas.`;}
-function buildHead(){const C=visCols();
- $('#hr').innerHTML=C.map(c=>`<th class="${c.cls||''}${c.ns?'':' s'}" data-k="${c.k}" ${c.ns?'':'tabindex="0"'} scope="col">${esc(c.l)}</th>`).join('');
- $('#fr').innerHTML=C.map(c=>`<th class="${c.k==='t'?'stk':''}">${c.f===0||c.ns?'':`<input data-f="${c.k}" aria-label="Filtrar ${esc(c.l)}" placeholder="${c.txt?'contiene':'>0'}" value="${esc(S.filt[c.k]||'')}">`}</th>`).join('');
- $('#fr').hidden=!S.showF;$('#fltB').setAttribute('aria-pressed',String(S.showF));
- const ch=[['SP500','S&P 500'],['NDX100','Nasdaq 100'],['CEDEAR','CEDEARs'],['ARG','Argentina']];
- $('#chips').innerHTML=ch.map(([k,l])=>`<button type="button" class="chip" data-chip="${k}" aria-pressed="${S.chips.has(k)}">${l}</button>`).join('');
- $('#colP').innerHTML=COLS.filter(c=>!c.fixed).map(c=>`<label><input type="checkbox" data-col="${c.k}" ${S.hidden.has(c.k)?'':'checked'}> ${esc(c.l)}</label>`).join('');
- for(const b of $$('#preset button'))b.setAttribute('aria-pressed',String(b.dataset.p===S.preset));
- for(const b of $$('#rate button'))b.setAttribute('aria-pressed',String(+b.dataset.r===S.ri));}
-function csv(){const C=visCols().filter(c=>!c.ns),q=v=>{const s=v==null?'':String(v);return/[",;\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;};
- const lines=[C.map(c=>q(c.l)).join(';')].concat(LIST.map(x=>C.map(c=>{const v=c.k==='t'?x.disp:c.k==='st'?(x.r.u||[]).join(' '):x[c.k];return q(typeof v==='number'?String(+(c.pc?v*100:v).toFixed(4)).replace('.',','):v);}).join(';')));
- if(!dls){toast('La descarga no está disponible en esta vista.',1);return;}dls.save({filename:`amd-screener-${new Date().toISOString().slice(0,10)}.csv`,data:'\ufeff'+lines.join('\n')}).then(()=>toast('CSV guardado con '+F(LIST.length)+' acciones.'),()=>toast('No se guardó el CSV.',1));}
+function trender(id){const T=TB[id];if(!T)return;const root=$('#'+id);if(!root)return;
+ if(!root.dataset.b){root.dataset.b='1';root.innerHTML=`<div class="tbar"><div class="qin"><svg class="i"><use href="#i-search"/></svg><input type="search" data-tq="${id}" placeholder="${esc(T.ph||'Buscar')}" aria-label="${esc(T.ph||'Buscar')}"></div><span class="grow"></span><span class="cnt"></span><button class="btn ghost sm" type="button" data-tcols="${id}"><svg class="i"><use href="#i-col"/></svg>Columnas</button><button class="btn ghost sm" type="button" data-tcsv="${id}"><svg class="i"><use href="#i-dl"/></svg>CSV</button></div><div class="fchips"></div><div class="tw"><table><thead></thead><tbody></tbody><tfoot></tfoot></table></div><div class="more"><button class="btn ghost" type="button" data-tmore="${id}">Mostrar más</button></div>`;}
+ const all=T.rows(),L=tlist(T,all);T.L=L;const C=tvis(T),st=T.st;
+ root.querySelector('thead').innerHTML='<tr>'+C.map(c=>{const on=!!st.f[c.k],srt=st.sort&&st.sort.k===c.k;return`<th class="${c.l?'l ':''}${c.stk?'stk':''}" aria-sort="${srt?(st.sort.d>0?'ascending':'descending'):'none'}" scope="col" title="${esc(c.title||'')}"><span class="th">${c.ns?`<span>${esc(c.lb)}</span>`:`<button type="button" class="hs" data-ts="${id}|${c.k}">${esc(c.lb)}<i class="ar"></i></button>`}${c.nf?'':`<button type="button" class="hf${on?' on':''}" data-tf="${id}|${c.k}" aria-label="Filtrar ${esc(c.title||c.lb)}">${FUN}</button>`}</span></th>`;}).join('')+'</tr>';
+ const RR=L.slice(0,st.lim);
+ root.querySelector('tbody').innerHTML=RR.length?RR.map(x=>`<tr${T.link?` data-row="${esc(T.link(x))}"`:''}>${C.map(c=>`<td class="${c.l?'l ':''}${c.stk?'stk ':''}${c.cls?c.cls(x):''}">${c.h?c.h(x):esc(c.v(x)??'—')}</td>`).join('')}</tr>`).join(''):`<tr><td colspan="${C.length}" class="l"><div class="empty-state">${esc(all.length?'Ningún resultado con esos filtros.':(T.empty||'Sin datos.'))}</div></td></tr>`;
+ root.querySelector('tfoot').innerHTML=T.foot&&L.length?T.foot(L,C):'';
+ root.querySelector('.cnt').textContent=`${F(L.length)} de ${F(all.length)}`;
+ const mb=root.querySelector('.more');mb.hidden=L.length<=st.lim;mb.firstChild.textContent=`Mostrar ${F(Math.min(200,L.length-st.lim))} más`;
+ const ks=Object.keys(st.f);root.querySelector('.fchips').innerHTML=ks.map(k=>{const c=tcol(T,k);return c?`<button type="button" class="fchip" data-trm="${id}|${k}" title="Quitar filtro">${esc(c.title||c.lb)}: ${esc(fdesc(c,st.f[k]))}<span aria-hidden="true">✕</span></button>`:'';}).join('')+(ks.length>1?`<button type="button" class="fchip clr" data-trm="${id}|*">Quitar todos</button>`:'');}
+function popOpen(btn,html,ctx){const p=$('#pop');p.innerHTML=html;p.hidden=false;const r=btn.getBoundingClientRect(),w=p.offsetWidth,h=p.offsetHeight;p.style.left=Math.max(8,Math.min(innerWidth-w-8,r.left-8))+'px';p.style.top=(r.bottom+h+8>innerHeight?Math.max(8,r.top-h-6):r.bottom+6)+'px';POP={btn,...ctx};const f=p.querySelector('input:not([type=checkbox])');if(f)f.focus({preventScroll:true});}
+function popClose(){$('#pop').hidden=true;POP=null;}
+function openFilter(id,k,btn){const T=TB[id],c=tcol(T,k),f=T.st.f[k]||{},pc=c.t==='pct';let h=`<div class="ph2">${esc(c.title||c.lb)}</div>`;
+ if(c.t==='cat'){const cnt=new Map();for(const x of T.rows()){const v=c.v(x);for(const y of(Array.isArray(v)?v:[v==null||v===''?'—':v]))cnt.set(y,(cnt.get(y)||0)+1);}
+  const sel=new Set(f.in||[]);h+=`<div class="pl">${[...cnt].sort((a,b)=>b[1]-a[1]).map(([v,n])=>`<label><input type="checkbox" value="${esc(v)}" ${sel.has(String(v))||sel.has(v)?'checked':''}><span>${esc(v)}</span><small>${F(n)}</small></label>`).join('')}</div>`;}
+ else if(c.t==='txt')h+=`<label class="pf">Contiene<input data-pq value="${esc(f.q||'')}" autocomplete="off"></label>`;
+ else h+=`<div class="pr"><label class="pf">Desde${pc?' (%)':''}<input data-pmin inputmode="decimal" value="${f.min!=null?esc(String(f.min).replace('.',',')):''}"></label><label class="pf">Hasta${pc?' (%)':''}<input data-pmax inputmode="decimal" value="${f.max!=null?esc(String(f.max).replace('.',',')):''}"></label></div>`;
+ h+=`<div class="pa"><button type="button" class="btn ghost sm" data-pclr>Quitar</button><button type="button" class="btn sm" data-pok>Aplicar</button></div>`;
+ popOpen(btn,h,{apply:()=>{const p=$('#pop');let nf=null;
+  if(c.t==='cat'){const v=[...p.querySelectorAll('input:checked')].map(i=>i.value);if(v.length)nf={in:v};}
+  else if(c.t==='txt'){const q=p.querySelector('[data-pq]').value.trim();if(q)nf={q};}
+  else{const a=pn(p.querySelector('[data-pmin]').value),b=pn(p.querySelector('[data-pmax]').value);if(Number.isNaN(a)||Number.isNaN(b)){toast('Escribí números, como 12,5.',1);return false;}if(a!=null||b!=null)nf={min:a,max:b};}
+  if(nf)T.st.f[k]=nf;else delete T.st.f[k];T.st.lim=150;tsave(T);trender(id);}});}
+function openCols(id,btn){const T=TB[id];popOpen(btn,`<div class="ph2">Columnas</div><div class="pl">${T.cols.filter(c=>!c.fix).map(c=>`<label><input type="checkbox" data-pc="${c.k}" ${T.st.hid.includes(c.k)?'':'checked'}><span>${esc(c.title||c.lb)}</span><small></small></label>`).join('')}</div><div class="pa"><button type="button" class="btn ghost sm" data-pdef>Restablecer</button><button type="button" class="btn sm" data-pok>Listo</button></div>`,{cols:id,apply:()=>{}});}
+function tcsv(id){if(!dls){toast('La descarga no está disponible acá.',1);return;}const T=TB[id],C=tvis(T).filter(c=>!c.ncsv),L=T.L||[],q=v=>{const s2=v==null?'':String(v);return/[";\n]/.test(s2)?'"'+s2.replace(/"/g,'""')+'"':s2;};
+ const lines=[C.map(c=>q(c.title||c.lb)).join(';')].concat(L.map(x=>C.map(c=>{let v=c.x?c.x(x):c.v(x);if(Array.isArray(v))v=v.join(' ');if(typeof v==='number'&&isFinite(v))v=String(+(c.t==='pct'?v*100:v).toFixed(4)).replace('.',',');return q(v);}).join(';')));
+ dls.save({filename:`amd-${T.file||id}-${new Date().toISOString().slice(0,10)}.csv`,data:'﻿'+lines.join('\n')}).then(()=>toast('CSV guardado.'),()=>{});}
+
+/* ===== definiciones de columnas ===== */
+function rangeSvg(x,w=128){const a=[x.vM,x.vN,x.vB,x.p].filter(Number.isFinite);if(a.length<2||x.vN==null)return'<span class="mute">—</span>';const lo=Math.min(...a),hi=Math.max(...a),pad=(hi-lo)*.06||1,X=v=>(5+(v-lo+pad)/(hi-lo+2*pad)*(w-10)).toFixed(1);
+ return`<svg class="rng" style="width:${w}px;margin:auto" viewBox="0 0 ${w} 18" aria-hidden="true"><line x1="2" x2="${w-2}" y1="9" y2="9" stroke="var(--line2)"/>${x.vM!=null&&x.vB!=null?`<rect x="${X(Math.min(x.vM,x.vB))}" y="4" width="${Math.max(1.5,X(Math.max(x.vM,x.vB))-X(Math.min(x.vM,x.vB)))}" height="10" rx="2" fill="var(--band)"/>`:''}<rect x="${X(x.vN)-1}" y="1" width="2.5" height="16" rx="1" fill="var(--norm)"/>${x.p!=null?`<circle cx="${X(x.p)}" cy="9" r="4" fill="var(--ink)" stroke="var(--panel)" stroke-width="2"/>`:''}</svg>`;}
+const UL={SP500:'S&P',NDX100:'NDX',CEDEAR:'CED',ARG:'ARG'},ULN={SP500:'S&P 500',NDX100:'Nasdaq 100',CEDEAR:'CEDEAR',ARG:'Argentina'};
+const starSvg='<svg viewBox="0 0 24 24"><use href="#i-star"/></svg>';
+const vcl=k=>x=>x[k]==null||x.p==null?'':x[k]>=x.p?'up':'down';
+const sgn=k=>x=>x[k]==null?'':x[k]>=0?'up':'down';
+const tkLink=x=>`<a href="#/accion/${encodeURIComponent(x.t)}">${esc(x.disp||DT(x.t))}</a>`;
+const vtTag=x=>`<span class="tag t-${x.cls}" title="${esc(x.vt)}">${esc(VSHORT[x.cls])}</span>${x.hi?' <span class="flag" title="Supone más de 25 % anual o vale más de 3 veces el precio">Muy alta</span>':''}${x.st==='revisar'?' <span class="flag" title="Datos a revisar">Revisar</span>':''}`;
+const COLS_VAL=[
+ {k:'vM',lb:'Malo',title:'Valor malo US$',t:'num',v:x=>x.vM,cls:vcl('vM'),h:x=>F(x.vM,2)},
+ {k:'vN',lb:'Normal',title:'Valor normal US$',t:'num',v:x=>x.vN,cls:vcl('vN'),h:x=>F(x.vN,2)},
+ {k:'vB',lb:'Bueno',title:'Valor bueno US$',t:'num',v:x=>x.vB,cls:vcl('vB'),h:x=>F(x.vB,2)}];
+tdef('t-scr',{file:'screener',ph:'Ticker o empresa',sort:{k:'mN',d:-1},q:x=>x.disp+' '+x.t+' '+x.name,link:x=>x.t,empty:'Cargando acciones…',
+ rows:()=>{const pr=S.preset,hide=$('#fHide').checked,hideHi=$('#fHi').checked;return ROWS.filter(x=>(pr==='port'||pr==='fav'||!hide||(x.r.kind!=='ETF'&&x.vN!=null))&&(!hideHi||!x.hi)&&(pr!=='opp'||x.cls==='g')&&(pr!=='port'||x.port)&&(pr!=='fav'||x.fav)&&(!S.chips.size||[...S.chips].some(ch=>(x.r.u||[]).includes(ch))));},
+ cols:[{k:'fav',lb:'',title:'Favorita',fix:1,ns:1,nf:1,ncsv:1,v:x=>x.fav,h:x=>`<button class="star" data-fav="${esc(x.t)}" aria-pressed="${x.fav}" aria-label="Favorita ${esc(x.disp)}">${starSvg}</button>`},
+  {k:'t',lb:'Ticker',t:'txt',l:1,stk:1,fix:1,v:x=>x.disp,h:tkLink},
+  {k:'name',lb:'Empresa',t:'txt',l:1,v:x=>x.name,h:x=>`<span class="nm" style="display:block;max-width:210px;overflow:hidden;text-overflow:ellipsis" title="${esc(x.name)}">${esc(x.name)}</span>`},
+  {k:'sector',lb:'Sector',t:'cat',hide:1,v:x=>x.sector||'—'},
+  {k:'p',lb:'Precio',title:'Precio US$',t:'num',v:x=>x.p,h:x=>F(x.p,2)},
+  {k:'chg',lb:'Día',title:'Variación del día',t:'pct',v:x=>x.chg,cls:sgn('chg'),h:x=>SP(x.chg,1)},
+  {k:'d52',lb:'vs máx. 52s',title:'Distancia al máximo de 52 semanas',t:'pct',v:x=>x.d52,h:x=>x.d52==null?'—':P(x.d52,1)},
+  ...COLS_VAL,
+  {k:'rng',lb:'Valor vs precio',ns:1,nf:1,ncsv:1,v:()=>null,h:x=>rangeSvg(x)},
+  {k:'mN',lb:'Margen',title:'Margen del escenario normal',t:'pct',v:x=>x.mN,cls:x=>sgn('mN')(x)+' b6',h:x=>SPc(x.mN)},
+  {k:'mM',lb:'Margen malo',t:'pct',hide:1,v:x=>x.mM,cls:sgn('mM'),h:x=>SPc(x.mM)},
+  {k:'gi',lb:'Crec. implícito',title:'Crecimiento que descuenta el precio',t:'pct',v:x=>x.gi,h:x=>P(x.gi)},
+  {k:'gn',lb:'Crec. normal',title:'Crecimiento del escenario normal',t:'pct',v:x=>x.gn,h:x=>P(x.gn)},
+  {k:'oey',lb:'Rend. dueño',title:'Dinero del dueño / capitalización',t:'pct',v:x=>x.oey,h:x=>P(x.oey)},
+  {k:'mc',lb:'Capitalización',title:'Capitalización US$ M',t:'num',v:x=>x.mc,h:x=>F(x.mc)},
+  {k:'vt',lb:'Método',t:'cat',v:x=>VSHORT[x.cls],s:x=>({g:0,w:1,b:2,m:3})[x.cls],h:vtTag},
+  {k:'al',lb:'Alerta',t:'cat',hide:1,v:x=>x.hi?'Valoración muy alta':x.st==='revisar'?'Revisar datos':'Sin alerta'},
+  {k:'per',lb:'Datos al',t:'cat',v:x=>x.per,cls:x=>/Anual/.test(x.per)?'mute':''},
+  {k:'u',lb:'Universo',t:'cat',hide:1,v:x=>(x.r.u||[]).filter(u=>UL[u]).map(u=>ULN[u]),h:x=>(x.r.u||[]).filter(u=>UL[u]).map(u=>`<span class="u">${esc(UL[u])}</span>`).join('')}]});
+tdef('t-port',{file:'portafolio',ph:'Ticker',sort:{k:'vU',d:-1},q:x=>x.disp+' '+x.name,link:x=>x.t,empty:'Todavía no hay posiciones.',
+ rows:()=>(S.port?S.port.R:[]),
+ cols:[{k:'t',lb:'Ticker',t:'txt',l:1,stk:1,fix:1,v:x=>x.disp,h:tkLink},
+  {k:'name',lb:'Empresa',t:'txt',l:1,hide:1,v:x=>x.name},
+  {k:'sector',lb:'Sector',t:'cat',hide:1,v:x=>x.sector||'—'},
+  {k:'q',lb:'Cantidad',t:'num',v:x=>x.q,h:x=>F(x.q)},
+  {k:'inA',lb:'Entrada $',title:'Precio medio de entrada en pesos',t:'num',v:x=>x.inA,h:x=>F(x.inA,2)},
+  {k:'inU',lb:'Entrada US$',title:'Precio medio de entrada en dólares',t:'num',v:x=>x.inU,h:x=>F(x.inU,2)},
+  {k:'pA',lb:'Hoy $',t:'num',v:x=>x.pA,h:x=>F(x.pA,2)},
+  {k:'pU',lb:'Hoy US$',t:'num',v:x=>x.pU,h:x=>F(x.pU,2)},
+  {k:'chg',lb:'Día',t:'pct',v:x=>x.chg,cls:sgn('chg'),h:x=>SP(x.chg,1)},
+  {k:'d52',lb:'vs máx. 52s',title:'Distancia al máximo de 52 semanas',t:'pct',v:x=>x.d52,h:x=>x.d52==null?'—':P(x.d52,1)},
+  {k:'vU',lb:'Total US$',t:'num',v:x=>x.vU,h:x=>F(x.vU,2)},
+  {k:'w',lb:'Peso',t:'pct',v:x=>x.w,h:x=>P(x.w)},
+  {k:'rU',lb:'Resultado US$',t:'num',v:x=>x.rU,cls:sgn('rU'),h:x=>x.rU==null?'—':(x.rU>=0?'+':'')+F(x.rU,2)},
+  {k:'rP',lb:'Resultado %',t:'pct',v:x=>x.rP,cls:x=>sgn('rP')(x)+' b6',h:x=>SP(x.rP,1)},
+  {k:'p',lb:'Acción US$',title:'Precio de la acción en EE. UU.',t:'num',v:x=>x.p,h:x=>F(x.p,2)},
+  ...COLS_VAL,
+  {k:'mN',lb:'Margen',title:'Margen del escenario normal',t:'pct',v:x=>x.mN,cls:sgn('mN'),h:x=>SPc(x.mN)},
+  {k:'vt',lb:'Método',t:'cat',v:x=>VSHORT[x.cls],s:x=>({g:0,w:1,b:2,m:3})[x.cls],h:vtTag},
+  {k:'tg',lb:'Objetivo',title:'Cantidad objetivo',t:'num',v:x=>x.tg,h:x=>x.tg==null?'—':F(x.tg)+(x.tg!==x.q?` <span class="mute">(${x.tg>x.q?'+':''}${F(x.tg-x.q)})</span>`:'')}],
+ foot:L=>{let v=0,c=0,d=0;for(const x of L){if(x.vU!=null){v+=x.vU;c+=x.costU;if(Number.isFinite(x.chg))d+=x.vU-x.vU/(1+x.chg);}}const r=v-c;
+  return`<tr>${tvis(TB['t-port']).map(cc=>`<td class="${cc.l?'l ':''}${cc.stk?'stk':''}">${cc.k==='t'?'<b>Total</b>':cc.k==='vU'?'<b>'+F(v,2)+'</b>':cc.k==='rU'?`<b class="${UD(r)}">${(r>=0?'+':'')+F(r,2)}</b>`:cc.k==='rP'?`<b class="${UD(r)}">${c?SP(r/c,1):'—'}</b>`:cc.k==='chg'?`<b class="${UD(d)}">${v?SP(d/(v-d),1):'—'}</b>`:cc.k==='w'?'100 %':''}</td>`).join('')}</tr>`;}});
+tdef('t-ops',{file:'operaciones',ph:'Ticker',sort:{k:'date',d:-1},q:x=>x.t+' '+DT(x.t),link:x=>x.t,empty:'Todavía no registraste operaciones.',
+ rows:()=>S.ops.map(o=>{const c=cclAt(o.date);return{...o,disp:DT(o.t),ccl:c,pU:c?o.p/c:null,imp:c?o.q*o.p/c*(o.side==='VENTA'?-1:1):null,year:o.date.slice(0,4)};}),
+ cols:[{k:'date',lb:'Fecha',t:'txt',v:x=>x.date,h:x=>esc(x.date.split('-').reverse().join('/'))},
+  {k:'year',lb:'Año',t:'cat',hide:1,v:x=>x.year},
+  {k:'t',lb:'Ticker',t:'txt',l:1,stk:1,fix:1,v:x=>x.disp,h:tkLink},
+  {k:'side',lb:'Operación',t:'cat',v:x=>x.side==='VENTA'?'Venta':'Compra',h:x=>`<span class="tag ${x.side==='VENTA'?'t-b':'t-g'}">${x.side==='VENTA'?'Venta':'Compra'}</span>`},
+  {k:'q',lb:'Cantidad',t:'num',v:x=>x.q,h:x=>F(x.q)},
+  {k:'p',lb:'Precio $',t:'num',v:x=>x.p,h:x=>F(x.p,2)},
+  {k:'ccl',lb:'CCL',title:'CCL del día',t:'num',v:x=>x.ccl,h:x=>F(x.ccl,2)},
+  {k:'pU',lb:'Precio US$',t:'num',v:x=>x.pU,h:x=>F(x.pU,2)},
+  {k:'imp',lb:'Importe US$',t:'num',v:x=>x.imp,cls:sgn('imp'),h:x=>F(x.imp,2)},
+  {k:'del',lb:'',fix:1,ns:1,nf:1,ncsv:1,v:()=>null,h:x=>`<button class="btn ghost sm" data-op="${esc(x.id)}" type="button">Borrar</button>`}],
+ foot:L=>{const b=L.filter(x=>x.side!=='VENTA').reduce((a,x)=>a+(x.imp||0),0),v=L.filter(x=>x.side==='VENTA').reduce((a,x)=>a-(x.imp||0),0);return`<tr><td colspan="${tvis(TB['t-ops']).length}" class="l"><b>Compras US$ ${F(b,2)}</b> <span class="mute">·</span> <b>Ventas US$ ${F(v,2)}</b></td></tr>`;}});
+tdef('t-aj',{file:'ratios',ph:'Ticker',sort:{k:'t',d:1},q:x=>x.disp,empty:'Sin CEDEARs en el portafolio.',
+ rows:()=>[...new Set([...Object.keys(S.hold||{}),...Object.keys(S.wa).filter(t=>S.wa[t].ratio)])].map(t=>{const w=S.wa[t]||{},p=S.px[t]||{},r=w.ratio||p.ratio,ic=p.ars&&p.px&&r?p.ars*r/p.px:null,dv=ic&&S.meta.ccl?ic/S.meta.ccl-1:null;return{t,disp:DT(t),w,p,r,ic,dv};}),
+ cols:[{k:'t',lb:'Ticker',t:'txt',l:1,fix:1,v:x=>x.disp,h:x=>`<b>${esc(x.disp)}</b>`},
+  {k:'r',lb:'Ratio',t:'num',v:x=>x.r,h:x=>`<input data-w="ratio" data-t="${esc(x.t)}" inputmode="decimal" value="${esc(x.w.ratio??x.p.ratio??'')}" style="width:90px;text-align:center" aria-label="Ratio ${esc(x.disp)}">`},
+  {k:'tg',lb:'Objetivo',title:'Cantidad objetivo',t:'num',v:x=>x.w.target,h:x=>`<input data-w="target" data-t="${esc(x.t)}" inputmode="decimal" value="${esc(x.w.target??'')}" style="width:90px;text-align:center" aria-label="Objetivo ${esc(x.disp)}">`},
+  {k:'ic',lb:'CCL implícito',t:'num',v:x=>x.ic,h:x=>F(x.ic,0)},
+  {k:'dv',lb:'Diferencia',title:'Diferencia con el CCL',t:'pct',v:x=>x.dv,cls:x=>x.dv!=null&&Math.abs(x.dv)>.05?'down':'',h:x=>SP(x.dv,1)},
+  {k:'ok',lb:'Estado',t:'cat',v:x=>x.dv!=null&&Math.abs(x.dv)>.05?'Revisar ratio':'OK'}]});
 
 /* ===== portafolio ===== */
 function usdPer(cur,d){if(!cur||cur==='USD')return 1;if(cur==='ARS'){const c=cclAt(d);return c?1/c:null;}const f=S.fx[cur];if(!f)return null;const ks=Object.keys(f.q||{}).sort();let best=null;for(const k of ks)if(k<=d)best=k;if(!best&&ks.length)best=ks[0];return best?f.q[best]:f.latest||null;}
 function cclAt(d){const H=S.cclH;if(!H.length)return S.meta.ccl||null;let lo=0,hi=H.length-1;if(d<H[0][0])return H[0][1];while(lo<hi){const m=(lo+hi+1)>>1;if(H[m][0]<=d)lo=m;else hi=m-1;}return H[lo][1];}
 function holdings(){const h={};for(const o of[...S.ops].sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:0)){const x=h[o.t]||(h[o.t]={q:0,cost:0,costU:0});const c=cclAt(o.date);if(o.side==='VENTA'){const a=x.q?x.cost/x.q:0,au=x.q?x.costU/x.q:0;x.cost-=a*o.q;x.costU-=au*o.q;x.q-=o.q;}else{x.q+=o.q;x.cost+=o.q*o.p;x.costU+=c?o.q*o.p/c:0;}}for(const k in h)if(h[k].q<=1e-9)delete h[k];return h;}
 function ars(t){const p=S.px[t]||{},w=S.wa[t]||{},c=S.meta.ccl;if(p.ars>0&&(!w.ratio||!p.ratio||w.ratio===p.ratio))return p.ars;const r=w.ratio||p.ratio;return p.px&&r&&c?p.px*c/r:null;}
-function portRows(){const h=S.hold,ccl=S.meta.ccl;let totU=0,costU=0,totA=0,inG=0,dayU=0;
- const R=Object.keys(h).map(t=>{const p=ars(t),pu=p!=null&&ccl?p/ccl:null,vU=pu!=null?pu*h[t].q:null,chg=S.px[t]&&S.px[t].chg;if(vU!=null){totU+=vU;costU+=h[t].costU;totA+=p*h[t].q;if(Number.isFinite(chg))dayU+=vU-vU/(1+chg);}const c=calc(t);if(c.cls==='g'&&vU)inG+=vU;return{t,x:h[t],p,pu,vU,c,chg};}).sort((a,b)=>(b.vU||0)-(a.vU||0));
- return{R,totU,costU,totA,inG,dayU};}
-function renderPort(){const{R,totU,costU,totA,inG,dayU}=portRows(),res=totU-costU;
- S.port={R,totU,costU,totA,inG,dayU};
- $('#pt tbody').innerHTML=R.length?R.map(({t,x,p,pu,vU,c,chg})=>{const r=vU!=null?vU-x.costU:null,tg=S.wa[t]&&S.wa[t].target,vv=c.v[S.ri];
-  return`<tr data-row="${esc(t)}"><td class="l stk tk"><a href="#/accion/${encodeURIComponent(t)}">${esc(DT(t))}</a></td><td>${F(x.q)}</td><td>${F(x.cost/x.q,2)}</td><td>${F(x.costU/x.q,2)}</td><td>${F(p,2)}</td><td>${F(pu,2)}</td><td class="${UD(chg)}">${SP(chg,1)}</td><td>${F(vU,2)}</td><td>${totU&&vU?P(vU/totU):'—'}</td><td class="${UD(r)}">${r==null?'—':`${SP(r/x.costU,1)} <span class="mute">·</span> ${F(r,2)}`}</td>${vv.map(z=>`<td class="${z==null||c.p==null?'':z>=c.p?'up':'down'}">${F(z,2)}</td>`).join('')}<td>${F(c.p,2)}</td><td class="l"><span class="tag t-${c.cls}" title="${esc(c.vt)}">${esc(VSHORT[c.cls])}</span></td><td>${tg!=null?F(tg)+(tg!==x.q?` <span class="mute">(${tg>x.q?'+':''}${F(tg-x.q)})</span>`:''):'—'}</td></tr>`;}).join(''):`<tr><td colspan="16" class="l"><div class="empty-state">Todavía no hay posiciones. Registrá tu primera compra con el botón de arriba.</div></td></tr>`;
- $('#pt tfoot').innerHTML=R.length?`<tr><th class="l stk">Total</th><th></th><th></th><th></th><th></th><th></th><th class="${UD(dayU)}">${totU?SP(dayU/(totU-dayU),1):'—'}</th><th>${F(totU,2)}</th><th>100 %</th><th class="${UD(res)}">${costU?SP(res/costU,1)+' · '+F(res,2):'—'}</th><th colspan="6"></th></tr>`:'';
- const heroPort=`<div><div class="lbl">Valor del portafolio</div><div class="big">US$ ${F(totU)}</div><div class="sub">$ ${F(totA)} al CCL $ ${F(S.meta.ccl,2)} · <span class="${UD(dayU)}">${SP(totU?dayU/(totU-dayU):null,2)} hoy</span></div></div>
-  <div><div class="lbl">Resultado en dólares</div><div class="val ${UD(res)}">${costU?(res>=0?'+':'−')+'US$ '+F(Math.abs(res)):'—'}</div><div class="sub">${costU?SP(res/costU,1)+' sobre US$ '+F(costU)+' invertidos':'—'}</div></div>
-  <div><div class="lbl">En acciones que valen más que su precio</div><div class="val">${totU?P(inG/totU,0):'—'}</div><div class="sub">US$ ${F(inG)} del total</div></div>`;
- $('#pHero').innerHTML=heroPort+`<div><div class="lbl">Posiciones</div><div class="val">${F(R.length)}</div><div class="sub">${F(S.ops.length)} operaciones registradas</div></div>`;
- $('#pL').textContent=R.length?`${R.length} posiciones · resultados en dólares al CCL de cada operación.`:'Sin posiciones abiertas.';
- // composición
- const mx=Math.max(...R.map(r=>r.vU||0),1);
- $('#pAlloc').innerHTML=R.slice(0,14).map(r=>`<li style="grid-template-columns:72px minmax(0,1fr) 56px"><a class="tk" href="#/accion/${encodeURIComponent(r.t)}">${esc(DT(r.t))}</a><div class="bar"><i style="left:0;width:${((r.vU||0)/mx*100).toFixed(1)}%;background:var(--s1)"></i></div><span class="num">${totU&&r.vU?P(r.vU/totU):'—'}</span></li>`).join('')+(R.length>14?`<li style="grid-template-columns:1fr"><span class="small mute">Y ${R.length-14} posiciones más en la tabla.</span></li>`:'')||'<li style="grid-template-columns:1fr"><span class="mute small">Sin posiciones.</span></li>';
- $('#pRateL').textContent=`Margen normal pidiendo ${P([S.cfg.reqMin,S.cfg.reqIdeal][S.ri],0)}`;
- $('#pMar').innerHTML=marginList(R.map(r=>({t:r.t,m:r.c.cls==='m'||!r.c.p||r.c.v[S.ri][1]==null?null:r.c.v[S.ri][1]/r.c.p-1,cls:r.c.cls})),14);
- // inicio
- $('#hV').classList.remove('skel');$('#hV').textContent='US$ '+F(totU);
- $('#hVs').innerHTML=`$ ${F(totA)} · <span class="${UD(dayU)}">${SP(totU?dayU/(totU-dayU):null,2)} hoy (${dayU>=0?'+':'−'}US$ ${F(Math.abs(dayU))})</span>`;
- $('#hR').className='val '+UD(res);$('#hR').textContent=costU?(res>=0?'+':'−')+'US$ '+F(Math.abs(res)):'—';$('#hRs').textContent=costU?SP(res/costU,1)+' sobre US$ '+F(costU)+' invertidos':'—';
- $('#hG').textContent=totU?P(inG/totU,0):'—';$('#hGs').textContent=`US$ ${F(inG)} de US$ ${F(totU)}`;
- $('#hiL').textContent=R.length?`${R.length} posiciones, valuadas con el método pidiendo ${P([S.cfg.reqMin,S.cfg.reqIdeal][S.ri],0)} al año.`:(S.live.db?'Todavía no registraste operaciones.':'Cargando tus datos…');
- $('#hpR').textContent=`pidiendo ${P([S.cfg.reqMin,S.cfg.reqIdeal][S.ri],0)}`;
- $('#hP').innerHTML=marginList(R.map(r=>({t:r.t,m:r.c.cls==='m'||!r.c.p||r.c.v[S.ri][1]==null?null:r.c.v[S.ri][1]/r.c.p-1,cls:r.c.cls,chg:r.chg})),10);}
+function d52(t){const p=S.px[t]||{},px=price(t);if(!px||!(p.hi52>0))return null;return px/Math.max(p.hi52,px)-1;}
+function portCalc(){const h=S.hold,ccl=S.meta.ccl;let totU=0,costU=0,totA=0,inG=0,dayU=0;
+ const R=Object.keys(h).map(t=>{const x=h[t],pA=ars(t),pU=pA!=null&&ccl?pA/ccl:null,vU=pU!=null?pU*x.q:null,chg=S.px[t]&&S.px[t].chg,c=calc(t),r=S.by[t]||{},v=c.v[S.ri];
+  if(vU!=null){totU+=vU;costU+=x.costU;totA+=pA*x.q;if(Number.isFinite(chg))dayU+=vU-vU/(1+chg);}if(c.cls==='g'&&vU)inG+=vU;
+  const rU=vU!=null?vU-x.costU:null;return{t,disp:DT(t),name:r.name||'',sector:r.sector,q:x.q,costU:x.costU,inA:x.cost/x.q,inU:x.costU/x.q,pA,pU,vU,chg,d52:d52(t),rU,rP:rU!=null&&x.costU?rU/x.costU:null,p:c.p,vM:v[0],vN:v[1],vB:v[2],mN:c.cls!=='m'&&c.p&&v[1]!=null?v[1]/c.p-1:null,cls:c.cls,vt:c.vt,hi:c.hi,st:r.st,tg:S.wa[t]&&S.wa[t].target,c};});
+ for(const x of R)x.w=totU&&x.vU?x.vU/totU:null;
+ S.port={R,totU,costU,totA,inG,dayU};}
+const money=(v,d=0)=>v==null||!isFinite(v)?'—':(v<0?'−':'')+'US$ '+F(Math.abs(v),d);
+const smoney=(v,d=0)=>v==null||!isFinite(v)?'—':(v>=0?'+':'−')+'US$ '+F(Math.abs(v),d);
+function renderSide(){const{totU,costU,totA,dayU,R}=S.port,res=totU-costU,dp=totU?dayU/(totU-dayU):null;
+ $('#sbV').textContent=R.length?money(totU):'—';$('#sbA').textContent=R.length?'$ '+F(totA):'';
+ $('#sbD').className=UD(dayU);$('#sbD').innerHTML=R.length?`<span>${SP(dp,2)}</span><small>${smoney(dayU)}</small>`:'—';
+ $('#sbR').className=UD(res);$('#sbR').innerHTML=costU?`<span>${SP(res/costU,1)}</span><small>${smoney(res)}</small>`:'—';
+ $('#sbC').textContent=S.meta.ccl?'$ '+F(S.meta.ccl,2):'—';$('#sbU').textContent=FD(S.meta.pxAt);
+ const old=S.meta.pxAt&&(Date.now()-new Date(S.meta.pxAt))>36*3600e3;$('#sbU').className=old?'down':'';$('#sbU').title=old?'Precios de hace más de un día':'';
+ $('#mC').textContent=$('#sbC').textContent;$('#mU').textContent=FD(S.meta.pxAt);$('#mB').textContent=FD(S.meta.genAt);}
+function renderPort(){const{R,totU,costU,totA,inG,dayU}=S.port,res=totU-costU,R0=P([S.cfg.reqMin,S.cfg.reqIdeal][S.ri],0);
+ $('#pHero').innerHTML=`<div><div class="lbl">Portafolio</div><div class="big">${money(totU)}</div><div class="sub">$ ${F(totA)} · <span class="${UD(dayU)}">${SP(totU?dayU/(totU-dayU):null,2)} hoy</span></div></div>
+  <div><div class="lbl">Resultado</div><div class="val ${UD(res)}">${costU?smoney(res):'—'}</div><div class="sub">${costU?SP(res/costU,1)+' sobre '+money(costU):'—'}</div></div>
+  <div><div class="lbl">Bajo su valor</div><div class="val">${totU?P(inG/totU,0):'—'}</div><div class="sub">${money(inG)}</div></div>
+  <div><div class="lbl">Posiciones</div><div class="val">${F(R.length)}</div><div class="sub">${F(S.ops.length)} operaciones</div></div>`;
+ $('#pL').textContent=R.length?`${R.length} posiciones, en dólares.`:'Sin posiciones.';
+ const RS=[...R].sort((a,b)=>(b.vU||0)-(a.vU||0)),mx=Math.max(...RS.map(r=>r.vU||0),1);
+ $('#pAlloc').innerHTML=RS.slice(0,12).map(r=>`<li style="grid-template-columns:72px minmax(0,1fr) 56px"><a class="tk" href="#/accion/${encodeURIComponent(r.t)}">${esc(r.disp)}</a><div class="bar"><i style="left:0;width:${((r.vU||0)/mx*100).toFixed(1)}%;background:var(--s1)"></i></div><span class="num">${P(r.w)}</span></li>`).join('')+(RS.length>12?`<li style="grid-template-columns:1fr"><span class="small mute">Y ${RS.length-12} más.</span></li>`:'')||'<li style="grid-template-columns:1fr"><span class="mute small">Sin posiciones.</span></li>';
+ $('#pRateL').textContent='pidiendo '+R0;$('#hpR').textContent='pidiendo '+R0;
+ const ml=marginList(R.map(r=>({t:r.t,m:r.mN})),12);$('#pMar').innerHTML=ml;$('#hP').innerHTML=ml;
+ $('#hV').classList.remove('skel');$('#hV').textContent=money(totU);
+ $('#hVs').innerHTML=`$ ${F(totA)} · <span class="${UD(dayU)}">${SP(totU?dayU/(totU-dayU):null,2)} hoy (${smoney(dayU)})</span>`;
+ $('#hR').className='val '+UD(res);$('#hR').textContent=costU?smoney(res):'—';$('#hRs').textContent=costU?SP(res/costU,1)+' sobre '+money(costU):'—';
+ $('#hG').textContent=totU?P(inG/totU,0):'—';$('#hGs').textContent=`${money(inG)} de ${money(totU)}`;
+ $('#hiL').textContent=R.length?`${R.length} posiciones · pidiendo ${R0}`:(S.live.db?'Sin operaciones todavía.':'Cargando…');
+ if(S.view==='portafolio')trender('t-port');}
 function marginList(items,n){const it=items.filter(x=>x.m!=null).sort((a,b)=>b.m-a.m),none=items.filter(x=>x.m==null);if(!it.length)return'<li style="grid-template-columns:1fr"><span class="mute small">Sin posiciones valuadas.</span></li>';
  const sh=it.length>n?[...it.slice(0,Math.ceil(n/2)),...it.slice(-Math.floor(n/2))]:it;
  const cap=Math.max(...sh.map(x=>Math.abs(x.m)),.2),lim=Math.min(cap,1.5),W=v=>Math.min(Math.abs(v),lim)/lim*50;
- return sh.map(x=>`<li style="grid-template-columns:72px minmax(0,1fr) 62px"><a class="tk" href="#/accion/${encodeURIComponent(x.t)}">${esc(DT(x.t))}</a><div class="bar" title="${esc(SP(x.m))}"><span class="z" style="left:50%"></span><i style="${x.m>=0?`left:50%`:`right:50%`};width:${W(x.m).toFixed(1)}%;background:${x.m>=0?'var(--up)':'var(--down)'}"></i></div><span class="num ${x.m>=0?'up':'down'}" style="font-weight:600">${SP(x.m)}</span></li>`).join('')
-  +(it.length>n?`<li style="grid-template-columns:1fr"><span class="small mute">Se muestran las ${Math.ceil(n/2)} con más margen y las ${Math.floor(n/2)} con menos, de ${it.length} valuadas.</span></li>`:'')
+ return sh.map(x=>`<li style="grid-template-columns:72px minmax(0,1fr) 62px"><a class="tk" href="#/accion/${encodeURIComponent(x.t)}">${esc(DT(x.t))}</a><div class="bar" title="${esc(SP(x.m))}"><span class="z" style="left:50%"></span><i style="${x.m>=0?'left:50%':'right:50%'};width:${W(x.m).toFixed(1)}%;background:${x.m>=0?'var(--up)':'var(--down)'}"></i></div><span class="num ${x.m>=0?'up':'down'}" style="font-weight:600">${SPc(x.m)}</span></li>`).join('')
+  +(it.length>n?`<li style="grid-template-columns:1fr"><span class="small mute">Las ${Math.ceil(n/2)} de más y las ${Math.floor(n/2)} de menos margen.</span></li>`:'')
   +(none.length?`<li style="grid-template-columns:1fr"><span class="small mute">Sin valuar: ${none.map(x=>esc(DT(x.t))).join(', ')}.</span></li>`:'');}
 function renderHome(){const top=ROWS.filter(x=>x.cls==='g'&&!x.hi&&x.mN!=null&&x.st!=='revisar').sort((a,b)=>b.mN-a.mN).slice(0,10);
- $('#hTop').innerHTML=top.length?top.map(x=>`<li style="grid-template-columns:76px minmax(0,1fr) 128px 58px"><a class="tk" href="#/accion/${encodeURIComponent(x.t)}">${esc(x.disp)}</a><span class="nm">${esc(x.name)}</span>${rangeSvg(x)}<span class="num up" style="font-weight:600">${SP(x.mN)}</span></li>`).join(''):`<li style="grid-template-columns:1fr"><span class="mute small">${ROWS.length?'Ninguna acción pasa el filtro hoy.':'Cargando…'}</span></li>`;
- const val=ROWS.filter(x=>x.mN!=null),opp=val.filter(x=>x.cls==='g');$('#hO').textContent=val.length?F(opp.length):'—';$('#hOs').textContent=val.length?`de ${F(val.length)} acciones valuadas · ${F(opp.filter(x=>x.hi).length)} con valoración muy alta`:'—';}
-function renderOps(){const q=$('#oQ').value.trim().toUpperCase(),sd=S.oSide||'';const L=[...S.ops].filter(o=>(!q||o.t.includes(q)||DT(o.t).includes(q))&&(!sd||o.side===sd)).sort((a,b)=>a.date<b.date?1:a.date>b.date?-1:0);
- $('#oCnt').textContent=`${F(L.length)} de ${F(S.ops.length)} operaciones`;
- $('#oL').textContent=S.ops.length?`${F(S.ops.length)} operaciones. Cada precio en pesos se dolariza al CCL de su fecha.`:'Todavía no registraste operaciones.';
- $('#ot tbody').innerHTML=L.map(o=>{const c=cclAt(o.date);return`<tr data-row="${esc(o.t)}"><td class="l">${esc(o.date.split('-').reverse().join('/'))}</td><td class="l tk"><a href="#/accion/${encodeURIComponent(o.t)}">${esc(DT(o.t))}</a></td><td class="l"><span class="tag ${o.side==='VENTA'?'t-b':'t-g'}">${o.side==='VENTA'?'Venta':'Compra'}</span></td><td>${F(o.q)}</td><td>${F(o.p,2)}</td><td>${F(c,2)}</td><td>${F(o.p/c,2)}</td><td>${F(o.q*o.p/c*(o.side==='VENTA'?-1:1),2)}</td><td><button class="btn ghost sm" data-op="${esc(o.id)}" type="button">Borrar</button></td></tr>`;}).join('')||`<tr><td colspan="9" class="l"><div class="empty-state">No hay operaciones con ese filtro.</div></td></tr>`;
- for(const b of $$('#oSide button'))b.setAttribute('aria-pressed',String(b.dataset.s===sd));}
+ $('#hTop').innerHTML=top.length?top.map(x=>`<li style="grid-template-columns:76px minmax(0,1fr) 128px 58px"><a class="tk" href="#/accion/${encodeURIComponent(x.t)}">${esc(x.disp)}</a><span class="nm">${esc(x.name)}</span>${rangeSvg(x)}<span class="num up" style="font-weight:600">${SPc(x.mN)}</span></li>`).join(''):`<li style="grid-template-columns:1fr"><span class="mute small">${ROWS.length?'Ninguna hoy.':'Cargando…'}</span></li>`;
+ const val=ROWS.filter(x=>x.mN!=null),opp=val.filter(x=>x.cls==='g');$('#hO').textContent=val.length?F(opp.length):'—';$('#hOs').textContent=val.length?`de ${F(val.length)} valuadas`:'—';}
 function renderSet(){for(const[k,id]of[['reqMin','#sMin'],['reqIdeal','#sIdeal'],['gTerm','#sTerm']])if(document.activeElement!==$(id))$(id).value=String(+(S.cfg[k]*100).toFixed(2)).replace('.',',');
- const ts=[...new Set([...Object.keys(S.hold||{}),...Object.keys(S.wa).filter(t=>S.wa[t].ratio)])].sort();
- $('#wt tbody').innerHTML=ts.map(t=>{const w=S.wa[t]||{},p=S.px[t]||{},r=w.ratio||p.ratio,ic=p.ars&&p.px&&r?p.ars*r/p.px:null,dv=ic&&S.meta.ccl?ic/S.meta.ccl-1:null;
-  return`<tr><td class="l"><b>${esc(DT(t))}</b></td><td><input data-w="ratio" data-t="${esc(t)}" inputmode="decimal" value="${esc(w.ratio??p.ratio??'')}" style="width:100px;text-align:right" aria-label="Ratio ${esc(t)}"></td><td><input data-w="target" data-t="${esc(t)}" inputmode="decimal" value="${esc(w.target??'')}" style="width:100px;text-align:right" aria-label="Objetivo ${esc(t)}"></td><td class="${dv!=null&&Math.abs(dv)>.05?'down':''}">${F(ic,0)}${dv!=null&&Math.abs(dv)>.05?' · revisá el ratio':''}</td></tr>`;}).join('')||'<tr><td colspan="4" class="l mute">Sin CEDEARs en el portafolio.</td></tr>';
- const m=S.meta;$('#about').innerHTML=`<p style="margin:0 0 8px">Un motor gratuito en GitHub descarga cada mañana de días hábiles los balances de la SEC, la CVM o Yahoo Finance, las estimaciones de analistas y las noticias; y a la apertura y al cierre, los precios y el CCL. Claude publica esos datos en este portal a las 12:30 y 18:30. Las empresas sin datos estructurados se leen con IA de sus informes oficiales.</p><p style="margin:0">Balances: <b>${esc(m.genAt?new Date(m.genAt).toLocaleString('es-AR'):'—')}</b> · Precios: <b>${esc(m.pxAt?new Date(m.pxAt).toLocaleString('es-AR'):'—')}</b><br>CCL: mediana de ${esc(m.cclN||'—')} CEDEARs; referencia dolarapi $ ${F(m.cclRef,2)}.</p>`;}
-function renderWL(){const fav=Object.keys(S.wa).filter(t=>S.wa[t].fav);let list=fav.length?fav:Object.keys(S.hold).slice(0,12);
- list=list.map(t=>({t,p:price(t),chg:S.px[t]&&S.px[t].chg,n:(S.by[t]&&S.by[t].name)||''})).sort((a,b)=>DT(a.t).localeCompare(DT(b.t)));
- $('#wlN').textContent=fav.length?F(fav.length):'';
- $('#wl').innerHTML=list.length?list.map(x=>`<a href="#/accion/${encodeURIComponent(x.t)}" ${S.sel===x.t&&S.view==='accion'?'aria-current="page"':''}><b>${esc(DT(x.t))}</b><span class="${UD(x.chg)}">${SP(x.chg,1)}</span><small>${esc(x.n)}</small></a>`).join('')+(fav.length?'':'<div class="empty">Tus posiciones. Marcá la estrella de una acción para seguirla acá.</div>'):'<div class="empty">Marcá la estrella de una acción para seguirla acá.</div>';}
-function renderTop(){$('#tCcl').textContent=S.meta.ccl?'$ '+F(S.meta.ccl,2):'—';
- const fmt=d=>d?new Date(d).toLocaleString('es-AR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'—';
- $('#tUpd').textContent=fmt(S.meta.pxAt);$('#tGen').textContent=fmt(S.meta.genAt);
- const old=S.meta.pxAt&&(Date.now()-new Date(S.meta.pxAt))>36*3600e3;$('#tDot').className='dot'+(old?' off':'');$('#tDot').title=old?'Precios de hace más de un día':'Precios recientes';}
-function renderAll(){S.hold=holdings();ROWS=S.rows.map(rowOf);
- renderTop();renderWL();
- if(S.view==='screener')renderTable();if(S.view==='inicio')renderHome();
- renderPort();if(S.view==='operaciones')renderOps();if(S.view==='ajustes')renderSet();if(S.view==='accion')renderStock();}
+ const m=S.meta;$('#about').innerHTML=`<p style="margin:0 0 8px">Balances cada mañana; precios y CCL a la apertura y al cierre; balances sin datos estructurados, leídos con IA.</p><p style="margin:0">Balances: <b>${esc(FDL(m.genAt))}</b><br>Precios: <b>${esc(FDL(m.pxAt))}</b><br>CCL: mediana de ${esc(m.cclN||'—')} CEDEARs</p>`;
+ if(!document.activeElement||!document.activeElement.closest('#t-aj'))trender('t-aj');}
+function renderScr(){const val=ROWS.filter(x=>x.mN!=null),opp=val.filter(x=>x.cls==='g');
+ $('#sL').textContent=val.length?`${F(opp.length)} baratas de ${F(val.length)} · pidiendo ${P([S.cfg.reqMin,S.cfg.reqIdeal][S.ri],0)}`:'Cargando…';trender('t-scr');}
+function syncScrUI(){const ch=[['SP500','S&P 500'],['NDX100','Nasdaq 100'],['CEDEAR','CEDEARs'],['ARG','Argentina']];
+ $('#chips').innerHTML=ch.map(([k,l])=>`<button type="button" class="chip" data-chip="${k}" aria-pressed="${S.chips.has(k)}">${l}</button>`).join('');
+ for(const b of $$('#preset button'))b.setAttribute('aria-pressed',String(b.dataset.p===S.preset));
+ for(const b of $$('#rate button'))b.setAttribute('aria-pressed',String(+b.dataset.r===S.ri));}
+function renderAll(){S.hold=holdings();ROWS=S.rows.map(rowOf);portCalc();
+ renderSide();
+ if(S.view==='screener')renderScr();if(S.view==='inicio')renderHome();
+ renderPort();if(S.view==='operaciones'){trender('t-ops');$('#oL').textContent=S.ops.length?`${F(S.ops.length)} operaciones, dolarizadas al CCL de su fecha.`:'Sin operaciones.';}
+ if(S.view==='ajustes')renderSet();if(S.view==='accion')renderStock();}
+let ROWS=[];
 
 /* ===== página de la acción ===== */
 function nice(lo,hi,n){const sp=hi-lo||1,st=10**Math.floor(Math.log10(sp/n)),e=sp/n/st,s=(e>=5?10:e>=2?5:e>=1.5?2:1)*st,a=[];for(let v=Math.ceil(lo/s)*s;v<=hi+1e-9;v+=s)a.push(+v.toFixed(10));return a;}
@@ -696,42 +783,42 @@ function drawHist(H){const svg=$('#hFig svg'),W=svg.clientWidth||700,Ht=svg.clie
   if(W>=520||i%2===0||i===h.length-1)s+=`<text x="${L+i*bw+bw/2}" y="${Ht-6}" text-anchor="middle" font-size="11.5" fill="var(--mute)">${esc(x.fy)}</text>`;
   s+=`<rect class="hit" data-i="${i}" x="${L+i*bw}" y="${T}" width="${bw}" height="${B-T}" fill="transparent"/>`;});
  svg.innerHTML=s;svg._h=h;}
-function analysis(t,c){const e=c.e,r0=c.v[0],r1=c.v[1],p=c.p,out=[];if(!c.v[0][1]||p==null)return['No hay datos suficientes para valuar esta acción con el método.'];
- const gi=impliedG(c.oe,S.cfg.reqMin,c.nd,e.shares,p),gi15=impliedG(c.oe,S.cfg.reqIdeal,c.nd,e.shares,p);
- const pos=p<=r0[0]?'por debajo incluso del escenario malo':p<=r0[1]?'entre el escenario malo y el normal':p<=r0[2]?'entre el escenario normal y el bueno':'por encima del escenario bueno';
- out.push(`A US$ ${F(p,2)}, el precio está <b>${pos}</b> pidiendo ${P(S.cfg.reqMin,0)} al año (normal: US$ ${F(r0[1],2)}, margen ${SP(r0[1]/p-1)}).`);
- out.push(`Pidiendo la ideal (${P(S.cfg.reqIdeal,0)}), el valor normal es US$ ${F(r1[1],2)}: ${p<=r1[1]?'el precio de hoy la cumple.':'el precio tendría que bajar '+P(1-r1[1]/p,0)+' para cumplirla.'}`);
- if(gi!=null)out.push(`El precio descuenta que el dinero del dueño crezca <b>${P(gi)}</b> por año durante 10 años para rendir ${P(S.cfg.reqMin,0)} (${gi15!=null?P(gi15)+' para rendir '+P(S.cfg.reqIdeal,0):'—'}). El escenario normal supone ${P(e.gn)}${e.c.hist&&isFinite(e.c.hist.oeCagr)?' y en los últimos '+e.c.hist.years+' años creció '+P(e.c.hist.oeCagr):''}.`);
- else if(c.oe<=0)out.push('El dinero del dueño es negativo: el método no puede valuar esta empresa hasta que genere caja.');
- if(e.ocf>0)out.push(`El pago en acciones equivale al ${P(e.sbc/e.ocf,0)} de la caja operativa${e.sbc/e.ocf>.2?': es alto y diluye al accionista.':'.'}`);
- if(c.oe>0)out.push(c.nd>0?`Deuda neta de US$ ${F(c.nd)} M: ${F(c.nd/c.oe,1)} años de dinero del dueño.`:`Tiene caja neta de US$ ${F(-c.nd)} M.`);
- if(S.hold[t]&&c.v[0][2]!=null&&p>c.v[0][2])out.push('<b>Regla de venta 3:</b> está en tu portafolio y el precio ya no te da lo que pedís ni en el escenario bueno.');
+function analysis(t,c){const e=c.e,r0=c.v[0],r1=c.v[1],p=c.p,out=[];if(!c.v[0][1]||p==null)return['Sin datos suficientes para valuarla.'];
+ const gi=impliedG(c.oe,S.cfg.reqMin,c.nd,e.shares,p);
+ const pos=p<=r0[0]?'debajo del escenario malo':p<=r0[1]?'entre el malo y el normal':p<=r0[2]?'entre el normal y el bueno':'arriba del escenario bueno';
+ out.push(`Precio <b>${pos}</b> (pidiendo ${P(S.cfg.reqMin,0)}). Margen normal: <b>${SP(r0[1]/p-1)}</b>.`);
+ out.push(p<=r1[1]?`Rinde la ideal (${P(S.cfg.reqIdeal,0)}).`:`Para rendir ${P(S.cfg.reqIdeal,0)} debería bajar ${P(1-r1[1]/p,0)}.`);
+ if(gi!=null)out.push(`El precio descuenta <b>${P(gi)}</b> anual; el normal supone ${P(e.gn)}${e.c.hist&&isFinite(e.c.hist.oeCagr)?` y en ${e.c.hist.years} años creció ${P(e.c.hist.oeCagr)}`:''}.`);
+ else if(c.oe<=0)out.push('Dinero del dueño negativo: no se puede valuar.');
+ if(e.ocf>0&&e.sbc/e.ocf>.2)out.push(`Pago en acciones alto: ${P(e.sbc/e.ocf,0)} de la caja.`);
+ if(c.oe>0)out.push(c.nd>0?`Deuda neta: ${F(c.nd/c.oe,1)} años de dinero del dueño.`:`Caja neta: US$ ${F(-c.nd)} M.`);
+ if(S.hold[t]&&c.v[0][2]!=null&&p>c.v[0][2])out.push('<b>Regla de venta 3:</b> supera el escenario bueno.');
  if(e.c.note)out.push('<span class="mute">'+esc(e.c.note)+'</span>');return out;}
 const VICON={g:'i-ok',w:'i-warn',b:'i-x',m:'i-q'},VCOL={g:'var(--up)',w:'var(--warn)',b:'var(--down)',m:'var(--mute)'};
 function renderTicket(t,c){const e=c.e,h=S.hold[t],p=c.p,ri=S.ri,R=[S.cfg.reqMin,S.cfg.reqIdeal];
  let hold='';if(h){const pa=ars(t),pu=pa&&S.meta.ccl?pa/S.meta.ccl:null,vU=pu!=null?pu*h.q:null,res=vU!=null?vU-h.costU:null;
-  hold=`<div class="sec">Tu posición</div><dl><div><dt>Cantidad</dt><dd>${F(h.q)}</dd></div><div><dt>Entrada US$ por CEDEAR</dt><dd>${F(h.costU/h.q,2)}</dd></div><div><dt>Valor hoy</dt><dd>US$ ${F(vU,2)}</dd></div><div><dt>Resultado</dt><dd class="${UD(res)}">${res==null?'—':SP(res/h.costU,1)+' · '+F(res,2)}</dd></div></dl>`;}
- $('#tk').innerHTML=`<div class="vd" style="color:${VCOL[c.cls]}"><svg class="i"><use href="#${VICON[c.cls]}"/></svg><div><b>${esc(c.vt)}</b><span class="small mute">Veredicto del método${c.hi?' · <span style="color:var(--warn)">valoración muy alta</span>':''}</span></div></div>
- <dl><div><dt>Precio máximo · mínima ${P(R[0],0)}</dt><dd>${c.v[0][1]!=null?'US$ '+F(c.v[0][1],2):'—'}</dd></div>
- <div><dt>Precio máximo · ideal ${P(R[1],0)}</dt><dd>${c.v[1][1]!=null?'US$ '+F(c.v[1][1],2):'—'}</dd></div>
- <div><dt>Margen normal (${P(R[ri],0)})</dt><dd class="${p&&c.v[ri][1]!=null?UD(c.v[ri][1]/p-1):''}">${p&&c.v[ri][1]!=null&&c.cls!=='m'?SP(c.v[ri][1]/p-1):'—'}</dd></div>
- <div><dt>Crecimiento que descuenta</dt><dd>${P(impliedG(c.oe,R[ri],c.nd,e.shares,p))}</dd></div>
- <div><dt>Crecimiento normal supuesto</dt><dd>${P(e.gn)}</dd></div></dl>${hold}
- <div class="acts"><button class="btn" type="button" data-newop="${esc(t)}"><svg class="i"><use href="#i-plus"/></svg>Registrar operación</button><button class="btn ghost" type="button" data-gotab="calc">Ajustar en la calculadora</button></div>`;}
+  hold=`<div class="sec">Tu posición</div><dl><div><dt>Cantidad</dt><dd>${F(h.q)}</dd></div><div><dt>Entrada US$</dt><dd>${F(h.costU/h.q,2)}</dd></div><div><dt>Valor hoy</dt><dd>US$ ${F(vU,2)}</dd></div><div><dt>Resultado</dt><dd class="${UD(res)}">${res==null?'—':SP(res/h.costU,1)+' · '+F(res,2)}</dd></div></dl>`;}
+ $('#tk').innerHTML=`<div class="vd" style="color:${VCOL[c.cls]}"><svg class="i"><use href="#${VICON[c.cls]}"/></svg><div><b>${esc(c.vt)}</b><span class="small mute">Método${c.hi?' · <span style="color:var(--warn)">valoración muy alta</span>':''}</span></div></div>
+ <dl><div><dt>Comprar hasta (${P(R[0],0)})</dt><dd>${c.v[0][1]!=null?'US$ '+F(c.v[0][1],2):'—'}</dd></div>
+ <div><dt>Comprar hasta (${P(R[1],0)})</dt><dd>${c.v[1][1]!=null?'US$ '+F(c.v[1][1],2):'—'}</dd></div>
+ <div><dt>Margen (${P(R[ri],0)})</dt><dd class="${p&&c.v[ri][1]!=null?UD(c.v[ri][1]/p-1):''}">${p&&c.v[ri][1]!=null&&c.cls!=='m'?SP(c.v[ri][1]/p-1):'—'}</dd></div>
+ <div><dt>Crec. implícito</dt><dd>${P(impliedG(c.oe,R[ri],c.nd,e.shares,p))}</dd></div>
+ <div><dt>Crec. normal</dt><dd>${P(e.gn)}</dd></div></dl>${hold}
+ <div class="acts"><button class="btn" type="button" data-newop="${esc(t)}"><svg class="i"><use href="#i-plus"/></svg>Registrar operación</button><button class="btn ghost" type="button" data-gotab="calc">Abrir calculadora</button></div>`;}
 function renderStock(){const t=S.sel;if(!t)return;const r=S.by[t]||{t},c=calc(t),e=c.e,px=S.px[t]||{};
  const disp=DT(t),bt=disp.replace(/[^A-Z0-9]/g,'').slice(0,4)||disp.slice(0,3);$('#aB').textContent=bt;$('#aB').className='badge'+(bt.length>3?' l4':'');$('#aT').textContent=disp;$('#aN').textContent=r.name||(S.rows.length?'Sin datos en el universo':'');
  $('#aM').innerHTML=[r.sector&&`<span class="u">${esc(r.sector)}</span>`,r.industry&&`<span class="u">${esc(r.industry)}</span>`,...(r.u||[]).filter(u=>UL[u]).map(u=>`<span class="u">${esc(UL[u])}</span>`)].filter(Boolean).join('');
  $('#aP').textContent=c.p!=null?'US$ '+F(c.p,2):'—';$('#aC').className='c '+UD(px.chg);$('#aC').textContent=Number.isFinite(px.chg)?SP(px.chg,2)+' hoy':'';
  const pa=ars(t);$('#aA').textContent=pa?`${r.ced&&r.ced!==t?r.ced:'BYMA'} $ ${F(pa,2)}`:'';
- const fav=!!(S.wa[t]&&S.wa[t].fav);$('#aFav').setAttribute('aria-pressed',String(fav));$('#aFav span').textContent=fav?'Siguiendo':'Seguir';$('#aFav').style.color=fav?'#f2b01e':'';$('#aFav svg').style.fill=fav?'currentColor':'none';
+ const fav=!!(S.wa[t]&&S.wa[t].fav);$('#aFav').setAttribute('aria-pressed',String(fav));$('#aFav span').textContent=fav?'Favorita':'Favorita';$('#aFav').style.color=fav?'#f2b01e':'';$('#aFav svg').style.fill=fav?'currentColor':'none';
  for(const b of $$('#aTabs button'))b.setAttribute('aria-selected',String(b.dataset.t===S.tab));for(const p of $$('#v-accion [data-p]'))p.hidden=p.dataset.p!==S.tab;
  requestAnimationFrame(()=>drawGauge(c));renderTicket(t,c);drawChart(CX.t!==t||CX.stale);CX.stale=false;
  // resumen
- $('#aS').innerHTML=[['Dinero del dueño',isFinite(c.oe)?'US$ '+F(c.oe)+' M':'—'],['Rendimiento del dueño',P(c.oey)],['Capitalización',c.mc?'US$ '+F(c.mc)+' M':'—'],['Deuda neta',isFinite(c.nd)?'US$ '+F(c.nd)+' M':'—'],['Acciones diluidas',F(e.shares,1)+' M'],['Analistas',e.c.est&&e.c.est.n?F(e.c.est.n):'—'],['Datos al',esc(per(r))||'—']].map(([a,b])=>`<div><span>${a}</span><b>${b}</b></div>`).join('');
- $('#aW').innerHTML=c.hi?`<div class="warnbox"><b>Valoración muy alta.</b> El escenario normal supone ${P(e.gn)} de crecimiento anual durante 10 años${c.p&&c.v[0][1]?' y da un valor '+F(c.v[0][1]/c.p,1)+' veces el precio de hoy':''}. Revisá si ese crecimiento es creíble antes de confiar en el valor.</div>`:'';
+ $('#aS').innerHTML=[['Dinero del dueño',isFinite(c.oe)?'US$ '+F(c.oe)+' M':'—'],['Rendimiento del dueño',P(c.oey)],['Capitalización',c.mc?'US$ '+F(c.mc)+' M':'—'],['Deuda neta',isFinite(c.nd)?'US$ '+F(c.nd)+' M':'—'],['Acciones diluidas',F(e.shares,1)+' M'],['Analistas',e.c.est&&e.c.est.n?F(e.c.est.n):'—'],['Máx. 52 sem.',px.hi52>0?'US$ '+F(Math.max(px.hi52,c.p||0),2)+` <span class="small ${UD(d52(t))}">${P(d52(t),1)}</span>`:'—'],['Datos al',esc(per(r))||'—']].map(([a,b])=>`<div><span>${a}</span><b>${b}</b></div>`).join('');
+ $('#aW').innerHTML=c.hi?`<div class="warnbox"><b>Valoración muy alta:</b> supone ${P(e.gn)} anual por 10 años${c.p&&c.v[0][1]?` (vale ${F(c.v[0][1]/c.p,1)} veces el precio)`:''}.</div>`:'';
  $('#aAn').innerHTML=analysis(t,c).map(x=>`<li>${x}</li>`).join('');
  $('#aRes tbody').innerHTML=[[`Mínima (${P(S.cfg.reqMin,0)})`,0],[`Ideal (${P(S.cfg.reqIdeal,0)})`,1]].map(([l,i])=>`<tr><td class="l">${l}</td>${c.v[i].map(x=>`<td class="${x==null||c.p==null?'':x>=c.p?'up':'down'}">${F(x,2)}</td>`).join('')}</tr>`).join('')+`<tr><td class="l mute">Crecimiento anual supuesto</td><td>${P(e.gm)}</td><td>${P(e.gn)}</td><td>${P(e.gb)}</td></tr>`;
- const d=S.det&&S.det[t];$('#aSum').textContent=(d&&d.summary)||(S.det?'Sin descripción disponible.':'Cargando…');
+ const d=S.det&&S.det[t];$('#aSum').textContent=(d&&d.summary)||(S.det?'Sin descripción.':'Cargando…');
  $('#aSrc').innerHTML=r.src==='IA'?`Fuente: últimos 12 meses leídos por IA del ${/^https:\/\//.test(r.aiUrl||'')?`<a href="${esc(r.aiUrl)}" target="_blank" rel="noopener">${esc(r.aiSrc||'informe oficial')}</a>`:esc(r.aiSrc||'informe oficial')} al ${esc(r.pe)} (leído el ${esc((r.aiAt||'').slice(0,10))}). Revisá los números si algo se ve raro.`:r.src?`Fuente: ${r.src==='SEC'&&r.cik?`<a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=${esc(r.cik)}" target="_blank" rel="noopener">${esc(r.form||'')} ${esc(r.fy||'')} en la SEC</a>, presentado el ${esc(r.filed||'—')}`:esc(r.src)+' '+esc(r.fy||'')}${r.currency&&r.currency!==(r.vcur||'USD')?' · moneda original '+esc(r.currency):''}. Acciones: ${esc(r.sharesFrom||'—')}. Estimaciones: ${e.c.est?esc(e.c.est.src)+' ('+esc(e.c.est.date)+')':'sin consenso'}.`:'';
  // calculadora
  if(!document.activeElement||!document.activeElement.closest||!document.activeElement.closest('#pCalc')||S.calcFor!==t)buildCalc(t);renderCalcOut(t);
@@ -739,39 +826,52 @@ function renderStock(){const t=S.sel;if(!t)return;const r=S.by[t]||{t},c=calc(t)
  const H=d&&d.hist;if(S.tab==='hist')requestAnimationFrame(()=>drawHist(H));
  $('#hT').innerHTML=H&&H.length?`<thead><tr><th class="l">Año</th>${H.map(x=>`<th>${esc(x.fy)}</th>`).join('')}</tr></thead><tbody>${[['Ingresos','rev'],['Ganancia neta','ni'],['Caja operativa','ocf'],['Capex','capex'],['Pago en acciones','sbc'],['Dinero del dueño','oe']].map(([l,k])=>`<tr style="cursor:default"><td class="l">${l}</td>${H.map(x=>`<td class="${k==='oe'&&x[k]<0?'down':''}">${F(x[k])}</td>`).join('')}</tr>`).join('')}</tbody>`:'';
  // noticias
- const N=d&&d.news||[];$('#nL').innerHTML=N.length?N.map(n=>`<li>${/^https:\/\//.test(n.link)?`<a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.title)}</a>`:esc(n.title)}<div class="small mute" style="margin-top:3px">${esc(n.pub||'')}${n.time?' · '+esc(new Date(n.time).toLocaleDateString('es-AR',{day:'numeric',month:'short',year:'numeric'})):''}</div></li>`).join(''):`<li class="mute">${S.det?'No hay noticias recientes.':'Cargando…'}</li>`;
+ const N=d&&d.news||[];$('#nL').innerHTML=N.length?N.map(n=>`<li>${/^https:\/\//.test(n.link)?`<a href="${esc(n.link)}" target="_blank" rel="noopener">${esc(n.title)}</a>`:esc(n.title)}${n.sum?`<div class="small" style="color:var(--ink2);margin-top:3px">${esc(n.sum)}</div>`:''}<div class="small mute" style="margin-top:3px">${esc(n.pub||'')}${n.time?' · '+esc(new Date(n.time).toLocaleDateString('es-AR',{day:'numeric',month:'short',year:'numeric'})):''}</div></li>`).join(''):`<li class="mute">${S.det?'Sin noticias recientes.':'Cargando…'}</li>`;
  // IA
- const an=S.an[t];if(!aiBusy){renderAIText(an?an.text:'');$('#aiS').textContent=an?`Generado el ${new Date(an.date).toLocaleString('es-AR')} con precio US$ ${F(an.price,2)}.`:(sample?'Claude escribe un análisis de la empresa frente a su valor en los tres escenarios. Se guarda para la próxima vez.':'El análisis con IA no está disponible en esta vista.');$('#aiB').textContent=an?'Volver a generar':'Generar análisis';$('#aiB').disabled=!sample;}}
+ const an=S.an[t];if(!aiBusy){renderAIText(an?an.text:'');$('#aiS').textContent=an?`Generado ${FDL(an.date)} · precio US$ ${F(an.price,2)}`:(sample?'Explica los resultados y si las proyecciones son confiables. Se guarda.':'No disponible en esta vista.');$('#aiB').textContent=an?'Volver a generar':'Generar análisis';$('#aiB').disabled=!sample;}}
 const pctTxt=v=>v==null||!isFinite(v)?'':String(+(v*100).toFixed(1)).replace('.',',');
 const numTxt=(v,d)=>v==null||!isFinite(v)?'':String(+v.toFixed(d)).replace('.',',');
 function buildCalc(t){S.calcFor=t;const e=eff(t),o=e.o;const inp=(k,v,dec)=>`<input class="${Number.isFinite(o[k])?'ovr':''}" data-k="${k}" inputmode="decimal" value="${esc(numTxt(v,dec))}" aria-label="${k}">`;
  $('#cIn1').innerHTML=[['ocf','Caja que entra por el negocio','Flujo de caja operativo'],['capex','Inversión en máquinas, edificios y equipos','Capex'],['sbc','Pago a empleados en acciones','SBC'],['debt','Deuda','Todas las líneas'],['cash','Caja y valores a corto plazo',''],['shares','Acciones diluidas','millones']].map(([k,l,s])=>`<tr><td>${l}${s?`<div class="small mute">${s}</div>`:''}</td><td>${inp(k,e[k],k==='shares'?3:1)}</td></tr>`).join('')+`<tr class="tot"><td>Dinero del dueño</td><td id="cOE"></td></tr><tr><td>Deuda neta</td><td id="cND"></td></tr>`;
  $('#cIn2').innerHTML=[['gm','Malo'],['gn','Normal'],['gb','Bueno']].map(([k,l])=>`<div class="sl"><label for="r-${k}">${l}</label><input type="range" id="r-${k}" data-g="${k}" min="-10" max="40" step="0.1" value="${e[k]!=null?Math.max(-10,Math.min(40,e[k]*100)):0}"><span style="display:flex;align-items:center;gap:4px"><input type="text" class="${Number.isFinite(o[k])?'ovr':''}" data-k="${k}" data-pc="1" inputmode="decimal" value="${esc(pctTxt(e[k]))}" aria-label="Crecimiento ${l}">%</span></div>`).join('')+`<p class="small mute" style="margin:6px 0 0">Después del año 10, ${P(S.cfg.gTerm)} para siempre.</p>`;
  for(const b of $$('#cP5 button'))b.setAttribute('aria-pressed',String(e.p5===b.dataset.v));$('#cTh').value=o.thesis||'';
- const a=e.a,es=e.c.est;$('#cG').innerHTML=a.src==='consenso'?`Desde el consenso de ${F(es.n)} analistas: ganancia por acción del último año ${F(es.base,2)}; para el próximo, ${F(es.next.low,2)} la más baja, ${F(es.next.avg,2)} el promedio y ${F(es.next.high,2)} la más alta. Crecimiento de esos 2 años: ${P(a.d.low.c2)} / ${P(a.d.avg.c2)} / ${P(a.d.high.c2)}; del año 3 al 10 baja en línea recta hasta ${P(S.cfg.gTerm)}, y cada escenario usa el promedio de los 10 años.`:a.src==='consenso-prom'?`Solo hay estimación promedio de analistas (${F(es.n)}): normal = ese crecimiento; malo y bueno, ± 2 puntos, como hizo Bernardo con Apple.`:a.src==='historia'?`Sin consenso de analistas: normal = crecimiento del dinero del dueño en los últimos ${a.y} años; malo y bueno, ± 2 puntos.`:a.src==='ingresos'?`Sin consenso ni historia positiva del dinero del dueño: normal = crecimiento de los ingresos en los últimos ${a.y} años; malo y bueno, ± 2 puntos.`:'Sin datos para estimar el crecimiento: escribilo a mano.';}
+ const a=e.a,es=e.c.est;$('#cG').innerHTML=a.src==='consenso'?`Consenso de ${F(es.n)} analistas: ${P(a.d.low.c2)} / ${P(a.d.avg.c2)} / ${P(a.d.high.c2)} por 2 años, luego baja hasta ${P(S.cfg.gTerm)}.`:a.src==='consenso-prom'?`Promedio de ${F(es.n)} analistas ± 2 puntos.`:a.src==='historia'?`Sin consenso: historia de ${a.y} años ± 2 puntos.`:a.src==='ingresos'?`Sin consenso: ingresos de ${a.y} años ± 2 puntos.`:'Sin datos: escribilo a mano.';}
 function renderCalcOut(t){const c=calc(t),R=[S.cfg.reqMin,S.cfg.reqIdeal];if(!$('#cOE'))return;
  $('#cOE').textContent=F(c.oe);$('#cOE').className=c.oe<0?'down':'';$('#cND').textContent=F(c.nd);
  $('#cOut').innerHTML=R.map((r,i)=>`<tr><td class="l">${P(r,0)}</td>${c.v[i].map(x=>`<td class="${x==null||c.p==null?'':x>=c.p?'up':'down'}" style="font-weight:${i===S.ri?600:400}">${F(x,2)}</td>`).join('')}</tr>`).join('');
  $('#cV').innerHTML=`<span class="tag t-${c.cls}">${esc(c.vt)}</span> <span class="mute">con el precio de hoy, US$ ${F(c.p,2)}</span>`;}
-function renderAIText(txt){const box=$('#aiT');box.textContent='';if(!txt)return;for(const raw of txt.split(/\n+/)){const line=raw.trim();if(!line)continue;const m=line.match(/^([A-ZÁÉÍÓÚÑ ]{4,})(?:\s*[—:-]\s*(.*))?$/);if(m){const h=document.createElement('h4');h.textContent=m[1].trim().charAt(0)+m[1].trim().slice(1).toLowerCase();box.append(h);if(m[2]){const p=document.createElement('p');p.textContent=m[2];box.append(p);}}else{const p=document.createElement('p');p.textContent=line;box.append(p);}}}
+function renderAIText(txt){const box=$('#aiT');box.textContent='';if(!txt)return;for(const raw of txt.split(/\n+/)){const line=raw.trim();if(!line)continue;const m=line.match(/^([¿?A-ZÁÉÍÓÚÑ ]{4,}[?]?)(?:\s*[—:-]\s*(.*))?$/);if(m){const h=document.createElement('h4');{const z=m[1].trim().toLowerCase(),i=z.startsWith('¿')?1:0;h.textContent=z.slice(0,i)+z.charAt(i).toUpperCase()+z.slice(i+1);}box.append(h);if(m[2]){const p=document.createElement('p');p.textContent=m[2];box.append(p);}}else{const p=document.createElement('p');p.textContent=line;box.append(p);}}}
 async function loadDet(){if(S.det||S.detLoading)return;S.detLoading=true;try{const r=await fetch('data/detail.json');S.det=r.ok?await r.json():{};}catch(e){S.det={};}if(S.view==='accion')renderStock();}
 let aiBusy=false;
 async function genAI(){if(!sample||aiBusy)return;const t=S.sel,r=S.by[t]||{},c=calc(t),e=c.e,d=S.det&&S.det[t]||{};aiBusy=true;$('#aiB').disabled=true;$('#aiS').textContent='Escribiendo…';renderAIText('');
- const facts={ticker:t,empresa:r.name,sector:r.sector,industria:r.industry,moneda:r.vcur||'USD',precio:c.p,variacion_dia:S.px[t]&&S.px[t].chg,
-  dinero_del_dueno_M:c.oe,caja_operativa_M:e.ocf,capex_M:e.capex,pago_en_acciones_M:e.sbc,deuda_neta_M:c.nd,acciones_diluidas_M:e.shares,capitalizacion_M:c.mc,
-  crecimiento_escenarios:{malo:e.gm,normal:e.gn,bueno:e.gb,fuente:e.a.src},valor_por_accion_pidiendo_minima:{tasa:S.cfg.reqMin,malo:c.v[0][0],normal:c.v[0][1],bueno:c.v[0][2]},
-  valor_por_accion_pidiendo_ideal:{tasa:S.cfg.reqIdeal,malo:c.v[1][0],normal:c.v[1][1],bueno:c.v[1][2]},crecimiento_que_descuenta_el_precio:impliedG(c.oe,S.cfg.reqMin,c.nd,e.shares,c.p),
-  veredicto_del_metodo:c.vt,historia:d.hist,descripcion:d.summary,titulares_recientes:(d.news||[]).map(n=>n.title+' ('+(n.pub||'')+')'),en_mi_portafolio:!!S.hold[t],tesis_del_usuario:e.o.thesis||null,notas_de_datos:r.note||null};
- const prompt=`Sos analista de inversiones de AMD Investments y aplicás el método de valuación de 6 pasos de Bernardo de García: dinero del dueño (caja operativa − capex − pago en acciones), tres escenarios de crecimiento a 10 años, traer a hoy pidiendo una rentabilidad mínima (10 %) e ideal (15 %), "no lo sé y paso" y vender solo si se rompe la tesis, aparece algo mejor o el precio supera el escenario bueno.
-Con SOLO estos datos (no inventes cifras; si algo falta, decilo), escribí en español rioplatense, en texto plano sin markdown ni asteriscos, un análisis de 300 a 400 palabras con estos títulos en líneas propias:
-SITUACIÓN — el negocio y su momento, usando la historia y los titulares.
-PRECIO FRENTE A VALOR — dónde está el precio respecto de los tres escenarios y ambas rentabilidades, y qué crecimiento descuenta el mercado comparado con el consenso y la historia.
-RIESGOS Y DUDAS — qué podría hacer que salga el escenario malo; calidad de los datos.
-QUÉ VIGILAR — 3 indicadores concretos para seguir cada trimestre.
-SEGÚN EL MÉTODO — la conclusión del método (comprar a trozos, esperar, pasar o la regla de venta que aplica). No es una recomendación personal; aclaralo en una frase.
+ const px=S.px[t]||{},ctx=d.ctx||{};
+ const facts={ticker:t,empresa:r.name,sector:r.sector,industria:r.industry,pais:(d.country||null),fecha_hoy:new Date().toISOString().slice(0,10),
+  precio_usd:c.p,variacion_dia:px.chg,max_52s:px.hi52||null,min_52s:px.lo52||null,distancia_max_52s:d52(t),
+  datos_del_metodo:{periodo:per(r),fuente:r.src,moneda_original:r.currency||r.vcur||'USD',caja_operativa_12m_M:e.ocf,capex_12m_M:e.capex,pago_en_acciones_12m_M:e.sbc,dinero_del_dueno_M:c.oe,deuda_neta_M:c.nd,acciones_diluidas_M:e.shares,capitalizacion_M:c.mc,rendimiento_del_dueno:c.oey},
+  escenarios:{crecimiento_malo:e.gm,crecimiento_normal:e.gn,crecimiento_bueno:e.gb,origen:e.a.src,estimacion_eps:e.c.est||null},
+  valor_por_accion:{[`pidiendo_${S.cfg.reqMin}`]:c.v[0],[`pidiendo_${S.cfg.reqIdeal}`]:c.v[1]},crecimiento_que_descuenta_el_precio:impliedG(c.oe,S.cfg.reqMin,c.nd,e.shares,c.p),
+  veredicto:c.vt,alerta_valoracion_muy_alta:c.hi,historia_anual_M:d.hist,
+  ultimos_trimestres_M:ctx.q||null,moneda_estados:ctx.fcur||null,sorpresas_eps:ctx.surprises||null,estimacion_ingresos_M:ctx.revEst||null,revision_eps:ctx.epsTrend||null,crecimiento_estimado:ctx.growth||null,recomendaciones:ctx.recs||null,calendario:ctx.cal||null,
+  noticias:(d.news||[]).map(n=>({titulo:n.title,fuente:n.pub,fecha:(n.time||'').slice(0,10),resumen:n.sum||''})),descripcion:d.summary,
+  en_mi_portafolio:!!S.hold[t],tesis:e.o.thesis||null,notas_de_datos:r.note||null};
+ const prompt=`Sos analista de AMD Investments. Aplicás el método de Bernardo de García: dinero del dueño = caja operativa − capex − pago en acciones; tres escenarios de crecimiento a 10 años; valor traído a hoy pidiendo ${P(S.cfg.reqMin,0)} (mínima) y ${P(S.cfg.reqIdeal,0)} (ideal); "si no lo sé, paso"; vender solo si se rompe la tesis, aparece algo mejor o el precio supera el escenario bueno.
+Los datos de abajo vienen de los informes oficiales (SEC, CVM, CNV) y de Yahoo Finance (trimestres, estimaciones y revisiones de analistas, sorpresas de resultados, recomendaciones y noticias con resumen), actualizados esta mañana.
+Tu trabajo NO es repetir los números: es explicarlos y ponerlos en contexto.
+1. Explicá POR QUÉ los resultados son los que son: qué movió la caja, los ingresos y la ganancia en los últimos trimestres (compará trimestre contra trimestre y contra el año anterior) y qué dicen las noticias sobre eso.
+2. Juzgá si las proyecciones son confiables o se apoyan en algo puntual: ¿el crecimiento viene de varios trimestres o de uno solo? ¿hubo extraordinarios, venta de activos, cambios de moneda o de tipo de cambio? ¿cuántos analistas hay y qué tan dispersas son sus estimaciones? ¿las vienen subiendo o bajando (revisiones a 30/90 días)? ¿la empresa suele superar o fallar las estimaciones? Compará el crecimiento supuesto con la historia.
+3. Ubicá el precio: frente a los tres escenarios, al crecimiento que descuenta y al máximo de 52 semanas.
+Podés sumar contexto general que conozcas del negocio o del sector, pero marcalo con "(contexto general, verificalo)" y nunca inventes cifras. Si un dato falta o se ve raro, decilo.
+Escribí en español rioplatense, oraciones cortas, texto plano sin markdown ni asteriscos, 400 a 550 palabras, con estos títulos en líneas propias (en mayúsculas):
+EN CORTO — 2 o 3 oraciones con la conclusión.
+QUÉ EXPLICA LOS RESULTADOS
+¿SON CONFIABLES LAS PROYECCIONES? — terminá con una frase: "Confianza: alta", "media" o "baja", y por qué.
+PRECIO FRENTE A VALOR
+RIESGOS
+QUÉ VIGILAR — 3 cosas concretas para el próximo trimestre (con fecha de resultados si está).
+SEGÚN EL MÉTODO — comprar a trozos, esperar, pasar o la regla de venta que aplica. Aclarando en una frase que no es una recomendación personal.
 Datos (JSON): ${JSON.stringify(facts)}`;
- try{const res=await sample(prompt,{modelTier:'default',onText:({text})=>{renderAIText(text);}});const text=res.text;renderAIText(text);const rec={text,date:new Date().toISOString(),price:c.p};S.an[t]=rec;$('#aiS').textContent='Análisis guardado.';if(db)try{await db.doc('analysis/'+t).set(rec);}catch(e){}}
- catch(err){$('#aiS').textContent=err&&err.code==='rate_limited'?'Demasiados pedidos seguidos: probá de nuevo en un minuto.':err&&err.code==='not_granted'?'Para generar el análisis, permití que esta página consulte a Claude.':'No se pudo generar el análisis. Probá de nuevo.';}
+ try{const res=await sample(prompt,{modelTier:'default',cache:false,onText:({text})=>{renderAIText(text);}});const text=res.text;renderAIText(text);const rec={text,date:new Date().toISOString(),price:c.p};S.an[t]=rec;$('#aiS').textContent='Guardado.';if(db)try{await db.doc('analysis/'+t).set(rec);}catch(e){}}
+ catch(err){if(err&&err.text)renderAIText(err.text);$('#aiS').textContent=err&&err.code==='rate_limited'?'Muchos pedidos: probá en un minuto.':err&&err.code==='not_granted'?'Permití que la página consulte a Claude.':'No se pudo generar. Probá de nuevo.';}
  aiBusy=false;$('#aiB').disabled=false;$('#aiB').textContent='Volver a generar';}
 
 /* ===== gráfico de precios (Lightweight Charts de TradingView) ===== */
@@ -789,11 +889,11 @@ async function drawChart(force){const t=S.sel;if(!t||S.view!=='accion')return;
  $('#cxV').setAttribute('aria-pressed',String(CX.val));
  if(!force&&CX.chart&&CX.t===t)return;
  const my=++CX.seq;CX.t=t;$('#cxL').textContent='';$('#cxG').innerHTML='';
- const LW=window.LightweightCharts;if(!LW){cxMsg('No se pudo cargar la librería del gráfico. Revisá la conexión y recargá la página.');return;}
+ const LW=window.LightweightCharts;if(!LW){cxMsg('No cargó el gráfico. Recargá la página.');return;}
  if(!CX.chart)cxMsg('Cargando el gráfico…');const H=await loadHist(t);if(S.sel!==t||my!==CX.seq)return;
  if(CX.chart){CX.chart.remove();CX.chart=null;}for(const n of [...$('#cx').children])if(n.id!=='cxM')n.remove();
  const wk=CX.range==='w',raw=H&&(wk?H.w:H.d);
- if(!raw||!raw.length){cxMsg(S.view==='accion'?'Todavía no hay historial de precios para esta acción. Se carga con la próxima actualización de precios.':'');return;}
+ if(!raw||!raw.length){cxMsg(S.view==='accion'?'Sin historial de precios todavía.':'');return;}
  cxMsg('');
  const bars=raw.map(r=>({time:r[0]*86400,open:r[1],high:r[2],low:r[3],close:r[4],v:r[5]}));
  // vela de hoy con el último precio publicado
@@ -827,8 +927,8 @@ async function drawChart(force){const t=S.sel;if(!t||S.view!=='accion')return;
  // período visible
  const lt=bars[bars.length-1].time;if(wk)ch.timeScale().fitContent();else{const from=lt-(+CX.range)*86400;ch.timeScale().setVisibleRange({from:Math.max(from,bars[0].time),to:lt});}
  // leyenda
- $('#cxG').innerHTML=[[`border-color:${norm}`,'Valor normal '+R0,''],[`border-color:${norm}`,'Malo y bueno','d'],avg?['border-color:#f2b01e','Tu precio medio por acción','d']:null,['border-color:#e7a33e',wk?'Media 10 semanas':'Media 50 días',''],['border-color:#b48cff',wk?'Media 40 semanas':'Media 200 días',''],mm.length?[`border-color:${up}`,'Flechas: tus compras (▲) y ventas (▼)','']:null].filter(Boolean).map(([st,l,d])=>`<span><i class="${d}" style="${st}"></i>${esc(l)}</span>`).join('')
-  +(!CX.val&&extra.some(x=>{const r=bars.slice(wk?0:-Math.min(bars.length,+CX.range*5/7|0)),mn=Math.min(...r.map(b=>b.low)),mx=Math.max(...r.map(b=>b.high));return x<mn||x>mx;})?'<span>Alguna línea de valor queda fuera de la escala: activá "Valor en escala".</span>':'');
+ $('#cxG').innerHTML=[[`border-color:${norm}`,'Normal '+R0,''],[`border-color:${norm}`,'Malo y bueno','d'],avg?['border-color:#f2b01e','Tu precio medio','d']:null,['border-color:#e7a33e',wk?'Media 10 semanas':'Media 50 días',''],['border-color:#b48cff',wk?'Media 40 semanas':'Media 200 días',''],mm.length?[`border-color:${up}`,'▲ compras ▼ ventas','']:null].filter(Boolean).map(([st,l,d])=>`<span><i class="${d}" style="${st}"></i>${esc(l)}</span>`).join('')
+  +(!CX.val&&extra.some(x=>{const r=bars.slice(wk?0:-Math.min(bars.length,+CX.range*5/7|0)),mn=Math.min(...r.map(b=>b.low)),mx=Math.max(...r.map(b=>b.high));return x<mn||x>mx;})?'<span>Hay líneas de valor fuera de escala.</span>':'');
  const legend=b=>{if(!b)return;const i=times.indexOf(b.time),prev=i>0?bars[i-1].close:b.open,chg=b.close/prev-1;
   $('#cxL').innerHTML=`<span>${esc(new Date(b.time*1000).toLocaleDateString('es-AR',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}))}${wk?' (semana)':''}</span><span>Ap<b>${F(b.open,2)}</b></span><span>Máx<b>${F(b.high,2)}</b></span><span>Mín<b>${F(b.low,2)}</b></span><span>Cierre<b>${F(b.close,2)}</b></span><span class="${UD(chg)}">${SP(chg,2)}</span>${b.v?`<span>Vol<b>${F(b.v/1e6,1)} M</b></span>`:''}${opAt[b.time]?`<span style="color:var(--ink)">${opAt[b.time].b?'Compraste '+F(opAt[b.time].b):''}${opAt[b.time].b&&opAt[b.time].s?' · ':''}${opAt[b.time].s?'Vendiste '+F(opAt[b.time].s):''}</span>`:''}`;};
  legend(bars[bars.length-1]);
@@ -850,35 +950,37 @@ function route(){let h=location.hash.replace(/^#\/?/,'');let[v,arg]=h.split('/')
 addEventListener('hashchange',route);
 
 function toast(m,err){const d=document.createElement('div');d.className='toast'+(err?' err':'');d.textContent=m;$('#toasts').append(d);setTimeout(()=>d.remove(),err?6000:2600);}
-async function w(fn,ok){if(!db){toast('No se puede guardar: abrí el portal con tu cuenta de Claude.',1);return;}try{await fn();if(ok)toast(ok);}catch(e){toast('No se pudo guardar ('+(e&&e.code||'error')+'). Probá de nuevo.',1);}}
-function saveUI(){try{localStorage.setItem('amd-ui2',JSON.stringify({sort:S.sort,filt:S.filt,chips:[...S.chips],ri:S.ri,q:$('#q').value,sec:$('#fSec').value,ver:$('#fVer').value,hide:$('#fHide').checked,hi:$('#fHi').checked,preset:S.preset,hidden:[...S.hidden],showF:S.showF}));}catch(e){}}
-function loadUI(){try{const u=JSON.parse(localStorage.getItem('amd-ui2')||'null');if(!u)return;S.sort=u.sort||S.sort;S.filt=u.filt||{};S.chips=new Set(u.chips||[]);S.ri=u.ri||0;$('#q').value=u.q||'';S._sec=u.sec;$('#fVer').value=u.ver||'';$('#fHide').checked=u.hide!==false;$('#fHi').checked=!!u.hi;S.preset=u.preset||'all';if(u.hidden)S.hidden=new Set(u.hidden);S.showF=!!u.showF;}catch(e){}}
-loadUI();buildHead();
-let tmr;const upd=()=>{clearTimeout(tmr);tmr=setTimeout(()=>{S.lim=150;renderTable();saveUI();},110);};
-$('#q').oninput=upd;$('#fSec').onchange=upd;$('#fVer').onchange=upd;$('#fHide').onchange=upd;$('#fHi').onchange=upd;
-$('#fr').addEventListener('input',e=>{const i=e.target;if(!i.dataset.f)return;if(i.value)S.filt[i.dataset.f]=i.value;else delete S.filt[i.dataset.f];upd();});
-$('#hr').addEventListener('click',e=>{const th=e.target.closest('th.s');if(!th)return;const k=th.dataset.k;S.sort=S.sort.k===k?{k,d:-S.sort.d}:{k,d:['t','name','sector','vt','st','per'].includes(k)?1:-1};renderTable();saveUI();});
-$('#hr').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('th.s')){e.preventDefault();e.target.click();}});
-$('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-chip]');if(!b)return;const k=b.dataset.chip;S.chips.has(k)?S.chips.delete(k):S.chips.add(k);b.setAttribute('aria-pressed',String(S.chips.has(k)));upd();});
-$('#preset').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;S.preset=b.dataset.p;buildHead();upd();});
-$('#rate').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;S.ri=+b.dataset.r;CX.stale=true;buildHead();renderAll();saveUI();});
-$('#fltB').onclick=()=>{S.showF=!S.showF;buildHead();saveUI();};
-$('#colB').onclick=e=>{e.stopPropagation();const p=$('#colP');p.hidden=!p.hidden;$('#colB').setAttribute('aria-expanded',String(!p.hidden));};
-$('#colP').addEventListener('change',e=>{const k=e.target.dataset.col;if(!k)return;e.target.checked?S.hidden.delete(k):S.hidden.add(k);buildHead();renderTable();saveUI();});
-document.addEventListener('click',e=>{if(!e.target.closest('.colmenu'))$('#colP').hidden=true;});
-$('#clr').onclick=()=>{S.filt={};S.chips.clear();S.preset='all';$('#q').value='';$('#fSec').value='';$('#fVer').value='';$('#fHi').checked=false;$('#fHide').checked=true;buildHead();upd();};
-$('#moreB').onclick=()=>{S.lim+=200;renderTable();};
-$('#csvB').onclick=csv;
-$('#oQ').oninput=()=>renderOps();$('#oSide').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;S.oSide=b.dataset.s;renderOps();});
+async function w(fn,ok){if(!db){toast('No se puede guardar sin tu cuenta.',1);return;}try{await fn();if(ok)toast(ok);}catch(e){toast('No se guardó. Probá de nuevo.',1);}}
+function saveUI(){try{localStorage.setItem('amd-ui3',JSON.stringify({chips:[...S.chips],ri:S.ri,hide:$('#fHide').checked,hi:$('#fHi').checked,preset:S.preset}));}catch(e){}}
+function loadUI(){try{const u=JSON.parse(localStorage.getItem('amd-ui3')||'null');if(!u)return;S.chips=new Set(u.chips||[]);S.ri=u.ri||0;$('#fHide').checked=u.hide!==false;$('#fHi').checked=!!u.hi;S.preset=u.preset||'all';}catch(e){}}
+loadUI();syncScrUI();
+const updScr=()=>{TB['t-scr'].st.lim=150;renderScr();saveUI();};
+$('#fHide').onchange=updScr;$('#fHi').onchange=updScr;
+$('#chips').addEventListener('click',e=>{const b=e.target.closest('[data-chip]');if(!b)return;const k=b.dataset.chip;S.chips.has(k)?S.chips.delete(k):S.chips.add(k);syncScrUI();updScr();});
+$('#preset').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;S.preset=b.dataset.p;syncScrUI();updScr();});
+$('#rate').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;S.ri=+b.dataset.r;CX.stale=true;syncScrUI();renderAll();saveUI();});
+let tqT;document.addEventListener('input',e=>{const i=e.target;if(i.dataset&&i.dataset.tq){clearTimeout(tqT);tqT=setTimeout(()=>{const T=TB[i.dataset.tq];T.st.q=i.value;T.st.lim=150;trender(T.id);},120);}});
+$('#pop').addEventListener('click',e=>{if(!POP)return;if(e.target.closest('[data-pok]')){if(POP.apply()!==false)popClose();}else if(e.target.closest('[data-pclr]')){for(const i of $$('#pop input'))i.type==='checkbox'?i.checked=false:i.value='';POP.apply();popClose();}else if(e.target.closest('[data-pdef]')){const T=TB[POP.cols];T.st.hid=T.cols.filter(c=>c.hide).map(c=>c.k);tsave(T);trender(T.id);for(const i of $$('#pop [data-pc]'))i.checked=!T.st.hid.includes(i.dataset.pc);}});
+$('#pop').addEventListener('change',e=>{if(!POP||!POP.cols||!e.target.dataset.pc)return;const T=TB[POP.cols],k=e.target.dataset.pc;T.st.hid=e.target.checked?T.st.hid.filter(x=>x!==k):[...T.st.hid,k];tsave(T);trender(T.id);});
+$('#pop').addEventListener('keydown',e=>{if(e.key==='Enter'&&POP&&!POP.cols){e.preventDefault();if(POP.apply()!==false)popClose();}if(e.key==='Escape'){const b=POP&&POP.btn;popClose();if(b)b.focus();}});
+function popPlace(){if(!POP)return;const p=$('#pop'),btn=POP.btn;if(!btn.isConnected){popClose();return;}const r=btn.getBoundingClientRect(),w=p.offsetWidth,h=p.offsetHeight;if(r.bottom<0||r.top>innerHeight){popClose();return;}p.style.left=Math.max(8,Math.min(innerWidth-w-8,r.left-8))+'px';p.style.top=(r.bottom+h+8>innerHeight?Math.max(8,r.top-h-6):r.bottom+6)+'px';}
+addEventListener('scroll',e=>{if(POP&&!(e.target.closest&&e.target.closest('#pop')))popPlace();},true);addEventListener('resize',()=>{if(POP)popClose();});
 $('#theme').onclick=()=>{const t=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=t;try{localStorage.setItem('amd-theme',t);}catch(e){}$('#theme use').setAttribute('href',t==='light'?'#i-moon':'#i-sun');if(S.view==='accion'){CX.stale=true;renderStock();}};
 $('#theme use').setAttribute('href',document.documentElement.dataset.theme==='light'?'#i-moon':'#i-sun');
-function toggleFav(t){const cur={...(S.wa[t]||{ticker:t}),fav:!(S.wa[t]&&S.wa[t].fav)};S.wa[t]=cur;renderAll();w(()=>db.doc('watch/'+t).set(cur),cur.fav?`${DT(t)} agregada a seguimiento.`:`${DT(t)} quitada de seguimiento.`);}
+function toggleFav(t){const cur={...(S.wa[t]||{ticker:t}),fav:!(S.wa[t]&&S.wa[t].fav)};S.wa[t]=cur;renderAll();w(()=>db.doc('watch/'+t).set(cur),cur.fav?`${DT(t)} en favoritas.`:`${DT(t)} fuera de favoritas.`);}
 document.addEventListener('click',e=>{
+ if(POP&&!e.target.closest('#pop')&&!e.target.closest('[data-tf],[data-tcols]'))popClose();
+ const ts=e.target.closest('[data-ts]');if(ts){const[id,k]=ts.dataset.ts.split('|'),T=TB[id],c=tcol(T,k);T.st.sort=T.st.sort&&T.st.sort.k===k?{k,d:-T.st.sort.d}:{k,d:c.t==='txt'||c.t==='cat'?1:-1};tsave(T);trender(id);return;}
+ const tf=e.target.closest('[data-tf]');if(tf){const[id,k]=tf.dataset.tf.split('|');if(POP&&POP.btn===tf){popClose();return;}openFilter(id,k,tf);return;}
+ const tr2=e.target.closest('[data-trm]');if(tr2){const[id,k]=tr2.dataset.trm.split('|'),T=TB[id];if(k==='*')T.st.f={};else delete T.st.f[k];tsave(T);trender(id);return;}
+ const tc=e.target.closest('[data-tcols]');if(tc){if(POP&&POP.btn===tc){popClose();return;}openCols(tc.dataset.tcols,tc);return;}
+ const tv=e.target.closest('[data-tcsv]');if(tv){tcsv(tv.dataset.tcsv);return;}
+ const tm2=e.target.closest('[data-tmore]');if(tm2){TB[tm2.dataset.tmore].st.lim+=200;trender(tm2.dataset.tmore);return;}
  const f=e.target.closest('[data-fav]');if(f){e.preventDefault();toggleFav(f.dataset.fav);return;}
  const d=e.target.closest('[data-op]');if(d){e.stopPropagation();if(d.dataset.sure!=='1'){d.dataset.sure='1';d.textContent='¿Borrar?';d.style.color='var(--down)';setTimeout(()=>{d.dataset.sure='';d.textContent='Borrar';d.style.color='';},3000);return;}const id=d.dataset.op;S.ops=S.ops.filter(x=>x.id!==id);renderAll();w(()=>db.doc('ops/'+id).delete(),'Operación borrada.');return;}
  const n=e.target.closest('[data-newop]');if(n){openOp(n.dataset.newop);return;}
  const g=e.target.closest('[data-gotab]');if(g){S.tab=g.dataset.gotab;renderStock();$('#aTabs').scrollIntoView({behavior:'smooth',block:'start'});return;}
- const pr=e.target.closest('[data-preset]');if(pr){S.preset=pr.dataset.preset;buildHead();saveUI();}
+ const pr=e.target.closest('[data-preset]');if(pr){S.preset=pr.dataset.preset;syncScrUI();saveUI();}
  const tr=e.target.closest('tr[data-row]');if(tr&&!e.target.closest('a,button,input')){location.hash='#/accion/'+encodeURIComponent(tr.dataset.row);}});
 $('#aFav').onclick=()=>toggleFav(S.sel);
 $('#aOp').onclick=()=>openOp(S.sel);
@@ -893,7 +995,7 @@ $('#pCalc').addEventListener('change',e=>{const i=e.target;
  if(i.dataset.k){const n=pn(i.value,i.dataset.pc);if(Number.isNaN(n)){toast('Escribí un número, por ejemplo 12,5.',1);return;}i.classList.toggle('ovr',n!=null);const r=$(`#r-${i.dataset.k}`);if(r&&n!=null)r.value=n*100;setOv(S.sel,{[i.dataset.k]:n},'Cambio guardado.');}
  else if(i.id==='cTh')setOv(S.sel,{thesis:i.value.trim()||null},'Tesis guardada.');});
 $('#cP5').onclick=e=>{const b=e.target.closest('button');if(b){for(const x of $$('#cP5 button'))x.setAttribute('aria-pressed',String(x===b));setOv(S.sel,{p5:b.dataset.v},'Respuesta guardada.');}};
-$('#cReset').onclick=()=>{const o=S.ov[S.sel]||{},k={};if(o.p5)k.p5=o.p5;if(o.thesis)k.thesis=o.thesis;S.ov[S.sel]=k;buildCalc(S.sel);renderAll();w(()=>db.doc('overrides/'+S.sel).set(k),'Volviste a los datos automáticos.');};
+$('#cReset').onclick=()=>{const o=S.ov[S.sel]||{},k={};if(o.p5)k.p5=o.p5;if(o.thesis)k.thesis=o.thesis;S.ov[S.sel]=k;buildCalc(S.sel);renderAll();w(()=>db.doc('overrides/'+S.sel).set(k),'Restablecido.');};
 $('#aiB').onclick=genAI;
 // tooltip de la historia
 $('#hFig').addEventListener('mousemove',e=>{const r=e.target.closest('rect.hit'),tip=$('#tip'),h=$('#hFig svg')._h;if(!r||!h){tip.hidden=true;return;}const x=h[+r.dataset.i];
@@ -902,7 +1004,7 @@ $('#hFig').addEventListener('mousemove',e=>{const r=e.target.closest('rect.hit')
 $('#hFig').addEventListener('mouseleave',()=>{$('#tip').hidden=true;});
 // operación
 let opSide='COMPRA';
-function opCalc(){const d=$('#opD').value,q=pn($('#opQ').value),p=pn($('#opP').value),c=d?cclAt(d):null;$('#opC').innerHTML=q>0&&p>0&&c?`Importe $ ${F(q*p,2)} · US$ ${F(q*p/c,2)} al CCL de esa fecha ($ ${F(c,2)}) · US$ ${F(p/c,2)} por unidad`:'Completá cantidad y precio para ver el importe en dólares.';}
+function opCalc(){const d=$('#opD').value,q=pn($('#opQ').value),p=pn($('#opP').value),c=d?cclAt(d):null;$('#opC').innerHTML=q>0&&p>0&&c?`Importe $ ${F(q*p,2)} · US$ ${F(q*p/c,2)} al CCL de esa fecha ($ ${F(c,2)}) · US$ ${F(p/c,2)} por unidad`:'Completá cantidad y precio.';}
 function openOp(t){const dl=[...new Set([...Object.keys(S.hold),...Object.keys(S.wa),...S.ops.map(o=>o.t)])].sort();$('#opTL').innerHTML=dl.map(x=>`<option value="${esc(x)}">`).join('');
  $('#opF').reset();opSide='COMPRA';setSide();$('#opT').value=t||'';$('#opD').value=new Date().toISOString().slice(0,10);const pa=t?ars(t):null;$('#opP').value=pa?numTxt(pa,2):'';opCalc();$('#opDlg').showModal();(t?$('#opQ'):$('#opT')).focus();}
 function setSide(){for(const b of $$('#opS button'))b.setAttribute('aria-pressed',String(b.dataset.s===opSide));$('#opOk').textContent=opSide==='VENTA'?'Registrar venta':'Registrar compra';}
@@ -911,11 +1013,11 @@ $('#opT').addEventListener('change',()=>{const t=$('#opT').value.trim().toUpperC
 for(const id of['#opD','#opQ','#opP'])$(id).addEventListener('input',opCalc);
 $('#opX').onclick=()=>$('#opDlg').close();
 $('#opF').addEventListener('submit',e=>{e.preventDefault();const t=$('#opT').value.trim().toUpperCase(),q=pn($('#opQ').value),p=pn($('#opP').value),d=$('#opD').value;
- if(!t||!(q>0)||!(p>0)||!d){toast('Completá ticker, fecha, cantidad y precio en pesos.',1);return;}
- if(opSide==='VENTA'){const h=S.hold[t];if(!h||h.q+1e-9<q){toast(`No tenés ${F(q)} de ${t} para vender (tenés ${F(h?h.q:0)}).`,1);return;}}
+ if(!t||!(q>0)||!(p>0)||!d){toast('Faltan datos.',1);return;}
+ if(opSide==='VENTA'){const h=S.hold[t];if(!h||h.q+1e-9<q){toast(`Tenés ${F(h?h.q:0)} ${t}.`,1);return;}}
  const o={date:d,t,side:opSide,q,p},id='o'+Date.now().toString(36);S.ops.push({...o,id});CX.stale=true;$('#opDlg').close();renderAll();w(()=>db.doc('ops/'+id).set(o),`${opSide==='VENTA'?'Venta':'Compra'} de ${F(q)} ${t} registrada.`);});
 // ajustes
-$('#wt').addEventListener('change',e=>{const i=e.target;if(!i.dataset.w)return;const t=i.dataset.t,n=pn(i.value);if(Number.isNaN(n)){toast('Escribí un número.',1);return;}const c={...(S.wa[t]||{ticker:t}),[i.dataset.w]:n};S.wa[t]=c;renderAll();w(()=>db.doc('watch/'+t).set(c),'Guardado.');});
+$('#t-aj').addEventListener('change',e=>{const i=e.target;if(!i.dataset.w)return;const t=i.dataset.t,n=pn(i.value);if(Number.isNaN(n)){toast('Escribí un número.',1);return;}const c={...(S.wa[t]||{ticker:t}),[i.dataset.w]:n};S.wa[t]=c;renderAll();w(()=>db.doc('watch/'+t).set(c),'Guardado.');});
 for(const[k,id]of[['reqMin','#sMin'],['reqIdeal','#sIdeal'],['gTerm','#sTerm']])$(id).onchange=e=>{const n=pn(e.target.value,1);if(!(n>-.5&&n<.5)){toast('Escribí un porcentaje entre −50 y 50.',1);return;}S.cfg={...S.cfg,[k]:n};renderAll();w(()=>db.doc('config/main').set(S.cfg),'Parámetro guardado.');};
 // buscador rápido
 let kSel=0,kRes=[];
@@ -939,23 +1041,22 @@ function mergeAI(){S.rows=S.rowsRaw.map(r=>{const a=S.ai[r.t];if(!a||!a.pe||!Num
   if(!(m.shares>0)&&a.shares>0)m.shares=a.shares;m.note=[`Últimos 12 meses leídos por IA del informe oficial (${a.src||'informe'}) al ${a.pe}, en ${a.cur} dolarizados.`,a.note,r.note].filter(Boolean).join(' ');if(a.status==='revisar')m.st='revisar';return m;});
  S.by={};for(const r of S.rows)S.by[r.t]=r;}
 /* ===== datos ===== */
-function sectors(){const s=[...new Set(S.rows.map(r=>r.sector).filter(Boolean))].sort();$('#fSec').innerHTML='<option value="">Todos los sectores</option>'+s.map(x=>`<option>${esc(x)}</option>`).join('');if(S._sec)$('#fSec').value=S._sec;}
 let pend=null;const sched=()=>{CX.stale=true;if(pend)return;pend=requestAnimationFrame(()=>{pend=null;renderAll();});};
 route();
 (async()=>{try{const[a,b,c3,fx]=await Promise.all([fetch('data/screener.json').then(r=>r.ok?r.json():null),fetch('data/prices.json').then(r=>r.ok?r.json():null),fetch('data/ccl_hist.json').then(r=>r.ok?r.json():null).catch(()=>null),fetch('data/fx.json').then(r=>r.ok?r.json():null).catch(()=>null)]);if(c3)S.cclH=Object.entries(c3).sort((x,y)=>x[0]<y[0]?-1:1);
   if(a){S.rowsRaw=a.rows||[];S.meta.genAt=a.generatedAt;}if(fx)S.fx=fx.fx||{};mergeAI();
   if(b){S.px=b.px||{};S.meta.pxAt=b.generatedAt;S.meta.ccl=b.ccl;S.meta.cclRef=b.cclRef;S.meta.cclN=b.cclN;}
-  if(!a)toast('Todavía no hay datos del motor publicados.',1);sectors();sched();}catch(e){toast('No se pudieron leer los datos del portal. Recargá la página.',1);}})();
-const tm=setTimeout(()=>toast('Tus datos personales todavía no cargan; revisá la conexión.',1),12000);
+  if(!a)toast('Todavía no hay datos publicados.',1);sched();}catch(e){toast('Error al leer datos. Recargá.',1);}})();
+const tm=setTimeout(()=>toast('Tus datos no cargan.',1),12000);
 (async()=>{db=await claude.use('db');if(!db){clearTimeout(tm);$('#hiL').textContent='Iniciá sesión en Claude para ver tu portafolio.';return;}
  const got=new Set(),need=['cfg','ov','wa','ops','an'];const done=(k,s)=>{if(!s.metadata.fromCache)got.add(k);if(need.every(x=>got.has(x))){clearTimeout(tm);S.live.db=true;}sched();};
- const err=e=>{clearTimeout(tm);toast('Se cortó la conexión con tus datos ('+(e&&e.code)+'). Recargá la página.',1);};
+ const err=e=>{clearTimeout(tm);toast('Se cortó la conexión. Recargá.',1);};
  db.doc('config/main').onSnapshot(s=>{if(s.exists)S.cfg={...S.cfg,...s.data()};done('cfg',s);},err);
  const coll=(n,k)=>db.collection(n).onSnapshot(s=>{const o={};for(const d of s.docs)o[d.id]=d.data();S[k]=o;done(k,s);},err);
  coll('overrides','ov');coll('watch','wa');coll('analysis','an');
  db.collection('ai').onSnapshot(s=>{const o={};for(const d of s.docs)o[d.id]=d.data();S.ai=o;mergeAI();sched();},()=>{});
  db.collection('ops').onSnapshot(s=>{S.ops=s.docs.map(d=>({...d.data(),id:d.id}));done('ops',s);},err);})();
-(async()=>{dls=await claude.use('downloads');$('#csvB').hidden=!dls;})();
+(async()=>{dls=await claude.use('downloads');})();
 (async()=>{sample=await claude.use('sample');if(S.view==='accion')renderStock();})();
 }
 </script>
