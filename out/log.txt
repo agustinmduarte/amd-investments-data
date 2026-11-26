@@ -1,4 +1,4 @@
-2026-11-26T20:21:22+00:00
+2026-11-26T23:05:50+00:00
 CCL histórico: 5077 días 2013-01-02 a 2026-11-26
-Precios Yahoo: 810 de 811
-CCL implícito 1779.96 con 397 CEDEARs; referencia 1767.9
+Precios Yahoo: 809 de 811
+CCL implícito 1779.26 con 397 CEDEARs; referencia 1767.9
