@@ -658,14 +658,14 @@ def yf_extras(t, cache):
 
 def yf_context(tk):
     """Contexto para el análisis con IA: trimestres, sorpresas, revisiones de estimaciones y recomendaciones."""
-    def recs(df, rows=None, cols=None, rnd=4):
+    def recs(df, rows=None, cols=None, rnd=4, mill=()):
         if df is None or getattr(df, "empty", True):
             return None
         o = {}
         for r in (rows or list(df.index)):
             if r not in df.index:
                 continue
-            o[str(r)[:10]] = {str(c)[:10]: (round(v, rnd) if isinstance(v, float) else v)
+            o[str(r)[:10]] = {str(c): (round(v / 1e6, 1) if c in mill else round(v, rnd) if isinstance(v, float) else v)
                               for c in (cols or list(df.columns)) if c in df.columns
                               for v in [num(df.loc[r, c])] if v is not None}
         return o or None
@@ -682,7 +682,8 @@ def yf_context(tk):
         log("ctx q", e)
     for key, fn in (("surprises", lambda: recs(tk.earnings_history, cols=["epsEstimate", "epsActual", "surprisePercent"])),
                     ("revEst", lambda: recs(tk.revenue_estimate, rows=["0q", "+1q", "0y", "+1y"],
-                                            cols=["avg", "low", "high", "numberOfAnalysts", "yearAgoRevenue", "growth"])),
+                                            cols=["avg", "low", "high", "numberOfAnalysts", "yearAgoRevenue", "growth"],
+                                            mill=("avg", "low", "high", "yearAgoRevenue"))),
                     ("epsTrend", lambda: recs(tk.eps_trend, rows=["0q", "+1q", "0y", "+1y"],
                                               cols=["current", "7daysAgo", "30daysAgo", "60daysAgo", "90daysAgo"])),
                     ("growth", lambda: recs(tk.growth_estimates, rows=["0q", "+1q", "0y", "+1y", "LTG"])),
