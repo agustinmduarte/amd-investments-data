@@ -346,6 +346,26 @@ def instant_any(f, names, cur, end):
     return None
 
 
+EQUITY = ["StockholdersEquity", "EquityAttributableToOwnersOfParent",
+          "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", "Equity"]
+
+
+def instant_near(f, names, cur, target, tol=50):
+    """Valor instantáneo más cercano a una fecha (±tol días), para el patrimonio de hace un año."""
+    T = dt.date.fromisoformat(target)
+    best = None
+    for n in names:
+        for e in _units(f, n, cur):
+            if "start" in e:
+                continue
+            d = abs((dt.date.fromisoformat(e["end"]) - T).days)
+            if d <= tol and (best is None or (d, e.get("filed", "")) < (best[0], best[2])):
+                best = (d, e["val"], e.get("filed", ""))
+        if best:
+            return best[1]
+    return None
+
+
 def sec_company(facts, adr_ratio=1):
     """Calcula las entradas del método desde companyfacts. Devuelve dict o None."""
     f = facts.get("facts", {})
@@ -427,6 +447,17 @@ def sec_company(facts, adr_ratio=1):
                 debt, parts = v, 1
     res.setdefault("soft", [])
     res["debt"] = debt if parts else 0.0
+    # para el método financiero: ganancia neta (12 meses al mismo cierre) y patrimonio actual y de hace un año
+    try:
+        if res.get("ttm"):
+            tn = ttm_by_names(f, CON["ni"], cur, res["ttm"]["end"])
+            res["ni"] = tn[0] if tn else None
+        else:
+            res["ni"] = value_for_end(FL["ni"], fy_end)
+        res["eq"] = instant_any(f, EQUITY, cur, bal_end)
+        res["eq0"] = instant_near(f, EQUITY, cur, (dt.date.fromisoformat(bal_end) - dt.timedelta(days=365)).isoformat())
+    except Exception as ex:
+        log("fin sec", ex)
     if not parts:
         res["soft"].append("No informa deuda financiera: se toma 0.")
     # acciones diluidas: último trimestre (Q4 derivado si lo último es el anual)
@@ -576,6 +607,18 @@ def yf_fundamentals(t):
     if bs is not None and not bs.empty:
         res["balanceEnd"] = str(bs.columns[0])[:10]
     res["shares"] = row(inc, ["Diluted Average Shares", "Basic Average Shares"])
+    res["ni"] = row(inc, ["Net Income Common Stockholders", "Net Income"])
+    res["eq"] = row(bs, ["Stockholders Equity", "Common Stock Equity"])
+    try:
+        qb = tk.quarterly_balance_sheet
+        if qb is not None and not qb.empty and qb.shape[1] >= 5:
+            res["eq0"] = row(qb, ["Stockholders Equity", "Common Stock Equity"], 4)
+        else:
+            ab = tk.balance_sheet
+            if ab is not None and not ab.empty and ab.shape[1] >= 2:
+                res["eq0"] = row(ab, ["Stockholders Equity", "Common Stock Equity"], 1)
+    except Exception as ex:
+        log("yf eq0", t, ex)
     H = []
     hcf = tk.cashflow if ttm else cf
     hinc = tk.income_stmt if ttm else inc
@@ -654,6 +697,39 @@ def yf_extras(t, cache):
             log("info", t, e)
     out["info"] = ci or {}
     return out
+
+
+FIN_IND = ("bank", "insurance -", "insurance—", "credit services", "mortgage finance", "capital markets", "financial conglomerates")
+FIN_EXCLUDE = {"V", "MA", "PYPL", "RIOT", "HUT", "IREN", "BMNR", "COIN", "HOOD"}
+FIN_G = 0.05
+
+
+def is_fin_balance(row):
+    """Bancos, aseguradoras, prestamistas y agentes de bolsa: su caja operativa mezcla depósitos y préstamos."""
+    if row["t"] in FIN_EXCLUDE:
+        return False
+    ind = (row.get("industry") or "").lower()
+    return any(w in ind for w in FIN_IND) and "broker" not in ind
+
+
+def fin_method(row, ff):
+    """Método financiero (equivalente al dinero del dueño): ganancia neta 12 m menos lo que hay que retener
+    para que el patrimonio crezca al 5 %: retención = 5 % / ROE (tope 100 %). Deuda y caja en 0 (son su materia prima)."""
+    ni, eq, eq0 = ff.get("ni"), ff.get("eq"), ff.get("eq0")
+    if ni is None or not eq or eq <= 0:
+        return None
+    avg = (eq + eq0) / 2 if eq0 and eq0 > 0 else eq
+    roe = ni / avg
+    ret = 1.0 if roe <= FIN_G else FIN_G / roe
+    keep = max(ni, 0) * ret
+    row["fin"] = {"ocf": row.get("ocf"), "capex": row.get("capex"), "sbc": row.get("sbc"), "debt": row.get("debt"),
+                  "cash": row.get("cash"), "ni": round(ni, 3), "eq": round(eq, 3), "eq0": round(eq0, 3) if eq0 else None,
+                  "roe": round(roe, 4), "ret": round(ret, 4)}
+    row.update({"ocf": round(ni, 3), "capex": round(keep, 3), "sbc": 0.0, "debt": 0.0, "cash": 0.0, "method": "banco"})
+    oe = ni - keep
+    es = lambda v, d=0: f"{v:,.{d}f}".replace(",", "_").replace(".", ",").replace("_", ".")
+    return (f"Método financiero: ganancia neta 12 m US$ {es(ni)} M, ROE {es(roe * 100, 1)} %; retiene {es(ret * 100)} % "
+            f"para crecer al 5 % (va como capex). Dinero del dueño US$ {es(oe)} M. Deuda y caja en 0.")
 
 
 def yf_context(tk):
@@ -1140,6 +1216,7 @@ def full():
             except Exception as ex:
                 log("CVM error", t, ex)
         notes, soft = [], []
+        fund_fin = {}
         if fund:
             cur = fund.get("currency") or "USD"
             fy_end, b_end = fund.get("fyEnd"), fund.get("balanceEnd") or fund.get("fyEnd")
@@ -1166,6 +1243,7 @@ def full():
                     rr = r_fy if key in ("ocf", "capex", "sbc") else r_bal
                     row[key] = round(v * rr / 1e6, 3) if v is not None else None
                 row["shares"] = round(fund["shares"] / 1e6, 3) if fund.get("shares") else None
+                fund_fin = {k: (fund[k] * (r_fy if k == "ni" else r_bal) / 1e6 if fund.get(k) is not None else None) for k in ("ni", "eq", "eq0")}
                 row["pe"] = fund.get("fyEnd")
                 for key in ("form", "fy", "filed", "accn", "src", "sharesFrom", "balanceEnd"):
                     if fund.get(key):
@@ -1186,7 +1264,7 @@ def full():
         else:
             if row.get("kind") != "ETF" and t in prev:  # conserva lo último bueno
                 for key in ("ocf", "capex", "sbc", "debt", "cash", "shares", "form", "fy", "filed", "accn", "src",
-                            "currency", "hist", "cik"):
+                            "currency", "hist", "cik", "fin", "method"):
                     if key in prev[t]:
                         row[key] = prev[t][key]
                 notes.append("No se pudo actualizar hoy; se muestran los últimos datos.")
@@ -1198,9 +1276,12 @@ def full():
             row["est"] = ext["est"]
         elif t in prev and prev[t].get("est"):
             row["est"] = prev[t]["est"]
-        sec_low = (row.get("sector") or "").lower()
-        if any(w in sec_low for w in ("financ", "bank", "insur")):
-            notes.append("Empresa financiera: el dinero del dueño del método no se calcula igual.")
+        if is_fin_balance(row) and row.get("kind") != "ETF":
+            fm = fin_method(row, fund_fin)
+            if fm:
+                soft.append(fm)
+            elif row.get("method") != "banco":
+                notes.append("Empresa financiera: faltan ganancia neta o patrimonio para valuarla.")
         if row.get("src") == "Yahoo":
             soft.append("Balances de Yahoo Finance (no de la SEC).")
         # chequeo de cordura: capitalización implícita
