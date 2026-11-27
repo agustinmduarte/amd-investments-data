@@ -1101,6 +1101,14 @@ def full():
     except Exception as ex:
         log("CVM load", ex)
     pr = prices(U)
+    try:  # conserva máximo/mínimo de 52 semanas de la última corrida del historial
+        _old = load("prices.json", {}).get("px", {})
+        for _t, _v in pr.get("px", {}).items():
+            for _k in ("hi52", "lo52"):
+                if _k not in _v and _k in _old.get(_t, {}):
+                    _v[_k] = _old[_t][_k]
+    except Exception as ex:
+        log("hi52 keep", ex)
     save("prices.json", pr)
     st = sec_tickers()
     log("Descargando companyfacts de la SEC…")
@@ -1414,7 +1422,16 @@ if __name__ == "__main__":
                 U[adr]["adrRatio"] = k
         if not U:
             U = universe()
-        save("prices.json", prices(U))
+        _pr = prices(U)
+        try:  # conserva máximo/mínimo de 52 semanas de la última corrida del historial
+            _old = load("prices.json", {}).get("px", {})
+            for _t, _v in _pr.get("px", {}).items():
+                for _k in ("hi52", "lo52"):
+                    if _k not in _v and _k in _old.get(_t, {}):
+                        _v[_k] = _old[_t][_k]
+        except Exception as ex:
+            log("hi52 keep", ex)
+        save("prices.json", _pr)
     else:
         full()
     with open(os.path.join(OUT, "log_hist.txt" if mode == "hist" else "log.txt"), "w") as f:
