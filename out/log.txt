@@ -1,4 +1,298 @@
-2026-11-27T02:52:18+00:00
-CCL histórico: 5077 días 2013-01-02 a 2026-11-26
-Precios Yahoo: 810 de 811
-CCL implícito 1779.26 con 397 CEDEARs; referencia 1767.9
+2026-11-27T09:20:47+00:00
+CCL histórico: 5078 días 2013-01-02 a 2026-11-27
+S&P 500: 503 Nasdaq 100: 0
+CEDEARs: 403
+Acciones argentinas: 72
+CVM ITR 2026 ok
+CVM ITR 2025 ok
+CVM DFP 2025 ok
+CVM DFP 2024 ok
+CVM empresas con datos: 13
+Precios Yahoo: 811 de 817
+CCL implícito 1779.42 con 398 CEDEARs; referencia 1767.9
+Descargando companyfacts de la SEC…
+ZIP: ok
+0/817 A
+CVM ABEV 12 meses a 2026-09-30 28802 M BRL
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=CLP&to=USD
+50/817 AON
+TTM incoherente ARES -514876000.0 3266959000.0
+TTM incoherente BAC 59200000000.0 12613000000.0
+TTM incoherente BHIP.BA 5695307000.0 166481867000.0
+100/817 BIIB
+TTM incoherente BMA 436670103000.0 2633788066000.0
+TTM incoherente BSBR 55521526000.0 4992175000.0
+CVM BSBR 12 meses a 2026-09-30 55522 M BRL
+TTM incoherente BYMA.BA 35636387000.0 247028836000.0
+TTM incoherente C 4380000000.0 -67632000000.0
+150/817 CI
+TTM incoherente COME.BA 2078106000.0 25320747000.0
+200/817 DD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2015-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2015-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2015-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2015-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2016-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2017-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2018-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2019-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=COP&to=USD
+TTM incoherente EDSH.BA 3966000000.0 44947000000.0
+250/817 EQNR
+300/817 GARO.BA
+CVM GGB 12 meses a 2026-09-30 8888 M BRL
+TTM incoherente GPRK 229572000.0 14705000.0
+TTM incoherente GRIM.BA 11507596492.0 -2441548525.0
+TTM incoherente HARG.BA 50739000000.0 6561000000.0
+Yahoo incoherente con la SEC HMC 8931803448.0 1955227260.0
+350/817 HOG
+400/817 ISRG
+Yahoo incoherente con la SEC ITUB 14340788100.0 1142986610.0
+CVM ITUB 12 meses a 2026-09-30 74610 M BRL
+TTM incoherente KB 17781622000000.0 4226378000000.0
+TTM incoherente KKR 2242879000.0 477760000.0
+450/817 LND
+TTM incoherente LONG.BA -699320749.0 -6208765717.0
+TTM incoherente MORI.BA -5311701000.0 -69620000.0
+500/817 MTB
+TTM incoherente MUX 31566000.0 6865000.0
+TTM incoherente NBIS 5065400000.0 384800000.0
+TTM incoherente NU -218531000.0 3500464000.0
+550/817 OXY
+Yahoo incoherente con la SEC PBR 7843578824.598444 35540000000.0
+CVM PBR 12 meses a 2026-09-30 222489 M BRL
+600/817 RCL
+TTM incoherente RICH.BA 13866297204.0 1866133687.0
+CVM SBS 12 meses a 2026-09-30 7162 M BRL
+Yahoo incoherente con la SEC SID -267169016.85 1398700153.45
+CVM SID 12 meses a 2026-09-30 -1390 M BRL
+650/817 SNA
+TTM incoherente STNE 3091656000.0 676566000.0
+Yahoo incoherente con la SEC STNE 123513888.96 -585541255.58
+CVM SUZ 12 meses a 2026-09-30 16754 M BRL
+TTM incoherente TD 7553000000.0 -69646000000.0
+700/817 TIMB
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2020-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2021-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2022-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2023-12-31?from=TWD&to=USD
+Yahoo incoherente con la SEC VALE 1827724890.0 25679000000.0
+CVM VALE 12 meses a 2026-09-30 49852 M BRL
+800/817 XLV
+TTM incoherente XP -748676000.0 12044826000.0
+Yahoo incoherente con la SEC YPF 5464325.460615803 4959000000.0
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=TWD&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=CLP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=COP&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2026-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-06-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2025-03-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-12-31?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=PEN&to=USD
+HTTP 404 https://api.frankfurter.app/2024-09-30?from=PEN&to=USD
+CONTROL APPLE: OK
